@@ -35,26 +35,6 @@
     
       
   {
-  "tag" : "general blogging",
-  "posts" : [
-      
-      "./starting-the-adventure.html"
-      
-    ]
-  } ,
-    
-      
-  {
-  "tag" : "life",
-  "posts" : [
-      
-      "./starting-the-adventure.html"
-      
-    ]
-  } ,
-    
-      
-  {
   "tag" : "machine learning",
   "posts" : [
       
@@ -73,16 +53,6 @@
       "./AI-and-intellectual-property.html",
       
       "./back-to-basics.html"
-      
-    ]
-  } ,
-    
-      
-  {
-  "tag" : "thoughts",
-  "posts" : [
-      
-      "./starting-the-adventure.html"
       
     ]
   } 
