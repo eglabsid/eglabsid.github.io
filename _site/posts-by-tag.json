@@ -15,6 +15,18 @@
     
       
   {
+  "tag" : "coding",
+  "posts" : [
+      
+      "./neural-network-optimization-methods.html",
+      
+      "./ML-Library-from-scratch.html"
+      
+    ]
+  } ,
+    
+      
+  {
   "tag" : "copyright",
   "posts" : [
       
@@ -35,12 +47,26 @@
     
       
   {
+  "tag" : "deep Neural networks",
+  "posts" : [
+      
+      "./neural-network-optimization-methods.html"
+      
+    ]
+  } ,
+    
+      
+  {
   "tag" : "machine learning",
   "posts" : [
       
       "./AI-and-intellectual-property.html",
       
-      "./back-to-basics.html"
+      "./back-to-basics.html",
+      
+      "./neural-network-optimization-methods.html",
+      
+      "./ML-Library-from-scratch.html"
       
     ]
   } ,
@@ -52,7 +78,29 @@
       
       "./AI-and-intellectual-property.html",
       
-      "./back-to-basics.html"
+      "./back-to-basics.html",
+      
+      "./ML-Library-from-scratch.html"
+      
+    ]
+  } ,
+    
+      
+  {
+  "tag" : "optimization",
+  "posts" : [
+      
+      "./neural-network-optimization-methods.html"
+      
+    ]
+  } ,
+    
+      
+  {
+  "tag" : "python",
+  "posts" : [
+      
+      "./ML-Library-from-scratch.html"
       
     ]
   } 

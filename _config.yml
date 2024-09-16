@@ -5,14 +5,14 @@ permalink: ':title:output_ext'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://eglabsid.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 logo: "/assets/img/branding/EGLab-logo.png"
-logo-icon: "/assets/img/branding/EGLab-symbol.svg"
-logo-icon-SEO: "/assets/img/branding/EGLab-symbol.svg" # must be a non SVG file
+logo-icon: "/assets/img/branding/EGLab-symbol.ico"
+logo-icon-SEO: "/assets/img/branding/EGLab-symbol.ico" # must be a non SVG file
 
 # Night/Dark mode
 # Default mode is "auto", "auto" is for auto nightshift
 # (19:00 - 07:00), "manual" is for manual toggle, and
 # "on/off" is for default on/off.
-#
+
 # Whatever the user's choice is, it will supersede the
 # default setting of the site and be kept during the
 # visit (session). Only the dark mode setting is "manual",
@@ -32,7 +32,7 @@ about-author: Professor, Department of Game Studies, Hongik University ( Google 
 email: directx@hongik.ac.kr # Add your Email address
 # phone: # Add your Phone number
 website: https://eglabsid.github.io # Add your website
-# linkedin: amaynez # Add your Linkedin handle
+# linkedin: Shin Jin Kang # Add your Linkedin handle
 github: eglabsid # Add your Github handle
 # twitter: '@MvmThe' # Add your Twitter handle
 # bandcamp: armandomaynez # Add your Bandcamp username
