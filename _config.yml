@@ -59,7 +59,7 @@ comments_opts:
   comments_curtain: yes # leave empty to show the disqus embed directly
   repo: "eglabsid/eglabsid.github.io" # The GitHub repo URL.  https://utteranc.es/
   issue_term: "pathname" # The GitHub issue label
-  label: "comments" # The GitHub comments label
+  label: # The GitHub comments label
   theme: "github-dark-orange" # The GitHub comment's there. e.g. github-dark
   # Disqus
   discus_identifier: # Add your discus identifier
