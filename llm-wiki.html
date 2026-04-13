@@ -1,0 +1,345 @@
+---
+layout: default
+title: LLM Wiki
+description: "EGLab Knowledge Vault — AI/ML research concepts, entities, and insights"
+permalink: /llm-wiki.html
+---
+{% include calculate_relative_base.html %}
+<div class="flex-container transparent">
+  {% include header.html %}
+
+  <div class="content wrapper">
+
+    <!-- ── Hero Section — EGLab Brand ── -->
+    <div class="lw-hero" style="position:relative;overflow:hidden;margin:40px 0 48px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1220 45%,#0a0e1a 100%);border-radius:var(--radius-lg);border:1px solid rgba(123,192,67,0.18);">
+      <!-- Dot-grid background -->
+      <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
+      <!-- DNA helix decoration (right side) -->
+      <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+        <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
+        <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
+      </svg>
+      <div style="position:relative;z-index:1;">
+        <!-- EGLab wordmark -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;">
+            <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
+          </span>
+          <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Knowledge Vault</span>
+        </div>
+        <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">
+          LLM <span style="color:#7bc043;">Wiki</span>
+        </h1>
+        <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:520px;line-height:1.7;">
+          AI/ML research concepts, entities, source summaries, and insights curated by
+          <span style="color:#00bcd4;font-weight:600;">EGLab</span>.
+        </p>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="{{ relativebase }}admin/" class="lw-btn-primary">
+            <svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            Add Entry
+          </a>
+          <a href="#entriesGrid" class="lw-btn-outline">
+            Browse All
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Filter + Search Bar ── -->
+    <div style="margin-bottom:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <!-- Type filter tabs -->
+      <div id="typeTabs" class="lw-type-tabs">
+        <button class="lw-tab lw-tab-active" data-type="all">All</button>
+        <button class="lw-tab" data-type="source">Source</button>
+        <button class="lw-tab" data-type="entity">Entity</button>
+        <button class="lw-tab" data-type="concept">Concept</button>
+        <button class="lw-tab" data-type="query">Query</button>
+        <button class="lw-tab" data-type="report">Report</button>
+      </div>
+      <!-- Search -->
+      <div style="margin-left:auto;">
+        <input id="wikiSearch" type="text" placeholder="Search entries…" class="lw-search">
+      </div>
+    </div>
+
+    <!-- ── Entry Count ── -->
+    <div id="entryCount" style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-bottom:20px;display:none;"></div>
+
+    <!-- ── Entries Grid ── -->
+    <div id="entriesGrid" class="lw-grid" style="margin-bottom:64px;"></div>
+
+    <!-- ── Loading Skeletons ── -->
+    <div id="loadingState" class="lw-grid" style="margin-bottom:64px;">
+      {% for i in (1..6) %}
+      <div class="lw-card" style="overflow:hidden;">
+        <div class="skeleton" style="height:4px;border-radius:4px 4px 0 0;"></div>
+        <div style="padding:20px;">
+          <div class="skeleton" style="height:20px;width:60px;border-radius:999px;margin-bottom:14px;"></div>
+          <div class="skeleton" style="height:17px;width:80%;margin-bottom:10px;"></div>
+          <div class="skeleton" style="height:12px;width:100%;margin-bottom:6px;"></div>
+          <div class="skeleton" style="height:12px;width:72%;margin-bottom:16px;"></div>
+          <div style="display:flex;gap:6px;">
+            <div class="skeleton" style="height:18px;width:52px;border-radius:999px;"></div>
+            <div class="skeleton" style="height:18px;width:44px;border-radius:999px;"></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- ── Empty State ── -->
+    <div id="emptyState" style="display:none;text-align:center;padding:80px 20px;">
+      <div style="width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:rgba(123,192,67,0.07);border:1px solid rgba(123,192,67,0.2);display:flex;align-items:center;justify-content:center;">
+        <svg width="38" height="38" fill="none" viewBox="0 0 24 24">
+          <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M8 4.5h8M8 8h8M8 16h8M8 19.5h8" stroke="#00bcd4" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.6"/>
+        </svg>
+      </div>
+      <h3 style="color:#fff;font-weight:700;margin:0 0 8px;">No entries found</h3>
+      <p id="emptyMsg" style="color:rgba(255,255,255,0.42);font-size:0.88rem;margin:0 0 24px;">Be the first to add a knowledge entry!</p>
+      <a href="{{ relativebase }}admin/" class="lw-btn-primary">Add Entry</a>
+    </div>
+
+  </div><!-- End content wrapper -->
+
+  {% include footer.html %}
+</div>
+
+<!-- ── Firebase + Wiki Scripts ── -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, collection, query, orderBy, limit, getDocs }
+         from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyDR2XdnemhSHYznMFI20or-WKIPgn1V7vc",
+    authDomain:        "saas-of-funqa.firebaseapp.com",
+    projectId:         "saas-of-funqa",
+    storageBucket:     "saas-of-funqa.firebasestorage.app",
+    messagingSenderId: "74495319833",
+    appId:             "1:74495319833:web:d75e2d769b97c48bdeaf88"
+  };
+
+  const TYPE_COLORS = {
+    source:  '#7bc043',
+    entity:  '#00bcd4',
+    concept: '#f59e0b',
+    query:   '#a78bfa',
+    report:  '#f43f5e'
+  };
+
+  const app       = initializeApp(firebaseConfig);
+  const db        = getFirestore(app);
+
+  const grid        = document.getElementById('entriesGrid');
+  const loadingEl   = document.getElementById('loadingState');
+  const emptyEl     = document.getElementById('emptyState');
+  const emptyMsg    = document.getElementById('emptyMsg');
+  const countEl     = document.getElementById('entryCount');
+  const searchInput = document.getElementById('wikiSearch');
+  const tabsEl      = document.getElementById('typeTabs');
+
+  let allEntries  = [];
+  let activeType  = 'all';
+
+  function formatDate(ts) {
+    if (!ts) return '';
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function typeColor(type) {
+    return TYPE_COLORS[type] || '#7bc043';
+  }
+
+  function renderCard(entry) {
+    const color   = typeColor(entry.type);
+    const preview = (entry.content || '').substring(0, 120);
+    const clipped = entry.content && entry.content.length > 120;
+    const tagsHtml = entry.tags && entry.tags.length
+      ? `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;">${
+          entry.tags.slice(0, 4).map(t =>
+            `<span style="border:1px solid rgba(123,192,67,0.3);color:rgba(123,192,67,0.8);border-radius:999px;padding:1px 8px;font-size:0.72rem;">${t}</span>`
+          ).join('')
+        }</div>`
+      : '';
+    const dateStr = formatDate(entry.updatedAt || entry.createdAt);
+
+    return `<div class="lw-card" data-type="${entry.type || ''}" data-title="${(entry.title || '').toLowerCase()}" data-tags="${(entry.tags || []).join(' ').toLowerCase()}">
+      <div style="height:4px;background:${color};border-radius:4px 4px 0 0;"></div>
+      <div style="padding:20px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="background:${color}22;color:${color};border:1px solid ${color}44;border-radius:999px;padding:2px 10px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">${entry.type || 'entry'}</span>
+          ${dateStr ? `<span style="font-size:0.70rem;color:rgba(255,255,255,0.28);margin-left:auto;">${dateStr}</span>` : ''}
+        </div>
+        <h3 style="color:#e8eaf0;font-size:1rem;font-weight:700;margin:0 0 10px;line-height:1.4;">${entry.title || '—'}</h3>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.82rem;line-height:1.6;margin:0;">${preview}${clipped ? '…' : ''}</p>
+        ${tagsHtml}
+      </div>
+    </div>`;
+  }
+
+  function applyFilters() {
+    const search = (searchInput.value || '').toLowerCase().trim();
+    const filtered = allEntries.filter(e => {
+      const matchType   = activeType === 'all' || e.type === activeType;
+      const matchSearch = !search ||
+        (e.title   || '').toLowerCase().includes(search) ||
+        (e.content || '').toLowerCase().includes(search) ||
+        (e.tags    || []).join(' ').toLowerCase().includes(search);
+      return matchType && matchSearch;
+    });
+    renderEntries(filtered);
+  }
+
+  function renderEntries(entries) {
+    if (!entries.length) {
+      grid.innerHTML    = '';
+      emptyEl.style.display = 'block';
+      countEl.style.display = 'none';
+      return;
+    }
+    emptyEl.style.display  = 'none';
+    countEl.style.display  = 'block';
+    countEl.textContent    = `${entries.length} entr${entries.length === 1 ? 'y' : 'ies'}`;
+    grid.innerHTML         = entries.map(renderCard).join('');
+  }
+
+  function updateTabs() {
+    tabsEl.querySelectorAll('.lw-tab').forEach(btn => {
+      const active = btn.dataset.type === activeType;
+      btn.classList.toggle('lw-tab-active', active);
+    });
+  }
+
+  // Tab click
+  tabsEl.addEventListener('click', e => {
+    const btn = e.target.closest('.lw-tab');
+    if (!btn) return;
+    activeType = btn.dataset.type;
+    updateTabs();
+    applyFilters();
+  });
+
+  // Search input
+  searchInput.addEventListener('input', applyFilters);
+
+  async function loadEntries() {
+    try {
+      const q    = query(collection(db, 'llm_wiki'), orderBy('updatedAt', 'desc'), limit(50));
+      const snap = await getDocs(q);
+      allEntries = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      loadingEl.style.display = 'none';
+      renderEntries(allEntries);
+    } catch (err) {
+      loadingEl.style.display = 'none';
+      console.error('Failed to load wiki entries:', err);
+      emptyEl.style.display = 'block';
+      const isIndex = err.message && err.message.includes('index');
+      document.querySelector('#emptyState h3').textContent =
+        isIndex ? 'Database index building…' : 'Could not load entries';
+      emptyMsg.textContent = isIndex
+        ? 'Firestore is building a required index. This takes 1–2 minutes on first run. Refresh to retry.'
+        : (err.code === 'permission-denied'
+            ? 'Entries are private or security rules are not deployed.'
+            : `Error: ${err.message}`);
+    }
+  }
+
+  loadEntries();
+</script>
+
+<style>
+/* ── EGLab LLM Wiki — Gaming / DNA Theme ── */
+:root {
+  --lw-green: #7bc043;
+  --lw-blue:  #00bcd4;
+  --lw-dark:  #141424;
+}
+
+/* Buttons */
+.lw-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 24px; background: var(--lw-green); border: none;
+  border-radius: 999px; color: #fff; text-decoration: none;
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.025em;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 20px rgba(123,192,67,0.28);
+}
+.lw-btn-primary:hover { background: #8cd64a; transform: translateY(-1px); box-shadow: 0 0 28px rgba(123,192,67,0.40); }
+
+.lw-btn-outline {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 22px; background: transparent;
+  border: 1px solid rgba(0,188,212,0.38); border-radius: 999px;
+  color: #00bcd4; text-decoration: none; font-size: 0.85rem; font-weight: 600;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lw-btn-outline:hover { border-color: rgba(0,188,212,0.70); color: #33d1e8; }
+
+/* Type filter tabs */
+.lw-type-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.lw-tab {
+  cursor: pointer; border: 1px solid rgba(123,192,67,0.30);
+  background: transparent; color: #7bc043;
+  font-size: 0.78rem; font-weight: 600;
+  padding: 5px 16px; border-radius: 999px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.lw-tab:hover { background: rgba(123,192,67,0.10); }
+.lw-tab-active {
+  background: #7bc043 !important; color: #fff !important;
+  border-color: #7bc043 !important;
+}
+
+/* Search input */
+.lw-search {
+  padding: 7px 14px;
+  border: 1px solid rgba(0,188,212,0.22);
+  border-radius: 999px;
+  background: rgba(0,188,212,0.04);
+  color: var(--color-text);
+  font-size: 0.84rem;
+  outline: none;
+  width: 210px;
+  transition: border-color 0.2s;
+}
+.lw-search:focus { border-color: rgba(0,188,212,0.55); }
+
+/* Entry grid */
+.lw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Entry card */
+.lw-card {
+  background: var(--lw-dark);
+  border: 1px solid rgba(123,192,67,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.lw-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(123,192,67,0.15), 0 0 0 1px rgba(123,192,67,0.22);
+  border-color: rgba(123,192,67,0.28) !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .lw-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 580px) {
+  .lw-grid { grid-template-columns: 1fr !important; }
+  .lw-hero { padding: 32px 20px !important; margin: 24px 0 32px !important; }
+  .lw-search { width: 150px; }
+  .lw-type-tabs { gap: 6px; }
+}
+</style>

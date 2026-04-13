@@ -1,7 +1,285 @@
 ---
 layout: home-page
 ---
+<style>
+/* EGLab brand overrides — home page */
+.post-card-box {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.post-card {
+  background: #141424;
+  border: 1px solid rgba(123, 192, 67, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(123, 192, 67, 0.15);
+}
+
+.post-card-image-wrapper {
+  height: 180px;
+  overflow: hidden;
+}
+
+.post-card-link {
+  text-decoration: none;
+}
+
+.post-card-title {
+  color: #e8eaf0;
+  font-weight: 700;
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  transition: color 0.18s ease;
+}
+
+.post-card-link:hover .post-card-title {
+  color: #00bcd4;
+}
+
+.post-card-excerpt {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.post-card-date,
+.post-card-read-time {
+  color: rgba(123, 192, 67, 0.7);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-card-tags .tag {
+  display: inline-block;
+  border: 1px solid rgba(123, 192, 67, 0.4);
+  color: #7bc043;
+  background: transparent;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: background 0.18s ease;
+}
+
+.post-card-tags .tag:hover {
+  background: rgba(123, 192, 67, 0.1);
+}
+
+/* Hero section */
+.eglab-hero {
+  background: linear-gradient(135deg, #0a0e1a 0%, #0d1a14 45%, #0a0e1a 100%);
+  border: 1px solid rgba(123, 192, 67, 0.18);
+  border-radius: 18px;
+  padding: 52px 40px;
+  margin: 32px 0 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.eglab-hero__dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.eglab-hero__dna {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.10;
+  pointer-events: none;
+}
+
+.eglab-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.eglab-hero__wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.eglab-hero__logo-text {
+  font-family: Lato, sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.eglab-hero__logo-eg {
+  color: #7bc043;
+}
+
+.eglab-hero__logo-lab {
+  color: #ffffff;
+}
+
+.eglab-hero__pipe {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.25);
+  display: inline-block;
+}
+
+.eglab-hero__lab-label {
+  font-family: Montserrat, sans-serif;
+  font-size: 0.78rem;
+  color: #00bcd4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eglab-hero h1 {
+  font-family: Lato, sans-serif;
+  font-weight: 900;
+  font-size: 2.4rem;
+  line-height: 1.15;
+  color: #e8eaf0;
+  margin: 0 0 14px;
+}
+
+.eglab-hero__subtitle {
+  font-family: Montserrat, sans-serif;
+  font-size: 0.97rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin: 0 0 28px;
+}
+
+.eglab-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.eglab-hero__btn {
+  display: inline-block;
+  font-family: Montserrat, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.eglab-hero__btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.eglab-hero__btn--green {
+  background: #7bc043;
+  color: #0a0e1a;
+}
+
+.eglab-hero__btn--blue {
+  background: transparent;
+  color: #00bcd4;
+  border: 1.5px solid #00bcd4;
+}
+
+.eglab-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.eglab-hero__stat {
+  display: inline-block;
+  font-family: Montserrat, sans-serif;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  padding: 4px 14px;
+}
+
+.eglab-hero__stat--green {
+  border: 1px solid rgba(123, 192, 67, 0.4);
+  color: #7bc043;
+}
+
+.eglab-hero__stat--blue {
+  border: 1px solid rgba(0, 188, 212, 0.4);
+  color: #00bcd4;
+}
+
+.eglab-hero__stat--muted {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+}
+</style>
 {% include calculate_relative_base.html %}
+
+<!-- EGLab Hero -->
+<section class="eglab-hero">
+  <div class="eglab-hero__dot-grid"></div>
+
+  <!-- DNA helix SVG -->
+  <svg class="eglab-hero__dna" width="220" height="340" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M110 10 C60 50, 160 90, 110 130 C60 170, 160 210, 110 250 C60 290, 160 330, 110 330" stroke="#7bc043" stroke-width="2" fill="none"/>
+    <path d="M110 10 C160 50, 60 90, 110 130 C160 170, 60 210, 110 250 C160 290, 60 330, 110 330" stroke="#00bcd4" stroke-width="2" fill="none"/>
+    <line x1="72" y1="50"  x2="148" y2="50"  stroke="#7bc043" stroke-width="1.2" opacity="0.6"/>
+    <line x1="58" y1="90"  x2="162" y2="90"  stroke="#7bc043" stroke-width="1.2" opacity="0.6"/>
+    <line x1="72" y1="130" x2="148" y2="130" stroke="#7bc043" stroke-width="1.2" opacity="0.6"/>
+    <line x1="58" y1="170" x2="162" y2="170" stroke="#7bc043" stroke-width="1.2" opacity="0.6"/>
+    <line x1="72" y1="210" x2="148" y2="210" stroke="#7bc043" stroke-width="1.2" opacity="0.6"/>
+    <line x1="58" y1="250" x2="162" y2="250" stroke="#7bc043" stroke-width="1.2" opacity="0.6"/>
+    <line x1="72" y1="290" x2="148" y2="290" stroke="#7bc043" stroke-width="1.2" opacity="0.6"/>
+  </svg>
+
+  <div class="eglab-hero__content">
+    <div class="eglab-hero__wordmark">
+      <span class="eglab-hero__logo-text">
+        <span class="eglab-hero__logo-eg">EG</span><span class="eglab-hero__logo-lab">LAB</span>
+      </span>
+      <span class="eglab-hero__pipe"></span>
+      <span class="eglab-hero__lab-label">Evolutionary Game LAB</span>
+    </div>
+
+    <h1>Research <span style="color:#7bc043;">Hub</span></h1>
+
+    <p class="eglab-hero__subtitle">
+      Papers, experiments, and ideas from EGLab — Hongik University.
+      Game AI, EGT &amp; Evolutionary Computation.
+    </p>
+
+    <div class="eglab-hero__actions">
+      <a href="{{ relativebase }}student-blog.html" class="eglab-hero__btn eglab-hero__btn--green">Student Blog</a>
+      <a href="{{ relativebase }}llm-wiki.html" class="eglab-hero__btn eglab-hero__btn--blue">LLM Wiki</a>
+    </div>
+
+    <div class="eglab-hero__stats">
+      <span class="eglab-hero__stat eglab-hero__stat--green">Game AI &middot; EGT &middot; Indie Dev</span>
+      <span class="eglab-hero__stat eglab-hero__stat--blue">Hongik University</span>
+      <span class="eglab-hero__stat eglab-hero__stat--muted">Open Research</span>
+    </div>
+  </div>
+</section>
 
 <ol class="post-card-box">
   {% for post in paginator.posts %}
