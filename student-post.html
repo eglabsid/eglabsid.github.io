@@ -34,10 +34,10 @@ permalink: /student-post.html
 
     <!-- Post content -->
     <article id="postContent" style="display:none;">
-      <header style="margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--color-border);">
+      <header style="margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid rgba(123,192,67,0.15);">
         <div id="postTags" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;"></div>
-        <h1 id="postTitle" style="margin:0 0 16px;font-size:2rem;font-weight:800;color:var(--color-text);line-height:1.25;"></h1>
-        <div id="postMeta" style="display:flex;align-items:center;gap:16px;font-size:0.85rem;color:var(--color-text-muted);flex-wrap:wrap;">
+        <h1 id="postTitle" style="margin:0 0 16px;font-size:2rem;font-weight:800;color:#e8eaf0;line-height:1.25;"></h1>
+        <div id="postMeta" style="display:flex;align-items:center;gap:16px;font-size:0.85rem;color:rgba(123,192,67,0.7);flex-wrap:wrap;">
         </div>
       </header>
 
@@ -52,7 +52,7 @@ permalink: /student-post.html
 
       <!-- Author box -->
       <div id="postAuthorBox" style="margin-top:48px;padding-top:28px;border-top:1px solid var(--color-border);display:flex;align-items:center;gap:18px;">
-        <div style="width:56px;height:56px;border-radius:50%;background:var(--gradient-brand);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0d1a14,#141424);border:2px solid #7bc043;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
           <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
         </div>
         <div>
@@ -67,7 +67,7 @@ permalink: /student-post.html
       <svg width="64" height="64" fill="var(--color-text-subtle)" viewBox="0 0 24 24" style="margin-bottom:16px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
       <h3 style="color:var(--color-text-muted);font-weight:600;margin:0 0 8px;">Post not found</h3>
       <p style="color:var(--color-text-subtle);font-size:0.9rem;margin:0 0 24px;">This post may have been removed or the link is invalid.</p>
-      <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--color-primary);border-radius:999px;color:#fff;text-decoration:none;font-size:0.88rem;font-weight:600;">Back to Blog</a>
+      <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#7bc043;border-radius:999px;color:#0a0e1a;text-decoration:none;font-size:0.88rem;font-weight:600;">Back to Blog</a>
     </div>
 
   </div>
@@ -174,34 +174,110 @@ permalink: /student-post.html
 
 <style>
 .sp-back-link {
-  display:     inline-flex;
+  color: rgba(123,192,67,0.8);
+  display: flex;
   align-items: center;
-  gap:         6px;
-  font-size:   0.85rem;
+  gap: 6px;
+  font-size: 0.85rem;
   font-weight: 600;
-  color:       var(--color-text-muted);
   text-decoration: none;
-  transition:  color var(--transition-fast, 0.15s ease);
+  transition: color 0.15s;
 }
-.sp-back-link:hover { color: var(--color-accent); }
+.sp-back-link:hover { color: #7bc043; }
+
+.skeleton {
+  background: linear-gradient(90deg,#141424 25%,#1a1e30 50%,#141424 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 4px;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.tag-badge {
+  background: rgba(123,192,67,0.12);
+  border: 1px solid rgba(123,192,67,0.35);
+  color: #7bc043;
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#postTitle { color: #e8eaf0; line-height: 1.25; }
+
+#postMeta { color: rgba(123,192,67,0.7); }
+
+#postAbstract {
+  background: rgba(0,188,212,0.07);
+  border-left: 4px solid #00bcd4;
+  padding: 18px 20px;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 32px;
+}
+#postAbstract > div { color: #00bcd4; }
+#postAbstractText { color: rgba(255,255,255,0.65); font-style: italic; }
 
 #postBody h1,#postBody h2,#postBody h3 {
-  color: var(--color-primary);
+  color: #7bc043;
   margin-top: 2em;
+  font-weight: 700;
 }
-#postBody a { color: var(--color-accent); }
+#postBody h4,#postBody h5,#postBody h6 { color: #00bcd4; }
+
+#postBody a { color: #00bcd4; text-decoration: underline; text-underline-offset: 2px; }
+#postBody a:hover { color: #7bc043; }
+
 #postBody blockquote {
-  border-left: 3px solid var(--color-accent);
+  border-left: 3px solid #7bc043;
   padding-left: 16px;
   margin-left: 0;
   font-style: italic;
-  color: var(--color-text-muted);
+  color: rgba(255,255,255,0.6);
 }
+
 #postBody pre {
-  background: var(--color-surface-raised);
-  border-radius: var(--radius-md);
+  background: #141424;
+  border: 1px solid rgba(123,192,67,0.15);
+  border-radius: 10px;
   padding: 16px 20px;
   overflow-x: auto;
 }
-#postBody img { border-radius: var(--radius-md); max-width: 100%; }
+#postBody code {
+  background: rgba(123,192,67,0.1);
+  color: #7bc043;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+#postBody pre code { background: transparent; padding: 0; color: #e8eaf0; }
+
+#postBody img {
+  border-radius: 10px;
+  max-width: 100%;
+  border: 1px solid rgba(123,192,67,0.1);
+}
+
+#postBody p  { color: rgba(255,255,255,0.82); line-height: 1.8; }
+#postBody li { color: rgba(255,255,255,0.82); line-height: 1.7; }
+
+#postAuthorBox {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(123,192,67,0.15);
+}
+#postAuthorBox > div:first-child {
+  background: linear-gradient(135deg,#0a0e1a 0%,#0d1a14 100%);
+  border: 2px solid #7bc043;
+}
+#authorName { color: #e8eaf0; font-weight: 700; }
+
+#notFoundState svg  { fill: rgba(255,255,255,0.3); }
+#notFoundState h3   { color: rgba(255,255,255,0.6); }
+#notFoundState p    { color: rgba(255,255,255,0.35); }
+#notFoundState a    { background: #7bc043; color: #0a0e1a !important; font-weight: 700; }
 </style>

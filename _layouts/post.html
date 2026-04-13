@@ -4,6 +4,138 @@ layout: default
 {% include calculate_relative_base.html %}
 {% capture post_url %}{{ relativebase }}{{ page.url }}{% endcapture %}
 {% assign post_url = post_url | replace: "//", "/" %}
+<style>
+/* EGLab Brand — Post Page */
+.page-image {
+  position: relative;
+}
+.page-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, #0a0e1a 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.header-page {
+  position: relative;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(123, 192, 67, 0.15);
+  margin-bottom: 32px;
+}
+.page-title {
+  color: #e8eaf0 !important;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.page-content p {
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.8;
+  margin-bottom: 1.2em;
+}
+.page-content h1,
+.page-content h2,
+.page-content h3 {
+  color: #7bc043 !important;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+  color: #00bcd4 !important;
+}
+.page-content a {
+  color: #00bcd4;
+  text-underline-offset: 2px;
+}
+.page-content a:hover {
+  color: #7bc043;
+}
+.page-content blockquote {
+  border-left: 3px solid #7bc043;
+  padding-left: 20px;
+  margin-left: 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
+}
+.page-content pre {
+  background: #141424;
+  border: 1px solid rgba(123, 192, 67, 0.15);
+  border-radius: 10px;
+  padding: 16px 20px;
+  overflow-x: auto;
+}
+.page-content code {
+  background: rgba(123, 192, 67, 0.1);
+  color: #7bc043;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+.page-content pre code {
+  background: transparent;
+  padding: 0;
+  color: #e8eaf0;
+}
+.page-content img {
+  border-radius: 10px;
+  max-width: 100%;
+  border: 1px solid rgba(123, 192, 67, 0.08);
+}
+.page-content li {
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.7;
+}
+.page-content strong {
+  color: #e8eaf0;
+}
+.page-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.page-content th {
+  background: rgba(123, 192, 67, 0.12);
+  color: #7bc043;
+  padding: 10px 14px;
+  border: 1px solid rgba(123, 192, 67, 0.2);
+  text-align: left;
+}
+.page-content td {
+  padding: 10px 14px;
+  border: 1px solid rgba(123, 192, 67, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+}
+.page-content hr {
+  border: none;
+  border-top: 1px solid rgba(123, 192, 67, 0.15);
+  margin: 2em 0;
+}
+.separator {
+  border-top: 1px solid rgba(123, 192, 67, 0.15);
+  margin: 32px 0;
+}
+/* EGLab post page back link */
+.page-content .eglab-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(123, 192, 67, 0.8);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+.page-content .eglab-back:hover {
+  color: #7bc043;
+}
+</style>
 <section class="hidden">
   <div class="post">
       <a  class="post-list-title" href="{{ post_url }}">{{ page.title }}</a>
@@ -22,6 +154,10 @@ layout: default
     </div>
     <div class="wrapper">
       <div class="page-content">
+        <a href="{{ relativebase }}archive.html" class="eglab-back">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+          All Posts
+        </a>
         <div class="header-page">
           <h1 class="page-title">{{ page.title }}</h1>
           {% include post_meta.html type="post-page-meta" %}
@@ -34,7 +170,7 @@ layout: default
         <div class="separator"></div>
         {% include author-box.html %}
         {% include recent-post.html %}
-        
+
         {% include comments.html %}
       </div>
     </div> <!-- End Wrapper -->
