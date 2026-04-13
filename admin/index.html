@@ -866,7 +866,7 @@
     const data = {
       title,
       author:   author || currentUser.displayName || 'Anonymous',
-      authorId: currentUser.uid,
+      authorUid: currentUser.uid,
       tags,
       excerpt,
       content,
@@ -914,7 +914,7 @@
       } else {
         q = query(
           collection(db, 'blog_posts'),
-          where('authorId', '==', currentUser.uid),
+          where('authorUid', '==', currentUser.uid),
           orderBy('createdAt', 'desc')
         );
       }
