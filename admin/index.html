@@ -754,6 +754,53 @@
     placeholder: 'Write your research paper or blog post…'
   });
 
+  // ── Image Attachment: file picker, clipboard paste, drag-and-drop ──
+  function insertImageFromFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    if (file.size > 5 * 1024 * 1024) { showToast('Image too large (max 5 MB).', 'error'); return; }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const range = quill.getSelection(true) || { index: quill.getLength() - 1 };
+      quill.insertEmbed(range.index, 'image', e.target.result);
+      quill.setSelection(range.index + 1);
+      showToast('Image inserted.');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Override toolbar image button → file picker
+  quill.getModule('toolbar').addHandler('image', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = () => { if (input.files[0]) insertImageFromFile(input.files[0]); };
+    input.click();
+  });
+
+  // Clipboard paste handler (Ctrl+V with image data)
+  quill.root.addEventListener('paste', (e) => {
+    const items = Array.from((e.clipboardData || e.originalEvent?.clipboardData || {}).items || []);
+    const imgItem = items.find(it => it.kind === 'file' && it.type.startsWith('image/'));
+    if (imgItem) {
+      e.preventDefault();
+      insertImageFromFile(imgItem.getAsFile());
+    }
+    // Non-image paste: Quill handles it normally
+  });
+
+  // Drag-and-drop image files onto editor
+  const _editorEl = document.getElementById('quillEditor');
+  _editorEl.addEventListener('dragover', (e) => {
+    const hasImage = Array.from(e.dataTransfer.types).includes('Files');
+    if (hasImage) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; }
+  });
+  _editorEl.addEventListener('drop', (e) => {
+    const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+    if (!files.length) return;
+    e.preventDefault();
+    files.forEach(insertImageFromFile);
+  });
+
   // ── UI Helpers ─────────────────────────────────────────────
   function showToast(msg, type='success') {
     const t = document.getElementById('toast');
@@ -789,55 +836,63 @@
       return;
     }
 
-    // Register / update user document
-    const userRef = doc(db, 'users', user.uid);
-    const userSnap = await getDoc(userRef);
+    try {
+      // Register / update user document
+      const userRef = doc(db, 'users', user.uid);
+      const userSnap = await getDoc(userRef);
 
-    if (!userSnap.exists()) {
-      // First login — create pending user
-      await setDoc(userRef, {
-        displayName: user.displayName,
-        email:       user.email,
-        photoURL:    user.photoURL,
-        role:        'pending',
-        lastLogin:   serverTimestamp()
-      });
-      currentRole = 'pending';
-    } else {
-      await updateDoc(userRef, { lastLogin: serverTimestamp() });
-      currentRole = userSnap.data().role;
+      if (!userSnap.exists()) {
+        // First login — create pending user
+        await setDoc(userRef, {
+          displayName: user.displayName,
+          email:       user.email,
+          photoURL:    user.photoURL,
+          role:        'pending',
+          lastLogin:   serverTimestamp()
+        });
+        currentRole = 'pending';
+      } else {
+        await updateDoc(userRef, { lastLogin: serverTimestamp() });
+        currentRole = userSnap.data().role;
+      }
+
+      if (currentRole === 'pending') {
+        document.getElementById('pendingMsg').style.display = 'block';
+        return;
+      }
+
+      // Granted access
+      currentUser = user;
+      isAdmin = currentRole === 'admin';
+
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+
+      if (user.photoURL) {
+        const av = document.getElementById('userAvatar');
+        av.src = user.photoURL;
+        av.style.display = 'block';
+      }
+      document.getElementById('userName').textContent = user.displayName || user.email;
+      document.getElementById('postAuthor').value = user.displayName || '';
+
+      if (isAdmin) {
+        document.getElementById('usersTabBtn').style.display = 'flex';
+        loadUsers();
+      }
+
+      loadPosts();
+    } catch (err) {
+      console.error('Admin panel auth error:', err);
+      // Show error on login screen — don't leave user hanging
+      const subtitle = document.querySelector('.login-subtitle');
+      if (subtitle) {
+        subtitle.innerHTML = `<span style="color:#c0392b;">⚠ Access check failed: ${err.code || err.message}.<br>
+          If you signed in with the correct account, please retry or contact the lab admin.</span>`;
+      }
+      // Sign out so the user can try again cleanly
+      try { await signOut(auth); } catch (_) {}
     }
-
-    if (currentRole === 'pending') {
-      document.getElementById('pendingMsg').style.display = 'block';
-      return; // Stay on login screen with pending message
-    }
-
-    // Granted access
-    currentUser = user;
-    isAdmin = currentRole === 'admin';
-
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-
-    // Set user info in header
-    if (user.photoURL) {
-      const av = document.getElementById('userAvatar');
-      av.src = user.photoURL;
-      av.style.display = 'block';
-    }
-    document.getElementById('userName').textContent = user.displayName || user.email;
-
-    // Pre-fill author name
-    document.getElementById('postAuthor').value = user.displayName || '';
-
-    // Show Users tab for admins
-    if (isAdmin) {
-      document.getElementById('usersTabBtn').style.display = 'flex';
-      loadUsers();
-    }
-
-    loadPosts();
   });
 
   // ── Panel Navigation ───────────────────────────────────────
