@@ -134,3 +134,75 @@ test.describe('Admin Panel — Responsive Design', () => {
   });
 
 });
+
+test.describe('Admin Panel — LLM Wiki Login Integration', () => {
+
+  test('admin page targets saas-of-funqa Firebase project', async ({ page }) => {
+    const response = await page.goto('/admin/');
+    expect(response.status()).toBe(200);
+
+    const html = await page.content();
+    expect(html).toContain('saas-of-funqa');
+    expect(html).toContain('saas-of-funqa.firebaseapp.com');
+  });
+
+  test('firebase-config.js defines LLM_WIKI collection constant', async ({ page }) => {
+    const response = await page.goto('/assets/js/firebase-config.js');
+    expect(response.status()).toBe(200);
+
+    const src = await page.content();
+    expect(src).toContain("LLM_WIKI");
+    expect(src).toContain("'llm_wiki'");
+  });
+
+  test('llm-wiki-service.js is available as static asset', async ({ page }) => {
+    const response = await page.goto('/assets/js/llm-wiki-service.js');
+    expect(response.status()).toBe(200);
+
+    const src = await page.content();
+    expect(src).toContain('llmWikiSaveEntry');
+    expect(src).toContain('DB_COLLECTIONS.LLM_WIKI');
+  });
+
+  test('Google Sign-In click does not navigate away (popup-based auth)', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Intercept popup window before it opens to prevent external browser dialog
+    page.on('popup', popup => popup.close());
+
+    const btn = page.locator('#googleSignInBtn');
+    await expect(btn).toBeVisible();
+
+    // Click should not cause page navigation (auth uses signInWithPopup)
+    await btn.click();
+    await page.waitForTimeout(500);
+
+    // Still on admin page — no redirect occurred
+    expect(page.url()).toContain('/admin');
+
+    // Login screen should still be visible (no real auth completed)
+    await expect(page.locator('#loginScreen')).toBeVisible();
+  });
+
+  test('login screen subtitle mentions correct access path', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const subtitle = page.locator('.login-subtitle');
+    await expect(subtitle).toBeVisible();
+    await expect(subtitle).toContainText(/google account/i);
+  });
+
+  test('Firebase Auth module is imported in admin page', async ({ page }) => {
+    const response = await page.goto('/admin/');
+    const html = await response.text();
+
+    // Admin page imports Firebase Auth v10 modular SDK
+    expect(html).toContain('firebase-auth.js');
+    expect(html).toContain('GoogleAuthProvider');
+    expect(html).toContain('signInWithPopup');
+    expect(html).toContain('onAuthStateChanged');
+  });
+
+});
