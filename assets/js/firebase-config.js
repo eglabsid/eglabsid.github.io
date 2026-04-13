@@ -1,31 +1,27 @@
 /**
  * EGLab Firebase Configuration
  * ============================================================
- * SETUP INSTRUCTIONS:
+ * Firebase project: saas-of-funqa
  *
- * 1. Go to https://console.firebase.google.com/
- * 2. Create a new project named "eglab-blog" (or similar)
- * 3. Enable Authentication → Sign-in method → Google
- * 4. Enable Firestore Database (start in production mode)
- * 5. Go to Project Settings → Your apps → Add web app
- * 6. Copy the firebaseConfig object and replace the values below
- * 7. Deploy Firestore rules from firebase/firestore.rules
+ * SETUP — fill in the three remaining values from:
+ *   Firebase Console → Project Settings → Your apps → Web app config
  *
- * To set your first admin user:
- *   - Sign in once via /admin/ to register your Google account
- *   - In Firestore console, open users/{your-uid}
- *   - Set the "role" field to "admin"
+ *   apiKey            — from web app config
+ *   messagingSenderId — from web app config
+ *   appId             — from web app config
+ *
+ * See ADMIN_SETUP.md for the full step-by-step guide.
  * ============================================================
  */
 
 // Firebase v9 modular SDK — loaded via CDN in HTML files
-// This config is intentionally public (secured by Firestore rules)
+// These client-side values are intentionally public (secured by Firestore rules)
 
 const FIREBASE_CONFIG = {
   apiKey:            "REPLACE_WITH_YOUR_API_KEY",
-  authDomain:        "REPLACE_WITH_YOUR_PROJECT_ID.firebaseapp.com",
-  projectId:         "REPLACE_WITH_YOUR_PROJECT_ID",
-  storageBucket:     "REPLACE_WITH_YOUR_PROJECT_ID.appspot.com",
+  authDomain:        "saas-of-funqa.firebaseapp.com",
+  projectId:         "saas-of-funqa",
+  storageBucket:     "saas-of-funqa.appspot.com",
   messagingSenderId: "REPLACE_WITH_YOUR_MESSAGING_SENDER_ID",
   appId:             "REPLACE_WITH_YOUR_APP_ID"
 };
