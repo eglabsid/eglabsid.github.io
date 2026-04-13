@@ -28,8 +28,9 @@ const FIREBASE_CONFIG = {
 
 // ── Firestore Collection Names ────────────────────────────────
 const DB_COLLECTIONS = {
-  POSTS: 'blog_posts',
-  USERS: 'users'
+  POSTS:    'blog_posts',
+  USERS:    'users',
+  LLM_WIKI: 'llm_wiki'
 };
 
 // ── User Roles ────────────────────────────────────────────────

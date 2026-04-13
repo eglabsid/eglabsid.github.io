@@ -23,7 +23,7 @@ The EGLab Student Blog Platform is a Jekyll static site deployed on GitHub Pages
 Students publish academic research posts via an admin panel backed by Firebase Firestore.
 
 **Firebase project**: `saas-of-funqa`
-**Firestore collections**: `blog_posts`, `users`
+**Firestore collections**: `blog_posts`, `users`, `llm_wiki`
 **Admin panel**: `/admin/` (Google OAuth + role-based access)
 **Blog**: `/student-blog.html`
 
