@@ -4,7 +4,169 @@ title: Archive
 permalink: archive:output_ext
 infinite: yes
 ---
+<style>
+/* ── EGLab Archive — Brand Override ── */
+body {
+  background: #0a0e1a;
+}
+
+.archive.tag-master {
+  background: #141424;
+  border-radius: 18px;
+  border: 1px solid rgba(123,192,67,0.18);
+  padding: 32px;
+  margin-bottom: 40px;
+}
+
+/* Search input */
+.archive .search-form.inline {
+  margin-bottom: 24px;
+}
+.archive #search-container {
+  display: flex;
+  align-items: center;
+}
+.archive input#search-input.search {
+  width: 100%;
+  background: #0d1220;
+  border: 1px solid rgba(123,192,67,0.2);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.92rem;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.archive input#search-input.search::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+.archive input#search-input.search:focus {
+  border-color: #7bc043;
+  box-shadow: 0 0 0 3px rgba(123,192,67,0.1);
+}
+
+/* Post list */
+.archive .post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual post card */
+.archive .post {
+  background: #141424;
+  border: 1px solid rgba(123,192,67,0.10);
+  border-radius: 12px;
+  padding: 22px 24px;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.archive .post:hover {
+  border-left: 3px solid #7bc043;
+  transform: translateX(3px);
+}
+
+/* Post title */
+.archive a.post-list-title {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 1.08rem;
+  color: #00bcd4;
+  text-decoration: none;
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+.archive a.post-list-title:hover {
+  color: #7bc043;
+}
+
+/* Post meta */
+.archive .post-card-meta {
+  font-size: 0.75rem;
+  color: rgba(123,192,67,0.65);
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+.archive .post-card-meta a {
+  color: rgba(123,192,67,0.65);
+  text-decoration: none;
+}
+.archive .post-card-meta a:hover {
+  color: #7bc043;
+}
+
+/* Post excerpt */
+.archive .post-excerpt {
+  font-size: 0.87rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Read more link */
+.archive .read-more {
+  color: #7bc043;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+.archive .read-more:hover {
+  color: #00bcd4;
+}
+
+/* Search results list */
+.archive ul#results-container.results-search {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.archive ul#results-container.results-search li a {
+  color: #00bcd4;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  padding: 6px 0;
+  display: block;
+  border-bottom: 1px solid rgba(123,192,67,0.08);
+  transition: color 0.2s;
+}
+.archive ul#results-container.results-search li a:hover {
+  color: #7bc043;
+}
+</style>
+
 {% include calculate_relative_base.html %}
+
+<!-- ── EGLab Archive Hero ── -->
+<div style="position:relative;overflow:hidden;margin:40px 0 32px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:18px;border:1px solid rgba(123,192,67,0.18);">
+  <!-- Dot-grid background -->
+  <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
+  <!-- DNA helix decoration -->
+  <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+    <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
+    <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
+  </svg>
+  <div style="position:relative;z-index:1;">
+    <!-- EGLab wordmark -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+      <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;font-family:'Lato',sans-serif;">
+        <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
+      </span>
+      <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
+      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);font-family:'Montserrat',sans-serif;">Research Posts</span>
+    </div>
+    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;font-family:'Lato',sans-serif;">
+      Post <span style="color:#7bc043;">Archive</span>
+    </h1>
+    <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;font-family:'Montserrat',sans-serif;">
+      All research posts from <span style="color:#00bcd4;font-weight:600;">EGLab</span> students — papers, notes, and insights on Game AI, evolutionary computation, and indie game development.
+    </p>
+  </div>
+</div>
 
 <div class="archive tag-master">
 	<form class="search-form inline">

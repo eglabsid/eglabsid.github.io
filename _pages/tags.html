@@ -3,8 +3,118 @@ layout: menu-page
 title: Tags
 permalink: tags:output_ext
 ---
+<style>
+/* ── EGLab Tags Page — Dark Brand Override ── */
+
+/* Hide the default h2 heading (replaced by hero) */
+.blog-tags h2 {
+  display: none;
+}
+
+/* No extra bg needed — page layout bg handles it */
+.blog-tags {
+  background: transparent;
+}
+
+/* Tag group cards */
+.list-group {
+  background: #141424;
+  border: 1px solid rgba(123,192,67,0.12);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+/* Tag group title link */
+.list-group-title a {
+  color: #7bc043;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+.list-group-title a:hover {
+  color: #a0d860;
+}
+
+/* Individual post item */
+.list-item {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(123,192,67,0.06);
+}
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* Post links inside items */
+.list-item a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.15s;
+}
+.list-item a:hover {
+  color: #00bcd4;
+}
+
+/* Post list content area */
+.tags-page-content {
+  padding-top: 24px;
+}
+
+/* Tag cloud pill style */
+.tag-link,
+.tag-cloud a {
+  display: inline-block;
+  border: 1px solid #7bc043;
+  color: #7bc043;
+  background: transparent;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  margin: 3px;
+}
+.tag-link:hover,
+.tag-cloud a:hover {
+  background: rgba(123,192,67,0.1);
+  color: #a0d860;
+}
+</style>
+
 {% include calculate_relative_base.html %}
 {% include get-site-tags.html %}
+
+<!-- ── EGLab Hero Section ── -->
+<div style="position:relative;overflow:hidden;margin:40px 0 48px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:18px;border:1px solid rgba(123,192,67,0.18);">
+  <!-- Dot-grid background (gaming aesthetic) -->
+  <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
+  <!-- DNA helix decoration (right side) -->
+  <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+    <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
+    <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
+  </svg>
+  <div style="position:relative;z-index:1;">
+    <!-- EGLab logo wordmark -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+      <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;">
+        <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
+      </span>
+      <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
+      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Research Index</span>
+    </div>
+    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">
+      Research <span style="color:#7bc043;">Tags</span>
+    </h1>
+    <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;">
+      Browse posts by research topic
+    </p>
+  </div>
+</div>
+
 <section class="blog-tags">
   <h2>tags</h2>
   {% include tag_cloud.html %}

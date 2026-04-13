@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,22 +19,22 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --color-primary:       #311e3e;
-      --color-primary-light: #4a2d5e;
-      --color-secondary:     #87314e;
-      --color-accent:        #2d89ec;
-      --color-accent-light:  #5aa7f5;
-      --color-bg:            #f7f5fb;
-      --color-surface:       #ffffff;
-      --color-surface-raised:#f0ebf7;
-      --color-border:        rgba(49,30,62,0.12);
-      --color-text:          #1a0e28;
-      --color-text-muted:    #6b5a7a;
-      --color-text-subtle:   #9d8aae;
-      --gradient-brand:      linear-gradient(135deg,#311e3e 0%,#87314e 60%,#2d89ec 100%);
-      --shadow-sm:           0 2px 8px rgba(49,30,62,0.12);
-      --shadow-md:           0 4px 20px rgba(49,30,62,0.15);
-      --shadow-lg:           0 8px 40px rgba(49,30,62,0.20);
+      --color-primary:       #7bc043;
+      --color-primary-light: #95d45a;
+      --color-secondary:     #00bcd4;
+      --color-accent:        #00bcd4;
+      --color-accent-light:  #26d4ec;
+      --color-bg:            #0a0e1a;
+      --color-surface:       #141424;
+      --color-surface-raised:#1a1e30;
+      --color-border:        rgba(123,192,67,0.15);
+      --color-text:          #e8eaf0;
+      --color-text-muted:    rgba(255,255,255,0.6);
+      --color-text-subtle:   rgba(255,255,255,0.35);
+      --gradient-brand:      linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#141424 100%);
+      --shadow-sm:           0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md:           0 4px 20px rgba(0,0,0,0.4);
+      --shadow-lg:           0 8px 40px rgba(0,0,0,0.5);
       --radius-sm:           6px;
       --radius-md:           12px;
       --radius-lg:           18px;
@@ -45,13 +45,13 @@
     }
 
     [data-theme="dark"] {
-      --color-bg:            #0f0a18;
-      --color-surface:       #1e1430;
-      --color-surface-raised:#271a3d;
-      --color-border:        rgba(160,125,192,0.18);
-      --color-text:          #f0ebf8;
-      --color-text-muted:    #b09dc8;
-      --color-text-subtle:   #7a6895;
+      --color-bg:            #080c14;
+      --color-surface:       #0f1220;
+      --color-surface-raised:#141824;
+      --color-border:        rgba(123,192,67,0.2);
+      --color-text:          #f0f4ff;
+      --color-text-muted:    rgba(255,255,255,0.65);
+      --color-text-subtle:   rgba(255,255,255,0.38);
     }
 
     body {
@@ -68,14 +68,14 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background: var(--gradient-brand);
+      background: linear-gradient(135deg,#050810 0%,#0a1a0f 50%,#050810 100%);
       position: fixed;
       inset: 0;
       z-index: 1000;
     }
 
     .login-card {
-      background:    rgba(255,255,255,0.96);
+      background:    rgba(20,20,36,0.97);
       border-radius: var(--radius-lg);
       padding:       48px 40px;
       width:         380px;
@@ -99,7 +99,7 @@
       font-family: var(--font-heading);
       font-size:   1.6rem;
       font-weight: 900;
-      color:       var(--color-primary);
+      color:       #7bc043;
       margin-bottom: 6px;
     }
 
@@ -169,7 +169,7 @@
       font-family:   var(--font-heading);
       font-weight:   900;
       font-size:     1.1rem;
-      color:         var(--color-primary);
+      color:         #7bc043;
       text-decoration: none;
     }
 

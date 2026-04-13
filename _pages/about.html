@@ -3,8 +3,97 @@ layout: menu-page
 title: About
 permalink: about:output_ext
 ---
+<style>
+  .small-wrapper {
+    padding: 40px 0;
+  }
+  .about-container {
+    background: #141424;
+    border: 1px solid rgba(123,192,67,0.18);
+    border-radius: 18px;
+    padding: 48px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .about-header {
+    text-align: center;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(123,192,67,0.12);
+    margin-bottom: 32px;
+  }
+  .author-image-container img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid #7bc043;
+  }
+  .about-header h3 {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin-top: 16px;
+  }
+  .about-header .subtitle {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+  .contact-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .contact-list a {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.4rem;
+    transition: color 200ms;
+  }
+  .contact-list li.github a:hover {
+    color: #7bc043;
+  }
+  .contact-list li.twitter a:hover,
+  .contact-list li.linkedin a:hover {
+    color: #00bcd4;
+  }
+  .contact-list a:hover {
+    color: #7bc043;
+  }
+</style>
 {% include calculate_relative_base.html %}
 {% include escape-404.html %}
+
+<!-- ── Hero Section — EGLab Brand ── -->
+<div style="position:relative;overflow:hidden;margin:40px 0 48px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:18px;border:1px solid rgba(123,192,67,0.18);">
+  <!-- Dot-grid background (gaming aesthetic) -->
+  <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
+  <!-- DNA helix decoration (right side) -->
+  <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+    <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
+    <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
+  </svg>
+  <div style="position:relative;z-index:1;">
+    <!-- EGLab logo wordmark (color-matched) -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+      <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;">
+        <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
+      </span>
+      <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
+      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Hongik University</span>
+    </div>
+    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">
+      About <span style="color:#7bc043;">EGLab</span>
+    </h1>
+    <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;">
+      Evolutionary Game Lab — Hongik University ·
+      <span style="color:#00bcd4;font-weight:600;">Game AI</span>,
+      EGT &amp; Indie Game Development
+    </p>
+  </div>
+</div>
 
 <div class="small-wrapper">
   <div class="about-container">
