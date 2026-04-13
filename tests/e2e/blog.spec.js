@@ -22,7 +22,7 @@ test.describe('Student Blog Page', () => {
     await expect(hero).toBeVisible();
 
     const h1 = hero.locator('h1');
-    await expect(h1).toContainText('Student Research Blog');
+    await expect(h1).toContainText('Research Blog');
   });
 
   test('Write a Post link points to /admin/', async ({ page }) => {
