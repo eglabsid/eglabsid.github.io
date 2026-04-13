@@ -1,10 +1,10 @@
 {
-  "name": "Jekyll-Gulp-Sass-Autoprefixer-Imagemin-BrowserSync",
-  "version": "1.0.0",
-  "description": "A starter project for Jekyll",
+  "name": "eglab-student-blog",
+  "version": "2.0.0",
+  "description": "EGLab - Evolutionary Game LAB Jekyll site with student blog platform",
   "main": "index.js",
-  "repository": "https://github.com/artemsheludko/Jekyll-Gulp-Sass-Autoprefixer-Imagemin-BrowserSync",
-  "author": "Artem Sheludko",
+  "repository": "https://github.com/eglabsid/eglabsid.github.io",
+  "author": "Shin Jin Kang",
   "license": "MIT",
   "dependencies": {
     "browser-sync": "^2.18.8",
@@ -16,7 +16,14 @@
     "gulp-sass": "^3.1.0",
     "imagemin-pngquant": "^5.0.0"
   },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  },
   "scripts": {
-    "dev": "node_modules\\.bin\\gulp watch"
+    "dev": "node_modules\\.bin\\gulp watch",
+    "test:e2e": "cd tests && npx playwright test --config=playwright.config.js",
+    "test:e2e:ui": "cd tests && npx playwright test --config=playwright.config.js --ui",
+    "test:e2e:headed": "cd tests && npx playwright test --config=playwright.config.js --headed",
+    "test:e2e:report": "cd tests && npx playwright show-report test-results/html-report"
   }
 }

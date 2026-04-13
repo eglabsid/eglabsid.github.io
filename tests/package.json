@@ -1,0 +1,14 @@
+{
+  "name": "eglab-e2e-tests",
+  "version": "1.0.0",
+  "description": "Playwright E2E tests for EGLab Student Blog",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  },
+  "scripts": {
+    "test": "playwright test --config=playwright.config.js",
+    "test:headed": "playwright test --config=playwright.config.js --headed",
+    "test:report": "playwright show-report test-results/html-report"
+  }
+}

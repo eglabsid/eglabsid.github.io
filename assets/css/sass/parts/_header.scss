@@ -1,68 +1,138 @@
+// =============================================================
+// EGLab Header — Enhanced Design System Version
+// =============================================================
+
 .main-header {
-  font-family: 'Lato', sans-serif;
-  padding: 15px 0;
-  background-color: $white;
-  box-shadow: 0px -5px 15px rgba(0,0,0,.3);
+  font-family:      var(--font-heading);
+  padding:          12px 0;
+  background-color: var(--color-surface-glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter:  var(--glass-blur);
+  border-bottom:    1px solid var(--color-border);
+  box-shadow:       var(--shadow-sm);
+  position:         sticky;
+  top:              0;
+  z-index:          100;
+  transition:       box-shadow var(--transition-base), background var(--transition-base);
+
+  &.scrolled {
+    background-color: var(--color-surface-glass);
+    box-shadow:       var(--shadow-md);
+  }
 
   .header-flex {
-    display: flex;
+    display:     flex;
     justify-content: space-between;
     align-items: center;
   }
+
   .logo {
-    width: 50%;
+    width:      50%;
     text-align: center;
+
+    img.logo {
+      height:     48px;
+      width:      auto;
+      max-width:  180px;
+      transition: opacity var(--transition-fast);
+
+      &:hover { opacity: 0.85; }
+    }
+
     a {
       text-decoration: none;
-      text-transform: uppercase;
-      font-size: 27px;
-      font-weight: 300;
-      color: $dark-purple;
+      text-transform:  uppercase;
+      font-size:       27px;
+      font-weight:     300;
+      color:           var(--color-primary);
     }
   }
 }
 
+// ── Side Navigation ──────────────────────────────────────────
 .main-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 300px;
-  height: 100%;
-  background-color: $white;
-  padding: 25px 30px;
-  transform: translate3d(-300px, 0, 0);
+  position:         fixed;
+  top:              0;
+  left:             0;
+  z-index:          200;
+  width:            300px;
+  height:           100%;
+  background-color: var(--color-surface);
+  border-right:     1px solid var(--color-border);
+  box-shadow:       var(--shadow-lg);
+  padding:          32px 28px;
+  transform:        translate3d(-300px, 0, 0);
+  transition:       transform var(--transition-slow);
+  overflow-y:       auto;
+
+  // Nav brand accent stripe
+  &::before {
+    content:    '';
+    position:   absolute;
+    top:        0;
+    left:       0;
+    width:      4px;
+    height:     100%;
+    background: var(--gradient-brand);
+  }
+
   ul {
-    padding: 15px 0 0;
-    margin: 0;
+    padding:    20px 0 0;
+    margin:     0;
     list-style: none;
 
     li {
-      border-bottom: 1px solid $lighten-gray;
+      border-bottom: 1px solid var(--color-border);
+
       a {
-        display: block;
-        padding: 15px 0;
+        display:         flex;
+        align-items:     center;
+        justify-content: space-between;
+        padding:         14px 0;
         text-decoration: none;
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 18px;
-        color: $dark-purple;
-        &:hover {
-          opacity: .8;
-          color: $dark-pink;
+        text-transform:  uppercase;
+        font-weight:     600;
+        font-size:       0.9rem;
+        letter-spacing:  0.06em;
+        color:           var(--color-text);
+        transition:      color var(--transition-fast), padding-left var(--transition-fast);
+
+        .left { flex: 1; }
+        .right {
+          color:      var(--color-text-subtle);
+          transition: color var(--transition-fast), transform var(--transition-fast);
         }
+
+        &:hover {
+          color:        var(--color-secondary);
+          padding-left: 6px;
+
+          .right {
+            color:     var(--color-accent);
+            transform: translateX(3px);
+          }
+        }
+      }
+
+      // Student Blog nav item — highlighted
+      &.nav-highlight a {
+        color: var(--color-accent);
+        font-weight: 700;
+
+        &:hover { color: var(--color-accent-light); }
       }
     }
   }
 }
 
+// ── Icon Controls ────────────────────────────────────────────
 .menu-icon-container {
-  width: 25%;
+  width:      25%;
   text-align: left;
 }
 
 .search-icon-container {
-  width: 25%;
+  width:      25%;
   text-align: right;
 }
 
@@ -70,12 +140,14 @@
 .menu-icon-close,
 .search-icon a,
 .search-icon-close {
-  cursor: pointer;
-  font-size: 18px;
-  color: $dark-purple;
-  transition: all .4s;
-  padding: 10px;
+  cursor:     pointer;
+  font-size:  18px;
+  color:      var(--color-primary);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  padding:    10px;
+
   &:hover {
-    opacity: .8;
+    color:     var(--color-secondary);
+    transform: scale(1.12);
   }
 }

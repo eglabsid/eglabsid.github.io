@@ -1,0 +1,69 @@
+// EGLab Firestore Security Rules
+// Deploy with: firebase deploy --only firestore:rules
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper Functions ────────────────────────────────────
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isWriter() {
+      return isAuthenticated() && getUserRole() in ['writer', 'admin'];
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && getUserRole() == 'admin';
+    }
+
+    function isOwner(authorId) {
+      return isAuthenticated() && request.auth.uid == authorId;
+    }
+
+    // ── Blog Posts ──────────────────────────────────────────
+    match /blog_posts/{postId} {
+      // Anyone can read published posts
+      allow read: if resource.data.status == 'published'
+                    || (isAuthenticated() && (isOwner(resource.data.authorId) || isAdmin()));
+
+      // Writers can create new posts (authorId must match their uid)
+      allow create: if isWriter()
+                    && request.resource.data.authorId == request.auth.uid;
+
+      // Writers can update their own posts; admins can update any
+      allow update: if isWriter()
+                    && (isOwner(resource.data.authorId) || isAdmin());
+
+      // Writers can delete their own posts; admins can delete any
+      allow delete: if isWriter()
+                    && (isOwner(resource.data.authorId) || isAdmin());
+    }
+
+    // ── Users ───────────────────────────────────────────────
+    match /users/{userId} {
+      // Users can read and create their own document (for first-login registration)
+      allow read:   if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+
+      // Users can update their own document (e.g. lastLogin)
+      // but cannot change their own role (only admin can change roles)
+      allow update: if isAuthenticated() && (
+        (request.auth.uid == userId && !('role' in request.resource.data.diff(resource.data).affectedKeys()))
+        || isAdmin()
+      );
+
+      // Only admins can delete user documents
+      allow delete: if isAdmin();
+
+      // Admins can list all users
+      allow list: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,207 @@
+---
+layout: default
+title: Student Post
+description: "Student research post — Evolutionary Game LAB"
+permalink: /student-post.html
+---
+{% include calculate_relative_base.html %}
+<div class="flex-container transparent">
+  {% include header.html %}
+
+  <div class="content wrapper" style="max-width:800px;">
+
+    <!-- Back link -->
+    <div style="margin:32px 0 24px;">
+      <a href="{{ relativebase }}student-blog.html" class="sp-back-link">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+        Back to Student Blog
+      </a>
+    </div>
+
+    <!-- Loading skeleton -->
+    <div id="loadingPost">
+      <div class="skeleton" style="height:14px;width:30%;margin-bottom:12px;"></div>
+      <div class="skeleton" style="height:40px;width:90%;margin-bottom:16px;"></div>
+      <div class="skeleton" style="height:14px;width:45%;margin-bottom:32px;"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="skeleton" style="height:14px;width:100%;"></div>
+        <div class="skeleton" style="height:14px;width:95%;"></div>
+        <div class="skeleton" style="height:14px;width:88%;"></div>
+        <div class="skeleton" style="height:14px;width:100%;"></div>
+        <div class="skeleton" style="height:14px;width:92%;"></div>
+      </div>
+    </div>
+
+    <!-- Post content -->
+    <article id="postContent" style="display:none;">
+      <header style="margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--color-border);">
+        <div id="postTags" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;"></div>
+        <h1 id="postTitle" style="margin:0 0 16px;font-size:2rem;font-weight:800;color:var(--color-text);line-height:1.25;"></h1>
+        <div id="postMeta" style="display:flex;align-items:center;gap:16px;font-size:0.85rem;color:var(--color-text-muted);flex-wrap:wrap;">
+        </div>
+      </header>
+
+      <!-- Abstract / Excerpt box -->
+      <div id="postAbstract" style="display:none;background:var(--color-surface-raised);border-left:4px solid var(--color-accent);padding:18px 20px;border-radius:0 var(--radius-md) var(--radius-md) 0;margin-bottom:32px;">
+        <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent);margin-bottom:6px;">Abstract</div>
+        <p id="postAbstractText" style="margin:0;font-size:0.92rem;line-height:1.65;color:var(--color-text-muted);font-style:italic;"></p>
+      </div>
+
+      <div id="postBody" class="page-content" style="font-size:1rem;line-height:1.75;color:var(--color-text);">
+      </div>
+
+      <!-- Author box -->
+      <div id="postAuthorBox" style="margin-top:48px;padding-top:28px;border-top:1px solid var(--color-border);display:flex;align-items:center;gap:18px;">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--gradient-brand);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+          <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </div>
+        <div>
+          <div id="authorName" style="font-weight:700;font-size:0.95rem;color:var(--color-text);"></div>
+          <div style="font-size:0.82rem;color:var(--color-text-subtle);">EGLab Student Researcher</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Not found state -->
+    <div id="notFoundState" style="display:none;text-align:center;padding:80px 20px;">
+      <svg width="64" height="64" fill="var(--color-text-subtle)" viewBox="0 0 24 24" style="margin-bottom:16px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      <h3 style="color:var(--color-text-muted);font-weight:600;margin:0 0 8px;">Post not found</h3>
+      <p style="color:var(--color-text-subtle);font-size:0.9rem;margin:0 0 24px;">This post may have been removed or the link is invalid.</p>
+      <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--color-primary);border-radius:999px;color:#fff;text-decoration:none;font-size:0.88rem;font-weight:600;">Back to Blog</a>
+    </div>
+
+  </div>
+
+  {% include footer.html %}
+</div>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey:            "REPLACE_WITH_YOUR_API_KEY",
+    authDomain:        "REPLACE_WITH_YOUR_PROJECT_ID.firebaseapp.com",
+    projectId:         "REPLACE_WITH_YOUR_PROJECT_ID",
+    storageBucket:     "REPLACE_WITH_YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "REPLACE_WITH_YOUR_MESSAGING_SENDER_ID",
+    appId:             "REPLACE_WITH_YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  const params  = new URLSearchParams(window.location.search);
+  const postId  = params.get('id');
+
+  const loadingEl   = document.getElementById('loadingPost');
+  const contentEl   = document.getElementById('postContent');
+  const notFoundEl  = document.getElementById('notFoundState');
+
+  function formatDate(ts) {
+    if (!ts) return '';
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+  }
+
+  function readTime(html) {
+    const words = html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.round(words / 200));
+  }
+
+  async function loadPost() {
+    if (!postId) { showNotFound(); return; }
+    try {
+      const ref  = doc(db, 'blog_posts', postId);
+      const snap = await getDoc(ref);
+      if (!snap.exists() || snap.data().status !== 'published') { showNotFound(); return; }
+
+      const post = snap.data();
+      loadingEl.style.display = 'none';
+
+      document.title = post.title + ' — EGLab Student Blog';
+
+      // Tags
+      if (post.tags && post.tags.length) {
+        document.getElementById('postTags').innerHTML = post.tags.map(t =>
+          `<a href="student-blog.html" class="tag-badge" style="text-decoration:none;">${t}</a>`
+        ).join('');
+      }
+
+      // Title
+      document.getElementById('postTitle').textContent = post.title;
+
+      // Meta
+      document.getElementById('postMeta').innerHTML = `
+        <span style="display:flex;align-items:center;gap:4px;">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12z"/></svg>
+          ${post.author || 'Anonymous'}
+        </span>
+        <span style="display:flex;align-items:center;gap:4px;">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+          ${formatDate(post.createdAt)}
+        </span>
+        <span>${readTime(post.content || '')} min read</span>
+      `;
+
+      // Abstract
+      if (post.excerpt) {
+        document.getElementById('postAbstract').style.display = 'block';
+        document.getElementById('postAbstractText').textContent = post.excerpt;
+      }
+
+      // Body — render stored HTML safely
+      const bodyEl = document.getElementById('postBody');
+      bodyEl.innerHTML = post.content || '';
+
+      // Author
+      document.getElementById('authorName').textContent = post.author || 'Anonymous';
+
+      contentEl.style.display = 'block';
+    } catch (err) {
+      console.error('Error loading post:', err);
+      showNotFound();
+    }
+  }
+
+  function showNotFound() {
+    loadingEl.style.display = 'none';
+    notFoundEl.style.display = 'block';
+  }
+
+  loadPost();
+</script>
+
+<style>
+.sp-back-link {
+  display:     inline-flex;
+  align-items: center;
+  gap:         6px;
+  font-size:   0.85rem;
+  font-weight: 600;
+  color:       var(--color-text-muted);
+  text-decoration: none;
+  transition:  color var(--transition-fast, 0.15s ease);
+}
+.sp-back-link:hover { color: var(--color-accent); }
+
+#postBody h1,#postBody h2,#postBody h3 {
+  color: var(--color-primary);
+  margin-top: 2em;
+}
+#postBody a { color: var(--color-accent); }
+#postBody blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 16px;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+#postBody pre {
+  background: var(--color-surface-raised);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  overflow-x: auto;
+}
+#postBody img { border-radius: var(--radius-md); max-width: 100%; }
+</style>
