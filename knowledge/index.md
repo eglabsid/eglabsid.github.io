@@ -36,4 +36,5 @@ See ADMIN_SETUP.md for full instructions.
 
 ## Recent Reports
 
-- [UI Tone Refresh Report](wiki/reports/ui-tone-refresh-report.md) — home poster cards, archive cleanup, and student post shell alignment
+- [Admin Perf & Refactor Report](wiki/reports/admin-perf-refactor-report.md) — Quill defer, fonts preconnect, search debounce, Quill lazy init, window.* removal (2026-04-14)
+- [UI Tone Refresh Report](wiki/reports/ui-tone-refresh-report.md) — home poster cards, archive cleanup, and student post shell alignment (2026-04-14)

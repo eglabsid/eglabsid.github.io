@@ -1,5 +1,7 @@
 {% include calculate_relative_base.html %}
 {% include escape-404.html %}
+{% assign current_url = page.url | default: "/" %}
+{% assign normalized_url = current_url | replace: 'index.html', '' %}
 
 <header class="main-header">
   <div class="wrapper">
@@ -13,7 +15,7 @@
           <!-- <li>
             {% include theme-toggle.html %}
           </li> -->
-          <li>
+          <li{% if normalized_url == "/" or normalized_url == "" %} class="nav-highlight"{% endif %}>
             <a href="{{ relativebase }}">
               <div class="left">
                 Home
@@ -23,7 +25,7 @@
               </div>
             </a>
           </li>
-          <li>
+          <li{% if normalized_url contains '/archive' or page.layout == 'post' %} class="nav-highlight"{% endif %}>
             <a href="{{ relativebase }}archive.html">
               <div class="left">
                 All Posts
@@ -33,7 +35,7 @@
               </div>
             </a>
           </li>
-          <li>
+          <li{% if normalized_url contains '/tags' or normalized_url contains '/tag' %} class="nav-highlight"{% endif %}>
             <a href="{{ relativebase }}tags.html">
               <div class="left">
                 Tags
@@ -43,7 +45,7 @@
               </div>
             </a>
           </li>
-          <li>
+          <li{% if normalized_url contains '/about' %} class="nav-highlight"{% endif %}>
             <a href="{{ relativebase }}about.html">
               <div class="left">
                 About
@@ -53,23 +55,13 @@
               </div>
             </a>
           </li>
-          <li class="nav-highlight">
+          <li{% if normalized_url contains '/student-blog' or normalized_url contains '/student-post' %} class="nav-highlight"{% endif %}>
             <a href="{{ relativebase }}student-blog.html">
               <div class="left">
                 Student Blog
               </div>
               <div class="right">
                 <svg width="24px" aria-hidden="true" focusable="false" role="img" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="{{ relativebase }}llm-wiki.html">
-              <div class="left">
-                LLM Wiki
-              </div>
-              <div class="right">
-                <svg width="24px" aria-hidden="true" focusable="false" role="img" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
               </div>
             </a>
           </li>

@@ -72,7 +72,7 @@ test.describe('Design System', () => {
     await page.locator('.menu-icon').click();
     await page.waitForTimeout(400);
 
-    const studentBlogLink = page.locator('.nav-highlight a');
+    const studentBlogLink = page.locator('.main-nav a', { hasText: 'Student Blog' });
     await expect(studentBlogLink).toBeVisible();
     await expect(studentBlogLink).toHaveAttribute('href', /student-blog/);
   });

@@ -112,6 +112,7 @@ permalink: /student-blog.html
 
   const app = initializeApp(firebaseConfig);
   const db  = getFirestore(app);
+  const pageParams   = new URLSearchParams(window.location.search);
 
   const grid         = document.getElementById('postsGrid');
   const loadingEl    = document.getElementById('loadingState');
@@ -121,7 +122,7 @@ permalink: /student-blog.html
   const searchInput  = document.getElementById('searchInput');
 
   let allPosts = [];
-  let activeTag = null;
+  let activeTag = pageParams.get('tag');
 
   // Alternate thumbnail accent colours (green / blue)
   const ACCENTS = ['#7bc043', '#00bcd4'];
@@ -168,17 +169,17 @@ permalink: /student-blog.html
         </div>
         <!-- Body -->
         <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:9px;font-size:0.71rem;color:rgba(255,255,255,0.32);flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:9px;font-size:0.73rem;color:rgba(255,255,255,0.48);flex-wrap:wrap;">
             <span>${formatDate(post.createdAt)}</span>
             <span>·</span>
             <span>${mins} min read</span>
             <span>·</span>
             <span style="font-weight:600;color:rgba(0,188,212,0.75);">${post.author || 'Anonymous'}</span>
           </div>
-          <h3 style="margin:0 0 9px;font-size:0.95rem;font-weight:700;color:#fff;line-height:1.38;">
+          <h3 style="margin:0 0 10px;font-size:1.02rem;font-weight:700;color:#fff;line-height:1.42;">
             <a href="student-post.html?id=${post.id}" style="color:inherit;text-decoration:none;">${post.title}</a>
           </h3>
-          <p style="margin:0 0 13px;font-size:0.82rem;color:rgba(255,255,255,0.44);line-height:1.6;flex:1;">${excerpt}</p>
+          <p style="margin:0 0 13px;font-size:0.87rem;color:rgba(255,255,255,0.66);line-height:1.72;flex:1;">${excerpt}</p>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px;">${tags}</div>
           <a href="student-post.html?id=${post.id}" style="display:inline-flex;align-items:center;gap:5px;font-size:0.79rem;font-weight:700;color:#7bc043;text-decoration:none;letter-spacing:0.02em;">
             Read More
@@ -192,6 +193,9 @@ permalink: /student-blog.html
     if (!posts.length) {
       grid.innerHTML = '';
       emptyEl.style.display = 'block';
+      emptyMsg.textContent = activeTag || searchInput.value.trim()
+        ? 'Try a different tag or search term.'
+        : 'Be the first to share your research!';
       return;
     }
     emptyEl.style.display = 'none';
@@ -200,10 +204,26 @@ permalink: /student-blog.html
       btn.addEventListener('click', e => {
         e.preventDefault();
         activeTag = btn.dataset.tag === activeTag ? null : btn.dataset.tag;
+        syncFiltersToUrl();
         applyFilters();
         updateTagHighlight();
       });
     });
+  }
+
+  function syncFiltersToUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const search = searchInput.value.trim();
+
+    if (activeTag) params.set('tag', activeTag);
+    else params.delete('tag');
+
+    if (search) params.set('q', search);
+    else params.delete('q');
+
+    const query = params.toString();
+    const nextUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+    window.history.replaceState({}, '', nextUrl);
   }
 
   function applyFilters() {
@@ -242,6 +262,7 @@ permalink: /student-blog.html
     tagFiltersEl.querySelectorAll('.sb-filter-tag').forEach(btn => {
       btn.addEventListener('click', () => {
         activeTag = btn.dataset.tag === activeTag ? null : btn.dataset.tag;
+        syncFiltersToUrl();
         applyFilters();
         updateTagHighlight();
       });
@@ -259,7 +280,8 @@ permalink: /student-blog.html
       allPosts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       loadingEl.style.display = 'none';
       buildTagCloud(allPosts);
-      renderPosts(allPosts);
+      updateTagHighlight();
+      applyFilters();
     } catch (err) {
       loadingEl.style.display = 'none';
       console.error('Failed to load posts:', err);
@@ -275,7 +297,15 @@ permalink: /student-blog.html
     }
   }
 
-  searchInput.addEventListener('input', applyFilters);
+  searchInput.value = pageParams.get('q') || '';
+  let _searchDebounce;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(_searchDebounce);
+    _searchDebounce = setTimeout(() => {
+      syncFiltersToUrl();
+      applyFilters();
+    }, 200);
+  });
   loadPosts();
 </script>
 
@@ -307,6 +337,13 @@ permalink: /student-blog.html
 }
 .sb-btn-outline:hover { border-color: rgba(0,188,212,0.7); color: #33d1e8; }
 
+.sb-filter-bar {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(20,20,36,0.88);
+  border: 1px solid rgba(123,192,67,0.12);
+}
+
 /* Post cards */
 .sb-card-wrap {
   background: var(--eglab-dark);
@@ -336,13 +373,14 @@ permalink: /student-blog.html
   border: 1px solid rgba(0,188,212,0.22);
   border-radius: 999px;
   background: rgba(0,188,212,0.04);
-  color: var(--color-text);
+  color: #e8eaf0;
   font-size: 0.84rem;
   outline: none;
-  width: 200px;
+  width: 240px;
   transition: border-color 0.2s;
 }
 .sb-search:focus { border-color: rgba(0,188,212,0.55); }
+.sb-search::placeholder { color: rgba(255,255,255,0.38); }
 
 /* Responsive grid */
 @media (max-width: 900px) {
@@ -351,6 +389,8 @@ permalink: /student-blog.html
 @media (max-width: 580px) {
   #postsGrid, #loadingState { grid-template-columns: 1fr !important; }
   .sb-hero { padding: 32px 20px !important; margin: 24px 0 32px !important; }
-  .sb-search { width: 150px; }
+  .sb-filter-bar { align-items: stretch !important; }
+  .sb-filter-bar > div:last-child { margin-left: 0 !important; width: 100%; }
+  .sb-search { width: 100%; }
 }
 </style>

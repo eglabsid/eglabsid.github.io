@@ -6,6 +6,125 @@ infinite: yes
 ---
 {% include calculate_relative_base.html %}
 
+<style>
+.tag-detail-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 40px 0 32px;
+  padding: 52px 40px;
+  background: linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(123,192,67,0.18);
+}
+
+.tag-detail-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: radial-gradient(#7bc043 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+.tag-detail-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 36rem;
+}
+
+.tag-detail-copy h1 {
+  margin: 0 0 14px;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-transform: none;
+}
+
+.tag-detail-copy p {
+  margin: 0;
+  font-size: 0.98rem;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.75;
+}
+
+.tag-detail-copy .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0,188,212,0.88);
+}
+
+.tag-master {
+  background: #141424;
+  border-radius: 18px;
+  border: 1px solid rgba(123,192,67,0.18);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.24);
+  padding: clamp(24px, 3vw, 36px);
+  margin: 0 auto 32px;
+  max-width: 58rem;
+}
+
+.tag-master h1 {
+  display: none;
+}
+
+.tag-master .post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tag-master .post {
+  background: #1a1a30;
+  border: 1px solid rgba(123,192,67,0.16);
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+
+.tag-master .post-list-title {
+  display: block;
+  margin-bottom: 8px;
+  color: #e8eaf0;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.12rem;
+  font-weight: 900;
+  line-height: 1.38;
+  text-decoration: none;
+}
+
+.tag-master .post-list-title:hover {
+  color: #7bc043;
+}
+
+.tag-master .post-excerpt {
+  color: rgba(232,234,240,0.84);
+  font-size: 0.94rem;
+  line-height: 1.8;
+  max-width: 64ch;
+}
+
+.tag-master .post-card-meta,
+.tag-master .post-card-meta a {
+  color: rgba(123,192,67,0.74);
+}
+</style>
+
+<section class="tag-detail-hero">
+  <div class="tag-detail-copy">
+    <div class="eyebrow">EGLab Topic View</div>
+    <h1 id="tag-page-title">Research Tag</h1>
+    <p id="tag-page-description">A filtered reading list for the selected topic, with recent posts first and full excerpts for scanning.</p>
+  </div>
+</section>
+
 {% include get-site-tags.html %}
 {% for item in (0..site.tags.size) %}{% unless forloop.last %}
 	{% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
@@ -29,3 +148,17 @@ infinite: yes
 {% endunless %}{% endfor %}
 {% include spinner.html %}
 {% include tag_cloud.html %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const params = new URLSearchParams(window.location.search);
+    const tag = params.get('tag');
+    if (!tag) return;
+
+    const title = document.getElementById('tag-page-title');
+    const desc = document.getElementById('tag-page-description');
+
+    if (title) title.textContent = tag;
+    if (desc) desc.textContent = `Posts collected around “${tag}” across EGLab writing.`;
+  });
+</script>
