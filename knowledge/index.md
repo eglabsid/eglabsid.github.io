@@ -6,6 +6,7 @@
 
 - [log.md](log.md) — chronological activity log
 - [AGENTS.md](AGENTS.md) — wiki operating contract and schema
+- [wiki/reports/ui-tone-refresh-report.md](wiki/reports/ui-tone-refresh-report.md) — April 14, 2026 public page tone refresh
 
 ## Wiki Sections
 
@@ -32,3 +33,7 @@ Students publish academic research posts via an admin panel backed by Firebase F
 Firebase credentials (apiKey, appId, messagingSenderId) must be filled in from:
 Firebase Console → Project Settings → Your apps → Web app config
 See ADMIN_SETUP.md for full instructions.
+
+## Recent Reports
+
+- [UI Tone Refresh Report](wiki/reports/ui-tone-refresh-report.md) — home poster cards, archive cleanup, and student post shell alignment

@@ -10,12 +10,175 @@ body {
   background: #0a0e1a;
 }
 
+.archive-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.archive-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 40px 0 0;
+  padding: 52px 40px;
+  background: linear-gradient(135deg, #0a0e1a 0%, #0d1a14 45%, #0a0e1a 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(123,192,67,0.18);
+}
+
+.archive-hero__dot-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: radial-gradient(#7bc043 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+.archive-hero__dna {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.10;
+  pointer-events: none;
+}
+
+.archive-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+}
+
+.archive-hero__wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.archive-hero__logo-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.archive-hero__logo-eg {
+  color: #7bc043;
+}
+
+.archive-hero__logo-lab {
+  color: #ffffff;
+}
+
+.archive-hero__pipe {
+  width: 1px;
+  height: 16px;
+  background: rgba(123,192,67,0.3);
+  flex-shrink: 0;
+}
+
+.archive-hero__lab-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,188,212,0.85);
+}
+
+.archive-hero h1 {
+  margin: 0 0 14px;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.archive-hero__subtitle {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.archive-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.archive-hero__btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.archive-hero__btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.archive-hero__btn--green {
+  background: #7bc043;
+  color: #0a0e1a;
+}
+
+.archive-hero__btn--blue {
+  color: #00bcd4;
+  border: 1.5px solid #00bcd4;
+}
+
+.archive-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.archive-hero__stat {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+}
+
+.archive-hero__stat--green {
+  border: 1px solid rgba(123,192,67,0.4);
+  color: #7bc043;
+}
+
+.archive-hero__stat--blue {
+  border: 1px solid rgba(0,188,212,0.4);
+  color: #00bcd4;
+}
+
+.archive-hero__stat--muted {
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+}
+
 .archive.tag-master {
   background: #141424;
   border-radius: 18px;
   border: 1px solid rgba(123,192,67,0.18);
-  padding: 32px;
-  margin-bottom: 40px;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.24);
+  padding: clamp(24px, 3vw, 36px);
+  margin: 0 auto 40px;
+  max-width: 58rem;
 }
 
 /* Search input */
@@ -39,7 +202,7 @@ body {
   transition: border-color 0.2s;
 }
 .archive input#search-input.search::placeholder {
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.45);
 }
 .archive input#search-input.search:focus {
   border-color: #7bc043;
@@ -50,20 +213,22 @@ body {
 .archive .post-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 /* Individual post card */
 .archive .post {
-  background: #141424;
-  border: 1px solid rgba(123,192,67,0.10);
-  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(20,20,36,0.96) 0%, rgba(16,18,32,1) 100%);
+  border: 1px solid rgba(123,192,67,0.18);
+  border-radius: 14px;
   padding: 22px 24px;
-  transition: border-color 0.2s, transform 0.15s;
+  box-shadow: 0 10px 24px rgba(8,12,20,0.18);
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.15s;
 }
 .archive .post:hover {
-  border-left: 3px solid #7bc043;
-  transform: translateX(3px);
+  border-color: rgba(123,192,67,0.42);
+  box-shadow: 0 18px 36px rgba(8,12,20,0.26);
+  transform: translateY(-3px);
 }
 
 /* Post title */
@@ -71,10 +236,11 @@ body {
   display: block;
   font-family: 'Lato', sans-serif;
   font-weight: 900;
-  font-size: 1.08rem;
-  color: #00bcd4;
+  font-size: 1.16rem;
+  color: #e8eaf0;
   text-decoration: none;
   margin-bottom: 6px;
+  line-height: 1.38;
   transition: color 0.2s;
 }
 .archive a.post-list-title:hover {
@@ -84,12 +250,12 @@ body {
 /* Post meta */
 .archive .post-card-meta {
   font-size: 0.75rem;
-  color: rgba(123,192,67,0.65);
-  margin-bottom: 10px;
+  color: rgba(123,192,67,0.85);
+  margin-bottom: 12px;
   font-family: 'Montserrat', sans-serif;
 }
 .archive .post-card-meta a {
-  color: rgba(123,192,67,0.65);
+  color: rgba(123,192,67,0.85);
   text-decoration: none;
 }
 .archive .post-card-meta a:hover {
@@ -98,10 +264,11 @@ body {
 
 /* Post excerpt */
 .archive .post-excerpt {
-  font-size: 0.87rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.7;
+  font-size: 0.94rem;
+  color: rgba(232,234,240,0.84);
+  line-height: 1.72;
   font-family: 'Montserrat', sans-serif;
+  max-width: 66ch;
 }
 
 /* Read more link */
@@ -131,47 +298,74 @@ body {
   font-size: 0.9rem;
   padding: 6px 0;
   display: block;
-  border-bottom: 1px solid rgba(123,192,67,0.08);
+  border-bottom: 1px solid rgba(123,192,67,0.15);
   transition: color 0.2s;
 }
 .archive ul#results-container.results-search li a:hover {
   color: #7bc043;
 }
+
+@media (max-width: 720px) {
+  .archive-hero {
+    padding: 40px 24px;
+  }
+
+  .archive-hero__dna {
+    display: none;
+  }
+
+  .archive-hero h1 {
+    font-size: 2rem;
+  }
+
+  .archive.tag-master {
+    padding: 20px 18px;
+  }
+
+  .archive .post {
+    padding: 18px 18px 20px;
+  }
+}
 </style>
 
 {% include calculate_relative_base.html %}
 
-<!-- ── EGLab Archive Hero ── -->
-<div style="position:relative;overflow:hidden;margin:40px 0 32px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:18px;border:1px solid rgba(123,192,67,0.18);">
-  <!-- Dot-grid background -->
-  <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
-  <!-- DNA helix decoration -->
-  <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+<div class="archive-shell">
+<section class="archive-hero">
+  <div class="archive-hero__dot-grid"></div>
+  <svg class="archive-hero__dna" width="180" height="180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
     <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
   </svg>
-  <div style="position:relative;z-index:1;">
-    <!-- EGLab wordmark -->
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-      <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;font-family:'Lato',sans-serif;">
-        <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
+  <div class="archive-hero__content">
+    <div class="archive-hero__wordmark">
+      <span class="archive-hero__logo-text">
+        <span class="archive-hero__logo-eg">EG</span><span class="archive-hero__logo-lab">LAB</span>
       </span>
-      <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
-      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);font-family:'Montserrat',sans-serif;">Research Posts</span>
+      <span class="archive-hero__pipe"></span>
+      <span class="archive-hero__lab-label">Research Posts</span>
     </div>
-    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;font-family:'Lato',sans-serif;">
-      Post <span style="color:#7bc043;">Archive</span>
-    </h1>
-    <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;font-family:'Montserrat',sans-serif;">
-      All research posts from <span style="color:#00bcd4;font-weight:600;">EGLab</span> students — papers, notes, and insights on Game AI, evolutionary computation, and indie game development.
+    <h1>Post <span style="color:#7bc043;">Archive</span></h1>
+    <p class="archive-hero__subtitle">
+      A readable index of <span style="color:#00bcd4;font-weight:600;">EGLab</span> writing —
+      papers, notes, and experiments across Game AI, evolutionary computation, and indie game development.
     </p>
+    <div class="archive-hero__actions">
+      <a href="{{ relativebase }}student-blog.html" class="archive-hero__btn archive-hero__btn--green">Student Blog</a>
+      <a href="{{ relativebase }}tags.html" class="archive-hero__btn archive-hero__btn--blue">Browse Tags</a>
+    </div>
+    <div class="archive-hero__stats">
+      <span class="archive-hero__stat archive-hero__stat--green">Searchable index</span>
+      <span class="archive-hero__stat archive-hero__stat--blue">Newest first</span>
+      <span class="archive-hero__stat archive-hero__stat--muted">Clean text preview</span>
+    </div>
   </div>
-</div>
+</section>
 
 <div class="archive tag-master">
 	<form class="search-form inline">
 		<div id="search-container">
-			<input type="text" id="search-input" class="search" placeholder="Search">
+			<input type="text" id="search-input" class="search" placeholder="Search posts, topics, or authors">
 		</div>
 	</form>
 	<ul id="results-container" class="results-search"></ul>
@@ -182,10 +376,15 @@ body {
 			<a class="post-list-title" href="{{ post_url }}">{{ post.title }}</a>
 			{% include post_meta.html type="post-card-meta" %}
 			<div class="post-excerpt">
-				{{ post.content | markdownify | strip_newlines | truncatewords: 100 }}<a class="read-more" href="{{ post_url }}"> read more</a>
+				{% if post.description %}
+				  {{ post.description | strip_html | strip_newlines | truncatewords: 34 }}
+				{% else %}
+				  {{ post.excerpt | strip_html | strip_newlines | truncatewords: 34 }}
+				{% endif %}<a class="read-more" href="{{ post_url }}"> read more</a>
 			</div>
 		</div>
 	{% endfor %}
 	</div>
+</div>
 </div>
 {% include spinner.html %}

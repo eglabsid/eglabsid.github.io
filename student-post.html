@@ -8,10 +8,10 @@ permalink: /student-post.html
 <div class="flex-container transparent">
   {% include header.html %}
 
-  <div class="content wrapper" style="max-width:800px;">
+  <div class="content wrapper student-post-layout" style="max-width:920px;">
 
     <!-- Back link -->
-    <div style="margin:32px 0 24px;">
+    <div class="student-post-back">
       <a href="{{ relativebase }}student-blog.html" class="sp-back-link">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
         Back to Student Blog
@@ -19,7 +19,7 @@ permalink: /student-post.html
     </div>
 
     <!-- Loading skeleton -->
-    <div id="loadingPost">
+    <div id="loadingPost" class="student-post-loading">
       <div class="skeleton" style="height:14px;width:30%;margin-bottom:12px;"></div>
       <div class="skeleton" style="height:40px;width:90%;margin-bottom:16px;"></div>
       <div class="skeleton" style="height:14px;width:45%;margin-bottom:32px;"></div>
@@ -33,31 +33,45 @@ permalink: /student-post.html
     </div>
 
     <!-- Post content -->
-    <article id="postContent" style="display:none;">
-      <header style="margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid rgba(123,192,67,0.15);">
-        <div id="postTags" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;"></div>
-        <h1 id="postTitle" style="margin:0 0 16px;font-size:2rem;font-weight:800;color:#e8eaf0;line-height:1.25;"></h1>
-        <div id="postMeta" style="display:flex;align-items:center;gap:16px;font-size:0.85rem;color:rgba(123,192,67,0.7);flex-wrap:wrap;">
+    <article id="postContent" class="student-post-content" style="display:none;">
+      <header class="student-post-hero">
+        <div class="student-post-hero__dot-grid"></div>
+        <svg class="student-post-hero__dna" width="160" height="220" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M110 10 C60 50, 160 90, 110 130 C60 170, 160 210, 110 250 C60 290, 160 330, 110 330" stroke="#7bc043" stroke-width="2" fill="none"/>
+          <path d="M110 10 C160 50, 60 90, 110 130 C160 170, 60 210, 110 250 C160 290, 60 330, 110 330" stroke="#00bcd4" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="student-post-hero__content">
+          <div class="student-post-hero__wordmark">
+            <span class="student-post-hero__logo-text"><span class="student-post-hero__logo-eg">EG</span><span class="student-post-hero__logo-lab">LAB</span></span>
+            <span class="student-post-hero__pipe"></span>
+            <span class="student-post-hero__lab-label">Student Research</span>
+          </div>
+          <div id="postTags" class="student-post-tags"></div>
+          <h1 id="postTitle"></h1>
+          <div id="postMeta" class="student-post-meta">
+          </div>
         </div>
       </header>
 
       <!-- Abstract / Excerpt box -->
-      <div id="postAbstract" style="display:none;background:var(--color-surface-raised);border-left:4px solid var(--color-accent);padding:18px 20px;border-radius:0 var(--radius-md) var(--radius-md) 0;margin-bottom:32px;">
-        <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent);margin-bottom:6px;">Abstract</div>
-        <p id="postAbstractText" style="margin:0;font-size:0.92rem;line-height:1.65;color:var(--color-text-muted);font-style:italic;"></p>
+      <div id="postAbstract" class="student-post-abstract" style="display:none;">
+        <div class="student-post-abstract__label">Abstract</div>
+        <p id="postAbstractText"></p>
       </div>
 
-      <div id="postBody" class="page-content" style="font-size:1rem;line-height:1.75;color:var(--color-text);">
+      <div class="student-post-body-card">
+        <div id="postBody" class="page-content student-post-body">
+        </div>
       </div>
 
       <!-- Author box -->
-      <div id="postAuthorBox" style="margin-top:48px;padding-top:28px;border-top:1px solid var(--color-border);display:flex;align-items:center;gap:18px;">
-        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0d1a14,#141424);border:2px solid #7bc043;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+      <div id="postAuthorBox" class="student-post-author">
+        <div class="student-post-author__avatar">
           <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
         </div>
         <div>
-          <div id="authorName" style="font-weight:700;font-size:0.95rem;color:var(--color-text);"></div>
-          <div style="font-size:0.82rem;color:var(--color-text-subtle);">EGLab Student Researcher</div>
+          <div id="authorName"></div>
+          <div class="student-post-author__role">EGLab Student Researcher</div>
         </div>
       </div>
     </article>
@@ -124,7 +138,7 @@ permalink: /student-post.html
       // Tags
       if (post.tags && post.tags.length) {
         document.getElementById('postTags').innerHTML = post.tags.map(t =>
-          `<a href="student-blog.html" class="tag-badge" style="text-decoration:none;">${t}</a>`
+          `<a href="student-blog.html?tag=${encodeURIComponent(t)}" class="tag-badge" style="text-decoration:none;">${t}</a>`
         ).join('');
       }
 
@@ -173,6 +187,18 @@ permalink: /student-post.html
 </script>
 
 <style>
+body {
+  background: #0a0e1a;
+}
+
+.student-post-layout {
+  padding: 28px 0 72px;
+}
+
+.student-post-back {
+  margin: 24px 0 22px;
+}
+
 .sp-back-link {
   color: rgba(123,192,67,0.8);
   display: flex;
@@ -184,6 +210,105 @@ permalink: /student-post.html
   transition: color 0.15s;
 }
 .sp-back-link:hover { color: #7bc043; }
+
+.student-post-loading,
+.student-post-body-card,
+.student-post-author {
+  background: #141424;
+  border: 1px solid rgba(123,192,67,0.14);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+}
+
+.student-post-loading {
+  padding: 28px 24px;
+}
+
+.student-post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.student-post-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 36px 32px;
+  background: linear-gradient(135deg, #0a0e1a 0%, #0d1a14 45%, #0a0e1a 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(123,192,67,0.18);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.24);
+}
+
+.student-post-hero__dot-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: radial-gradient(#7bc043 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+.student-post-hero__dna {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.10;
+  pointer-events: none;
+}
+
+.student-post-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.student-post-hero__wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.student-post-hero__logo-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.student-post-hero__logo-eg {
+  color: #7bc043;
+}
+
+.student-post-hero__logo-lab {
+  color: #ffffff;
+}
+
+.student-post-hero__pipe {
+  width: 1px;
+  height: 16px;
+  background: rgba(123,192,67,0.3);
+  flex-shrink: 0;
+}
+
+.student-post-hero__lab-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,188,212,0.85);
+}
+
+.student-post-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
 
 .skeleton {
   background: linear-gradient(90deg,#141424 25%,#1a1e30 50%,#141424 75%);
@@ -208,31 +333,79 @@ permalink: /student-post.html
   display: inline-block;
 }
 
-#postTitle { color: #e8eaf0; line-height: 1.25; }
-
-#postMeta { color: rgba(123,192,67,0.7); }
-
-#postAbstract {
-  background: rgba(0,188,212,0.07);
-  border-left: 4px solid #00bcd4;
-  padding: 18px 20px;
-  border-radius: 0 12px 12px 0;
-  margin-bottom: 32px;
+#postTitle {
+  margin: 0;
+  color: #e8eaf0;
+  line-height: 1.18;
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
 }
-#postAbstract > div { color: #00bcd4; }
-#postAbstractText { color: rgba(255,255,255,0.65); font-style: italic; }
 
-#postBody h1,#postBody h2,#postBody h3 {
+.student-post-meta {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  color: rgba(123,192,67,0.82);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.84rem;
+}
+
+.student-post-abstract {
+  background: rgba(0,188,212,0.08);
+  border: 1px solid rgba(0,188,212,0.22);
+  padding: 22px 24px;
+  border-radius: 18px;
+}
+
+.student-post-abstract__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #00bcd4;
+  margin-bottom: 8px;
+}
+
+#postAbstractText {
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+  font-style: italic;
+  line-height: 1.75;
+}
+
+.student-post-body-card {
+  padding: 30px 30px 36px;
+}
+
+.student-post-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text);
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.student-post-body h1,
+.student-post-body h2,
+.student-post-body h3 {
   color: #7bc043;
   margin-top: 2em;
   font-weight: 700;
 }
-#postBody h4,#postBody h5,#postBody h6 { color: #00bcd4; }
+.student-post-body h4,
+.student-post-body h5,
+.student-post-body h6 { color: #00bcd4; }
 
-#postBody a { color: #00bcd4; text-decoration: underline; text-underline-offset: 2px; }
-#postBody a:hover { color: #7bc043; }
+.student-post-body a { color: #00bcd4; text-decoration: underline; text-underline-offset: 2px; }
+.student-post-body a:hover { color: #7bc043; }
 
-#postBody blockquote {
+.student-post-body blockquote {
   border-left: 3px solid #7bc043;
   padding-left: 16px;
   margin-left: 0;
@@ -240,44 +413,98 @@ permalink: /student-post.html
   color: rgba(255,255,255,0.6);
 }
 
-#postBody pre {
+.student-post-body pre {
   background: #141424;
   border: 1px solid rgba(123,192,67,0.15);
   border-radius: 10px;
   padding: 16px 20px;
   overflow-x: auto;
 }
-#postBody code {
+.student-post-body code {
   background: rgba(123,192,67,0.1);
   color: #7bc043;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.88em;
 }
-#postBody pre code { background: transparent; padding: 0; color: #e8eaf0; }
+.student-post-body pre code { background: transparent; padding: 0; color: #e8eaf0; }
 
-#postBody img {
+.student-post-body img {
   border-radius: 10px;
   max-width: 100%;
   border: 1px solid rgba(123,192,67,0.1);
 }
 
-#postBody p  { color: rgba(255,255,255,0.82); line-height: 1.8; }
-#postBody li { color: rgba(255,255,255,0.82); line-height: 1.7; }
+.student-post-body p  { color: rgba(255,255,255,0.82); line-height: 1.8; }
+.student-post-body li { color: rgba(255,255,255,0.82); line-height: 1.8; }
 
-#postAuthorBox {
-  margin-top: 48px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(123,192,67,0.15);
+.student-post-body > p,
+.student-post-body > ul,
+.student-post-body > ol,
+.student-post-body > blockquote {
+  max-width: 68ch;
+  font-size: 1.02rem;
 }
-#postAuthorBox > div:first-child {
+
+.student-post-body > h1,
+.student-post-body > h2,
+.student-post-body > h3,
+.student-post-body > h4,
+.student-post-body > h5,
+.student-post-body > h6 {
+  max-width: 24ch;
+}
+
+.student-post-author {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+}
+
+.student-post-author__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   background: linear-gradient(135deg,#0a0e1a 0%,#0d1a14 100%);
   border: 2px solid #7bc043;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.student-post-author__role {
+  font-size: 0.82rem;
+  color: var(--color-text-subtle);
+}
+
 #authorName { color: #e8eaf0; font-weight: 700; }
 
 #notFoundState svg  { fill: rgba(255,255,255,0.3); }
 #notFoundState h3   { color: rgba(255,255,255,0.6); }
 #notFoundState p    { color: rgba(255,255,255,0.35); }
 #notFoundState a    { background: #7bc043; color: #0a0e1a !important; font-weight: 700; }
+
+@media (max-width: 720px) {
+  .student-post-layout {
+    padding: 20px 0 56px;
+  }
+
+  .student-post-hero {
+    padding: 28px 22px;
+  }
+
+  .student-post-hero__dna {
+    display: none;
+  }
+
+  .student-post-body-card {
+    padding: 22px 18px 28px;
+  }
+
+  .student-post-author {
+    padding: 18px;
+  }
+}
 </style>

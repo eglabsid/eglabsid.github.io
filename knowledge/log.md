@@ -6,3 +6,4 @@
 2026-04-13 | setup | Firebase project wired: saas-of-funqa (projectId, authDomain, storageBucket updated)
 2026-04-13 | setup | Firestore rules updated in saas-of-funqa: blog_posts and users collections added
 2026-04-13 | add | llm_wiki Firestore collection wired to Firebase saas-of-funqa; added DB_COLLECTIONS.LLM_WIKI to firebase-config.js; created llm-wiki-service.js client module; added Playwright tests
+2026-04-14 | report | UI tone refresh logged for home poster cards, archive cleanup, and student post branded shell
