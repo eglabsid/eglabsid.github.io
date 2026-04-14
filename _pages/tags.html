@@ -3,20 +3,160 @@ layout: menu-page
 title: Tags
 permalink: tags:output_ext
 ---
+{% include calculate_relative_base.html %}
+{% include get-site-tags.html %}
+
 <style>
-/* ── EGLab Tags Page — Dark Brand Override ── */
+/* ── EGLab Tags — Knowledge Graph ─────────────────────────── */
 
-/* Hide the default h2 heading (replaced by hero) */
-.blog-tags h2 {
+.blog-tags h2 { display: none; }
+.blog-tags    { background: transparent; }
+
+/* Graph wrapper */
+#kg-wrap {
+  position: relative;
+  width: 100%;
+  background: #080c18;
+  border-radius: 18px;
+  border: 1px solid rgba(123,192,67,0.18);
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+#kg-svg {
+  display: block;
+  width: 100%;
+  height: 580px;
+}
+
+/* Controls bar */
+#kg-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(123,192,67,0.10);
+}
+
+#kg-controls button {
+  background: rgba(123,192,67,0.08);
+  border: 1px solid rgba(123,192,67,0.28);
+  color: #7bc043;
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+#kg-controls button:hover  { background: rgba(123,192,67,0.18); color: #a0d860; }
+#kg-controls button.active { background: rgba(123,192,67,0.24); color: #fff; border-color: #7bc043; }
+
+#kg-hint {
+  margin-left: auto;
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.03em;
+}
+
+/* Node tooltip (hover) */
+#kg-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(10,14,26,0.92);
+  border: 1px solid rgba(123,192,67,0.35);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 0.82rem;
+  color: #e8eaf0;
+  white-space: nowrap;
   display: none;
+  z-index: 999;
+  backdrop-filter: blur(6px);
+}
+#kg-tooltip strong { color: #7bc043; }
+
+/* Post panel */
+#kg-panel {
+  display: none;
+  background: #141424;
+  border: 1px solid rgba(0,188,212,0.28);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin-bottom: 24px;
 }
 
-/* No extra bg needed — page layout bg handles it */
-.blog-tags {
-  background: transparent;
+#kg-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-/* Tag group cards */
+#kg-panel-tag {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #7bc043;
+  letter-spacing: 0.04em;
+}
+
+#kg-panel-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.38);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+#kg-panel-close:hover { color: #fff; background: rgba(255,255,255,0.07); }
+
+#kg-panel-posts { display: flex; flex-direction: column; gap: 10px; }
+
+.kg-post-item {
+  background: #1a1a30;
+  border: 1px solid rgba(123,192,67,0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: border-color 0.15s;
+}
+.kg-post-item:hover { border-color: rgba(0,188,212,0.3); }
+
+.kg-post-item a {
+  color: rgba(255,255,255,0.88);
+  text-decoration: none;
+  font-size: 0.93rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.kg-post-item a:hover { color: #7bc043; }
+
+/* Legend */
+#kg-legend {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 16px 10px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.04em;
+}
+#kg-legend span { display: flex; align-items: center; gap: 5px; }
+.lg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.lg-line { width: 22px; height: 2px; background: rgba(123,192,67,0.35); flex-shrink: 0; border-radius: 1px; }
+
+/* List view (toggle) */
+#kg-list-section {
+  display: none;
+  padding-top: 8px;
+}
+
 .list-group {
   background: #141424;
   border: 1px solid rgba(123,192,67,0.12);
@@ -25,8 +165,6 @@ permalink: tags:output_ext
   padding: 18px 22px;
   margin-bottom: 16px;
 }
-
-/* Tag group title link */
 .list-group-title a {
   color: #7bc043;
   font-weight: 700;
@@ -35,111 +173,397 @@ permalink: tags:output_ext
   letter-spacing: 0.1em;
   text-decoration: none;
 }
-.list-group-title a:hover {
-  color: #a0d860;
-}
-
-/* Individual post item */
+.list-group-title a:hover { color: #a0d860; }
 .list-item {
   padding: 8px 0;
   border-bottom: 1px solid rgba(123,192,67,0.06);
 }
-.list-item:last-child {
-  border-bottom: none;
-}
-
-/* Post links inside items */
+.list-item:last-child { border-bottom: none; }
 .list-item a {
   color: rgba(255,255,255,0.85);
   text-decoration: none;
   font-size: 0.94rem;
-  line-height: 1.6;
-  transition: color 0.15s;
 }
-.list-item a:hover {
-  color: #00bcd4;
-}
-
+.list-item a:hover { color: #00bcd4; }
 .list-item .post-card-meta,
-.list-item .post-card-meta a {
-  color: rgba(123,192,67,0.72);
-}
+.list-item .post-card-meta a { color: rgba(123,192,67,0.72); }
 
-/* Post list content area */
-.tags-page-content {
-  padding-top: 24px;
-}
-
-/* Tag cloud pill style */
-.tag-link,
-.tag-cloud a {
-  display: inline-block;
-  border: 1px solid #7bc043;
-  color: #7bc043;
-  background: transparent;
-  border-radius: 999px;
-  padding: 4px 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-  margin: 3px;
-}
-.tag-link:hover,
-.tag-cloud a:hover {
-  background: rgba(123,192,67,0.1);
-  color: #a0d860;
+/* Responsive */
+@media (max-width: 640px) {
+  #kg-svg  { height: 380px; }
+  #kg-hint { display: none; }
 }
 </style>
 
-{% include calculate_relative_base.html %}
-{% include get-site-tags.html %}
-
-<!-- ── EGLab Hero Section ── -->
-<div style="position:relative;overflow:hidden;margin:40px 0 48px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:18px;border:1px solid rgba(123,192,67,0.18);">
-  <!-- Dot-grid background (gaming aesthetic) -->
+<!-- ── Hero ─────────────────────────────────────────────────────────── -->
+<div style="position:relative;overflow:hidden;margin:40px 0 28px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:18px;border:1px solid rgba(123,192,67,0.18);">
   <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
-  <!-- DNA helix decoration (right side) -->
   <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
     <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
     <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
   </svg>
   <div style="position:relative;z-index:1;">
-    <!-- EGLab logo wordmark -->
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-      <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;">
-        <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
-      </span>
+      <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;"><span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span></span>
       <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
-      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Research Index</span>
+      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Knowledge Graph</span>
     </div>
-    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">
-      Research <span style="color:#7bc043;">Tags</span>
-    </h1>
-    <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;">
-      Browse posts by research topic, from evolutionary game theory and reinforcement learning to tools, papers, and student experiments.
-    </p>
+    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">Research <span style="color:#7bc043;">Tags</span></h1>
+    <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;">Explore topic connections across EGLab research. Node size reflects post volume; edges show co-occurrence between topics.</p>
   </div>
 </div>
 
-<section class="blog-tags">
-  <h2>tags</h2>
-  {% include tag_cloud.html %}
+<!-- ── Controls ─────────────────────────────────────────────────────── -->
+<div id="kg-controls">
+  <button id="btn-kg-reset">Reset</button>
+  <button id="btn-kg-list">List View</button>
+  <span id="kg-hint">Drag nodes · Scroll to zoom · Click a tag to explore posts</span>
+</div>
+
+<!-- ── Knowledge Graph ───────────────────────────────────────────────── -->
+<div id="kg-wrap">
+  <svg id="kg-svg"></svg>
+  <div id="kg-legend">
+    <span><span class="lg-dot" style="background:#7bc043;"></span>Tag node (size = post count)</span>
+    <span><span class="lg-line"></span>Co-occurrence edge</span>
+    <span><span class="lg-dot" style="background:#00bcd4;"></span>Selected</span>
+  </div>
+</div>
+
+<div id="kg-tooltip"></div>
+
+<!-- ── Post panel ───────────────────────────────────────────────────── -->
+<div id="kg-panel">
+  <div id="kg-panel-head">
+    <span id="kg-panel-tag"></span>
+    <button id="kg-panel-close" title="Close">✕</button>
+  </div>
+  <div id="kg-panel-posts"></div>
+</div>
+
+<!-- ── List view (toggle) ───────────────────────────────────────────── -->
+<section id="kg-list-section" class="blog-tags">
   <div class="tags-page-content">
   {% for item in (0..site.tags.size) %}{% unless forloop.last %}
     {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
     <div class="list-group">
       <div class="list-group-title"><a id="{{ this_word | cgi_escape }}">{{ this_word }}</a></div>
       <div>
-      {% for post in site.tags[this_word] %}{% if post.title != null %}
-      {% include remove_double_slash.html %}
-        <div class="list-item">
-          <a href="{{ post_url }}">{{ post.title }}</a>
-          {% include post_meta.html type="post-card-meta" %}
-        </div>
-      {% endif %}{% endfor %}
-       </div>
+        {% for post in site.tags[this_word] %}{% if post.title != null %}
+          {% include remove_double_slash.html %}
+          <div class="list-item">
+            <a href="{{ post_url }}">{{ post.title }}</a>
+            {% include post_meta.html type="post-card-meta" %}
+          </div>
+        {% endif %}{% endfor %}
+      </div>
     </div>
   {% endunless %}{% endfor %}
   </div>
 </section>
+
+<!-- ── D3 v7 Knowledge Graph ─────────────────────────────────────────── -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── 1. Jekyll data injection ──────────────────────────────────────── */
+  var nodes = [
+    {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+    {% capture tag_name %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+    {
+      id:    {{ tag_name | jsonify }},
+      count: {{ site.tags[tag_name].size | default: 0 }},
+      url:   "{{ relativebase }}tag.html?tag={{ tag_name | url_encode }}",
+      posts: [
+        {% for post in site.tags[tag_name] %}{% if post.title != null %}
+        {% include remove_double_slash.html %}
+        { title: {{ post.title | jsonify }}, url: {{ post_url | jsonify }} },
+        {% endif %}{% endfor %}
+      ]
+    },
+    {% endunless %}{% endfor %}
+  ];
+
+  /* Raw co-occurrence pairs (Jekyll build-time) */
+  var rawEdges = [
+    {% for post in site.posts %}
+      {% assign ptags = post.tags %}
+      {% for tag_a in ptags %}{% assign idx_a = forloop.index0 %}
+      {% for tag_b in ptags %}{% assign idx_b = forloop.index0 %}
+      {% if idx_b > idx_a %}
+    { source: {{ tag_a | jsonify }}, target: {{ tag_b | jsonify }} },
+      {% endif %}
+      {% endfor %}{% endfor %}
+    {% endfor %}
+  ];
+
+  if (!nodes.length) return;
+
+  /* Aggregate edges */
+  var edgeMap = Object.create(null);
+  rawEdges.forEach(function (e) {
+    var key = e.source < e.target ? e.source + '|||' + e.target : e.target + '|||' + e.source;
+    edgeMap[key] = (edgeMap[key] || 0) + 1;
+  });
+  var links = Object.entries(edgeMap).map(function (entry) {
+    var parts = entry[0].split('|||');
+    return { source: parts[0], target: parts[1], weight: entry[1] };
+  });
+
+  /* ── HTML escape helper (prevents XSS in innerHTML slots) ─────────── */
+  function esc(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /* ── 2. SVG setup ──────────────────────────────────────────────────── */
+  var wrap = document.getElementById('kg-wrap');
+  var svgEl = document.getElementById('kg-svg');
+  var W = wrap.clientWidth || 800;
+  var H = parseInt(window.getComputedStyle(svgEl).height) || 580;
+
+  var svg = d3.select(svgEl)
+    .attr('viewBox', '0 0 ' + W + ' ' + H)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  /* Defs */
+  var defs = svg.append('defs');
+
+  /* Glow filter */
+  var glow = defs.append('filter')
+    .attr('id', 'kg-glow')
+    .attr('x', '-60%').attr('y', '-60%')
+    .attr('width', '220%').attr('height', '220%');
+  glow.append('feGaussianBlur').attr('stdDeviation', '4').attr('result', 'blur');
+  var fm = glow.append('feMerge');
+  fm.append('feMergeNode').attr('in', 'blur');
+  fm.append('feMergeNode').attr('in', 'SourceGraphic');
+
+  /* Dot-grid pattern */
+  defs.append('pattern')
+    .attr('id', 'kg-dots')
+    .attr('width', 28).attr('height', 28)
+    .attr('patternUnits', 'userSpaceOnUse')
+    .append('circle')
+    .attr('cx', 1).attr('cy', 1).attr('r', 0.9)
+    .attr('fill', 'rgba(123,192,67,0.06)');
+
+  svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#080c18');
+  svg.append('rect').attr('width', W).attr('height', H).attr('fill', 'url(#kg-dots)');
+
+  var g = svg.append('g').attr('class', 'kg-root');
+
+  /* ── 3. Scales ─────────────────────────────────────────────────────── */
+  var maxCount = d3.max(nodes, function (d) { return d.count; }) || 1;
+  var rScale   = d3.scaleSqrt().domain([1, maxCount]).range([8, 30]);
+  var nodeColor = d3.scaleSequential()
+    .domain([1, maxCount])
+    .interpolator(d3.interpolate('#1e3812', '#7bc043'));
+
+  /* ── 4. Force simulation ───────────────────────────────────────────── */
+  var sim = d3.forceSimulation(nodes)
+    .force('link',    d3.forceLink(links).id(function (d) { return d.id; })
+                        .distance(function (d) { return 120 - Math.min(d.weight * 8, 70); })
+                        .strength(0.35))
+    .force('charge',  d3.forceManyBody().strength(-260))
+    .force('center',  d3.forceCenter(W / 2, H / 2).strength(0.08))
+    .force('collide', d3.forceCollide().radius(function (d) { return rScale(d.count) + 10; }))
+    .alphaDecay(0.022);
+
+  /* ── 5. Links ──────────────────────────────────────────────────────── */
+  var linkSel = g.append('g').attr('class', 'kg-links')
+    .selectAll('line')
+    .data(links)
+    .join('line')
+    .attr('stroke', 'rgba(123,192,67,0.2)')
+    .attr('stroke-width', function (d) { return Math.min(d.weight * 0.9 + 0.5, 3.5); })
+    .attr('stroke-linecap', 'round');
+
+  /* ── 6. Nodes ──────────────────────────────────────────────────────── */
+  var drag = d3.drag()
+    .on('start', function (event, d) {
+      if (!event.active) sim.alphaTarget(0.3).restart();
+      d.fx = d.x; d.fy = d.y;
+    })
+    .on('drag', function (event, d) { d.fx = event.x; d.fy = event.y; })
+    .on('end',  function (event, d) {
+      if (!event.active) sim.alphaTarget(0);
+      d.fx = null; d.fy = null;
+    });
+
+  var nodeSel = g.append('g').attr('class', 'kg-nodes')
+    .selectAll('g')
+    .data(nodes)
+    .join('g')
+    .attr('class', 'kg-node')
+    .call(drag)
+    .style('cursor', 'pointer')
+    .on('click',      onNodeClick)
+    .on('mouseenter', onNodeEnter)
+    .on('mouseleave', onNodeLeave);
+
+  /* Circle */
+  nodeSel.append('circle')
+    .attr('r',           function (d) { return rScale(d.count); })
+    .attr('fill',        function (d) { return nodeColor(d.count); })
+    .attr('stroke',      '#7bc043')
+    .attr('stroke-width', 1.8)
+    .attr('stroke-opacity', 0.75);
+
+  /* Glow on nodes with 3+ posts */
+  nodeSel.filter(function (d) { return d.count >= 3; })
+    .select('circle')
+    .attr('filter', 'url(#kg-glow)');
+
+  /* Count badge (on node) */
+  nodeSel.append('text')
+    .text(function (d) { return d.count; })
+    .attr('text-anchor', 'middle')
+    .attr('dy', '0.36em')
+    .attr('font-family', 'Lato, sans-serif')
+    .attr('font-weight', '900')
+    .attr('font-size', function (d) { return Math.max(8, rScale(d.count) * 0.55) + 'px'; })
+    .attr('fill', 'rgba(255,255,255,0.92)')
+    .style('pointer-events', 'none');
+
+  /* Label below node */
+  nodeSel.append('text')
+    .text(function (d) { return d.id; })
+    .attr('text-anchor', 'middle')
+    .attr('dy', function (d) { return rScale(d.count) + 13; })
+    .attr('font-family', 'Lato, sans-serif')
+    .attr('font-weight', '700')
+    .attr('font-size', function (d) { return Math.max(9, Math.min(12, rScale(d.count) * 0.55)) + 'px'; })
+    .attr('fill', 'rgba(255,255,255,0.78)')
+    .style('pointer-events', 'none');
+
+  /* ── 7. Tick ───────────────────────────────────────────────────────── */
+  sim.on('tick', function () {
+    linkSel
+      .attr('x1', function (d) { return d.source.x; })
+      .attr('y1', function (d) { return d.source.y; })
+      .attr('x2', function (d) { return d.target.x; })
+      .attr('y2', function (d) { return d.target.y; });
+    nodeSel.attr('transform', function (d) {
+      return 'translate(' + d.x + ',' + d.y + ')';
+    });
+  });
+
+  /* ── 8. Zoom / pan ─────────────────────────────────────────────────── */
+  var zoom = d3.zoom()
+    .scaleExtent([0.25, 5])
+    .on('zoom', function (event) { g.attr('transform', event.transform); });
+  svg.call(zoom).on('dblclick.zoom', null);
+
+  /* ── 9. Tooltip ────────────────────────────────────────────────────── */
+  var tooltip = document.getElementById('kg-tooltip');
+
+  function onNodeEnter(event, d) {
+    tooltip.innerHTML = '<strong>' + esc(d.id) + '</strong> &nbsp; ' + d.count + ' post' + (d.count !== 1 ? 's' : '');
+    tooltip.style.display = 'block';
+    moveTip(event);
+  }
+  function onNodeLeave() {
+    tooltip.style.display = 'none';
+  }
+  function moveTip(event) {
+    tooltip.style.left = (event.clientX + 14) + 'px';
+    tooltip.style.top  = (event.clientY - 10) + 'px';
+  }
+  svgEl.addEventListener('mousemove', function (event) {
+    if (tooltip.style.display !== 'none') moveTip(event);
+  });
+
+  /* ── 10. Node click → post panel ──────────────────────────────────── */
+  var selectedId = null;
+
+  function onNodeClick(event, d) {
+    event.stopPropagation();
+
+    /* Reset all nodes */
+    nodeSel.select('circle')
+      .attr('stroke', '#7bc043')
+      .attr('stroke-width', 1.8)
+      .attr('stroke-opacity', 0.75);
+    /* Highlight selected */
+    d3.select(this).select('circle')
+      .attr('stroke', '#00bcd4')
+      .attr('stroke-width', 3)
+      .attr('stroke-opacity', 1);
+    selectedId = d.id;
+
+    /* Highlight connected links */
+    linkSel.attr('stroke', function (l) {
+      return (l.source.id === d.id || l.target.id === d.id)
+        ? 'rgba(0,188,212,0.65)'
+        : 'rgba(123,192,67,0.07)';
+    });
+
+    /* Fill panel */
+    document.getElementById('kg-panel-tag').textContent =
+      '#' + d.id + '  (' + d.count + ' post' + (d.count !== 1 ? 's' : '') + ')';
+    var postsEl = document.getElementById('kg-panel-posts');
+    postsEl.innerHTML = d.posts.length
+      ? d.posts.map(function (p) {
+          return '<div class="kg-post-item"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a></div>';
+        }).join('')
+      : '<p style="color:rgba(255,255,255,0.4);font-size:0.88rem;margin:0;">No posts found.</p>';
+
+    var panel = document.getElementById('kg-panel');
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  /* Click canvas background → deselect */
+  svg.on('click', function () {
+    nodeSel.select('circle')
+      .attr('stroke', '#7bc043')
+      .attr('stroke-width', 1.8)
+      .attr('stroke-opacity', 0.75);
+    linkSel.attr('stroke', 'rgba(123,192,67,0.2)');
+    document.getElementById('kg-panel').style.display = 'none';
+    selectedId = null;
+  });
+
+  document.getElementById('kg-panel-close').addEventListener('click', function () {
+    document.getElementById('kg-panel').style.display = 'none';
+    nodeSel.select('circle')
+      .attr('stroke', '#7bc043')
+      .attr('stroke-width', 1.8)
+      .attr('stroke-opacity', 0.75);
+    linkSel.attr('stroke', 'rgba(123,192,67,0.2)');
+    selectedId = null;
+  });
+
+  /* ── 11. Controls ──────────────────────────────────────────────────── */
+  document.getElementById('btn-kg-reset').addEventListener('click', function () {
+    svg.transition().duration(480).call(zoom.transform, d3.zoomIdentity);
+  });
+
+  var btnList = document.getElementById('btn-kg-list');
+  var listSec = document.getElementById('kg-list-section');
+  btnList.addEventListener('click', function () {
+    var showing = listSec.style.display === 'block';
+    listSec.style.display = showing ? 'none' : 'block';
+    btnList.classList.toggle('active', !showing);
+  });
+
+  /* ── 12. Resize ────────────────────────────────────────────────────── */
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      var newW = wrap.clientWidth;
+      svg.attr('viewBox', '0 0 ' + newW + ' ' + H);
+      sim.force('center', d3.forceCenter(newW / 2, H / 2).strength(0.08))
+         .alpha(0.12).restart();
+    }, 220);
+  });
+
+})();
+</script>

@@ -8,7 +8,7 @@ permalink: /student-post.html
 <div class="flex-container transparent">
   {% include header.html %}
 
-  <div class="content wrapper student-post-layout" style="max-width:920px;">
+  <main class="content wrapper student-post-layout" id="main-content">
 
     <!-- Back link -->
     <div class="student-post-back">
@@ -84,7 +84,7 @@ permalink: /student-post.html
       <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#7bc043;border-radius:999px;color:#0a0e1a;text-decoration:none;font-size:0.88rem;font-weight:600;">Back to Blog</a>
     </div>
 
-  </div>
+  </main>
 
   {% include footer.html %}
 </div>
@@ -112,10 +112,26 @@ permalink: /student-post.html
   const contentEl   = document.getElementById('postContent');
   const notFoundEl  = document.getElementById('notFoundState');
 
+  const POST_DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  function escapeHTML(value = '') {
+    return String(value).replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[char]);
+  }
+
   function formatDate(ts) {
     if (!ts) return '';
     const d = ts.toDate ? ts.toDate() : new Date(ts);
-    return d.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    return POST_DATE_FORMATTER.format(d);
   }
 
   function readTime(html) {
@@ -138,7 +154,7 @@ permalink: /student-post.html
       // Tags
       if (post.tags && post.tags.length) {
         document.getElementById('postTags').innerHTML = post.tags.map(t =>
-          `<a href="student-blog.html?tag=${encodeURIComponent(t)}" class="tag-badge" style="text-decoration:none;">${t}</a>`
+          `<a href="student-blog.html?tag=${encodeURIComponent(t)}" class="tag-badge">${escapeHTML(t)}</a>`
         ).join('');
       }
 
@@ -147,15 +163,15 @@ permalink: /student-post.html
 
       // Meta
       document.getElementById('postMeta').innerHTML = `
-        <span style="display:flex;align-items:center;gap:4px;">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12z"/></svg>
-          ${post.author || 'Anonymous'}
+        <span class="student-post-meta__item">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12z"/></svg>
+          ${escapeHTML(post.author || 'Anonymous')}
         </span>
-        <span style="display:flex;align-items:center;gap:4px;">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+        <span class="student-post-meta__item">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
           ${formatDate(post.createdAt)}
         </span>
-        <span>${readTime(post.content || '')} min read</span>
+        <span class="student-post-meta__item">${readTime(post.content || '')} min read</span>
       `;
 
       // Abstract
@@ -167,6 +183,11 @@ permalink: /student-post.html
       // Body — render stored HTML safely
       const bodyEl = document.getElementById('postBody');
       bodyEl.innerHTML = post.content || '';
+      bodyEl.querySelectorAll('img').forEach((img, index) => {
+        if (!img.getAttribute('loading')) img.setAttribute('loading', 'lazy');
+        img.setAttribute('decoding', 'async');
+        if (!img.getAttribute('alt')) img.setAttribute('alt', `${post.title || 'Post'} image ${index + 1}`);
+      });
 
       // Author
       document.getElementById('authorName').textContent = post.author || 'Anonymous';
@@ -189,25 +210,32 @@ permalink: /student-post.html
 <style>
 body {
   background: #0a0e1a;
+  color-scheme: dark;
+  overflow-x: hidden;
 }
 
 .student-post-layout {
-  padding: 28px 0 72px;
+  width: min(100%, 54rem);
+  max-width: 54rem;
+  max-width: calc(100% - 1.5rem);
+  margin-inline: auto;
+  padding: 1.75rem 0 4.5rem;
 }
 
 .student-post-back {
-  margin: 24px 0 22px;
+  margin: 1.5rem 0 1.25rem;
 }
 
 .sp-back-link {
   color: rgba(123,192,67,0.8);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.15s;
+  touch-action: manipulation;
 }
 .sp-back-link:hover { color: #7bc043; }
 
@@ -233,7 +261,7 @@ body {
 .student-post-hero {
   position: relative;
   overflow: hidden;
-  padding: 36px 32px;
+  padding: clamp(2rem, 4vw, 3rem);
   background: linear-gradient(135deg, #0a0e1a 0%, #0d1a14 45%, #0a0e1a 100%);
   border-radius: 20px;
   border: 1px solid rgba(123,192,67,0.18);
@@ -261,7 +289,7 @@ body {
 .student-post-hero__content {
   position: relative;
   z-index: 1;
-  max-width: 680px;
+  max-width: 40rem;
 }
 
 .student-post-hero__wordmark {
@@ -331,6 +359,7 @@ body {
   font-weight: 700;
   text-decoration: none;
   display: inline-block;
+  touch-action: manipulation;
 }
 
 #postTitle {
@@ -341,6 +370,7 @@ body {
   font-size: clamp(2rem, 4vw, 2.9rem);
   font-weight: 900;
   letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .student-post-meta {
@@ -352,6 +382,13 @@ body {
   color: rgba(123,192,67,0.82);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.student-post-meta__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .student-post-abstract {
@@ -372,23 +409,28 @@ body {
 
 #postAbstractText {
   margin: 0;
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.78);
   font-style: italic;
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 .student-post-body-card {
-  padding: 30px 30px 36px;
+  padding: clamp(1.4rem, 3vw, 2rem);
 }
 
 .student-post-body {
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: clamp(1.02rem, 0.98rem + 0.22vw, 1.1rem);
+  line-height: 1.9;
   color: var(--color-text);
   background: transparent !important;
   box-shadow: none !important;
   border-radius: 0 !important;
   padding: 0 !important;
+  overflow-wrap: anywhere;
+}
+
+.student-post-body > * + * {
+  margin-top: 1.2em;
 }
 
 .student-post-body h1,
@@ -397,10 +439,17 @@ body {
   color: #7bc043;
   margin-top: 2em;
   font-weight: 700;
+  line-height: 1.3;
+  text-wrap: balance;
+  scroll-margin-top: 6rem;
 }
 .student-post-body h4,
 .student-post-body h5,
-.student-post-body h6 { color: #00bcd4; }
+.student-post-body h6 {
+  color: #00bcd4;
+  line-height: 1.35;
+  scroll-margin-top: 6rem;
+}
 
 .student-post-body a { color: #00bcd4; text-decoration: underline; text-underline-offset: 2px; }
 .student-post-body a:hover { color: #7bc043; }
@@ -419,6 +468,7 @@ body {
   border-radius: 10px;
   padding: 16px 20px;
   overflow-x: auto;
+  max-width: 100%;
 }
 .student-post-body code {
   background: rgba(123,192,67,0.1);
@@ -432,18 +482,21 @@ body {
 .student-post-body img {
   border-radius: 10px;
   max-width: 100%;
+  height: auto;
   border: 1px solid rgba(123,192,67,0.1);
 }
 
-.student-post-body p  { color: rgba(255,255,255,0.82); line-height: 1.8; }
-.student-post-body li { color: rgba(255,255,255,0.82); line-height: 1.8; }
+.student-post-body p,
+.student-post-body li {
+  color: rgba(255,255,255,0.86);
+  line-height: 1.9;
+}
 
 .student-post-body > p,
 .student-post-body > ul,
 .student-post-body > ol,
 .student-post-body > blockquote {
-  max-width: 68ch;
-  font-size: 1.02rem;
+  max-width: 70ch;
 }
 
 .student-post-body > h1,
@@ -486,13 +539,21 @@ body {
 #notFoundState p    { color: rgba(255,255,255,0.35); }
 #notFoundState a    { background: #7bc043; color: #0a0e1a !important; font-weight: 700; }
 
+.sp-back-link:focus-visible,
+.tag-badge:focus-visible,
+.student-post-body a:focus-visible,
+#notFoundState a:focus-visible {
+  outline: 2px solid rgba(0,188,212,0.82);
+  outline-offset: 3px;
+}
+
 @media (max-width: 720px) {
   .student-post-layout {
-    padding: 20px 0 56px;
+    padding: 1.25rem 0 3.5rem;
   }
 
   .student-post-hero {
-    padding: 28px 22px;
+    padding: 1.75rem 1.3rem;
   }
 
   .student-post-hero__dna {
@@ -500,11 +561,22 @@ body {
   }
 
   .student-post-body-card {
-    padding: 22px 18px 28px;
+    padding: 1.35rem 1.1rem 1.7rem;
   }
 
   .student-post-author {
     padding: 18px;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-back-link,
+  .student-post-body a,
+  .tag-badge,
+  .skeleton {
+    transition: none;
+    animation: none;
   }
 }
 </style>

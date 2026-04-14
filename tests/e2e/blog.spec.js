@@ -90,6 +90,19 @@ test.describe('Student Blog Page', () => {
     await expect(footer.locator('a[href*="admin"]')).toBeVisible();
   });
 
+  test('student blog does not overflow horizontally on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/student-blog.html');
+    await page.waitForLoadState('domcontentloaded');
+
+    const hasHorizontalOverflow = await page.evaluate(() => {
+      const root = document.documentElement;
+      return root.scrollWidth > window.innerWidth + 1;
+    });
+
+    expect(hasHorizontalOverflow).toBe(false);
+  });
+
 });
 
 test.describe('Student Post Page', () => {
@@ -113,6 +126,19 @@ test.describe('Student Post Page', () => {
     // Verify it visually leads back (SVG + text, so check href)
     const href = await backLink.getAttribute('href');
     expect(href).toContain('student-blog');
+  });
+
+  test('student post layout does not overflow horizontally on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/student-post.html');
+    await page.waitForLoadState('domcontentloaded');
+
+    const hasHorizontalOverflow = await page.evaluate(() => {
+      const root = document.documentElement;
+      return root.scrollWidth > window.innerWidth + 1;
+    });
+
+    expect(hasHorizontalOverflow).toBe(false);
   });
 
 });

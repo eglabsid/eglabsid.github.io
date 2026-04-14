@@ -36,5 +36,7 @@ See ADMIN_SETUP.md for full instructions.
 
 ## Recent Reports
 
+- [Tags Knowledge Graph Report](wiki/reports/tags-knowledge-graph-report.md) — D3 force-directed graph on tags.html; 82/82 tests passed (2026-04-14)
+- [E2E Verification Report](wiki/reports/e2e-verification-report.md) — 63/63 Playwright tests passed; all April 14 changes verified (2026-04-14)
 - [Admin Perf & Refactor Report](wiki/reports/admin-perf-refactor-report.md) — Quill defer, fonts preconnect, search debounce, Quill lazy init, window.* removal (2026-04-14)
 - [UI Tone Refresh Report](wiki/reports/ui-tone-refresh-report.md) — home poster cards, archive cleanup, and student post shell alignment (2026-04-14)

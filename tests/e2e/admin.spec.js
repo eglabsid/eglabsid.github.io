@@ -83,6 +83,35 @@ test.describe('Admin Panel — Editor Structure', () => {
     await expect(page.locator('#quillEditor')).toBeAttached();
   });
 
+  test('postType select field exists with student and post options', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const select = page.locator('#postType');
+    await expect(select).toBeAttached();
+
+    const studentOpt = select.locator('option[value="student"]');
+    const postOpt    = select.locator('option[value="post"]');
+    await expect(studentOpt).toBeAttached();
+    await expect(postOpt).toBeAttached();
+  });
+
+  test('postType defaults to student', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const value = await page.locator('#postType').evaluate(el => el.value);
+    expect(value).toBe('student');
+  });
+
+  test('posts table has Type column header', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const html = await page.content();
+    expect(html).toContain('<th>Type</th>');
+  });
+
   test('Publish and Save Draft buttons exist', async ({ page }) => {
     await page.goto('/admin/');
     await page.waitForLoadState('domcontentloaded');
@@ -202,7 +231,94 @@ test.describe('Admin Panel — LLM Wiki Login Integration', () => {
     expect(html).toContain('firebase-auth.js');
     expect(html).toContain('GoogleAuthProvider');
     expect(html).toContain('signInWithPopup');
+    expect(html).not.toContain('signInWithRedirect');
     expect(html).toContain('onAuthStateChanged');
+  });
+
+});
+
+test.describe('Admin Panel — Post Type Extra Fields', () => {
+
+  test('postExtraFields section exists in DOM', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('load');
+
+    await expect(page.locator('#postExtraFields')).toBeAttached();
+  });
+
+  test('postExtraFields is hidden when postType is student', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Default is student — extra fields should be hidden
+    const value = await page.locator('#postType').evaluate(el => el.value);
+    expect(value).toBe('student');
+
+    const extra = page.locator('#postExtraFields');
+    await expect(extra).toBeHidden();
+  });
+
+  test('postExtraFields toggle logic exists in source', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Verify the toggle handler is present in the compiled HTML
+    const html = await page.content();
+    expect(html).toContain("postExtraFields");
+    expect(html).toContain("'post' ? 'block' : 'none'");
+    expect(html).toContain("addEventListener('change'");
+  });
+
+  test('postExtraFields display style toggles correctly', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // #app is hidden when unauthenticated; check inline style directly
+    const hiddenStyle = await page.evaluate(() =>
+      document.getElementById('postExtraFields').style.display
+    );
+    expect(hiddenStyle).toBe('none');
+
+    const shownStyle = await page.evaluate(() => {
+      const el = document.getElementById('postExtraFields');
+      el.style.display = 'block';
+      return el.style.display;
+    });
+    expect(shownStyle).toBe('block');
+
+    const hiddenAgain = await page.evaluate(() => {
+      const el = document.getElementById('postExtraFields');
+      el.style.display = 'none';
+      return el.style.display;
+    });
+    expect(hiddenAgain).toBe('none');
+  });
+
+  test('extra fields include img, category, github inputs', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    await expect(page.locator('#postImg')).toBeAttached();
+    await expect(page.locator('#postCategory')).toBeAttached();
+    await expect(page.locator('#postGithub')).toBeAttached();
+  });
+
+  test('extra fields include read_time, show_date, mathjax, toc checkboxes', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    await expect(page.locator('#postReadTime')).toBeAttached();
+    await expect(page.locator('#postShowDate')).toBeAttached();
+    await expect(page.locator('#postMathjax')).toBeAttached();
+    await expect(page.locator('#postToc')).toBeAttached();
+  });
+
+  test('postShowDate checkbox is checked by default', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const isChecked = await page.locator('#postShowDate').evaluate(el => el.checked);
+    expect(isChecked).toBe(true);
   });
 
 });

@@ -8,72 +8,85 @@ permalink: /student-blog.html
 <div class="flex-container transparent">
   {% include header.html %}
 
-  <div class="content wrapper">
+  <main class="content wrapper student-blog-shell" id="main-content">
 
     <!-- ── Hero Section — EGLab Brand ── -->
-    <div class="sb-hero student-blog-hero" style="position:relative;overflow:hidden;margin:40px 0 48px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:var(--radius-lg);border:1px solid rgba(123,192,67,0.18);">
-      <!-- Dot-grid background (gaming aesthetic) -->
-      <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
-      <!-- DNA helix decoration (right side) -->
-      <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+    <section class="sb-hero student-blog-hero">
+      <div class="sb-hero__backdrop" aria-hidden="true"></div>
+      <svg class="sb-hero__dna" width="180" height="180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
         <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
       </svg>
-      <div style="position:relative;z-index:1;">
-        <!-- EGLab logo wordmark (color-matched) -->
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;">
-            <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
+      <div class="sb-hero__content">
+        <div class="sb-hero__eyebrow">
+          <span class="sb-hero__wordmark">
+            <span class="sb-hero__wordmark-eg">EG</span><span class="sb-hero__wordmark-lab">LAB</span>
           </span>
-          <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
-          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Student Research</span>
+          <span class="sb-hero__divider" aria-hidden="true"></span>
+          <span class="sb-hero__label">Student Research</span>
         </div>
-        <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">
+        <h1 class="sb-hero__title">
           Research <span style="color:#7bc043;">Blog</span>
         </h1>
-        <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;">
+        <p class="sb-hero__lede">
           Academic papers, research notes, and insights from EGLab students exploring
           <span style="color:#00bcd4;font-weight:600;">Game AI</span>,
           evolutionary computation, and indie game development.
         </p>
-        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+        <p class="sb-hero__support">
+          Browse by topic, scan abstracts quickly, and move into full posts without losing focus on the text.
+        </p>
+        <div class="sb-hero__actions">
           <a href="{{ relativebase }}admin/" class="sb-btn-primary">
-            <svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            <svg width="14" height="14" fill="white" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
             Write a Post
           </a>
           <a href="#postsGrid" class="sb-btn-outline">
             Browse Posts
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
           </a>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- ── Filter Bar ── -->
-    <div class="sb-filter-bar" id="filterBar" style="margin-bottom:32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <span style="font-size:0.75rem;font-weight:700;color:rgba(123,192,67,0.8);text-transform:uppercase;letter-spacing:0.1em;">Filter:</span>
-      <div id="tagFilters" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
-      <div style="margin-left:auto;">
-        <input id="searchInput" type="text" placeholder="Search posts…" class="sb-search">
+    <section class="sb-filter-bar" id="filterBar" aria-label="Post filters">
+      <div class="sb-filter-bar__heading">
+        <span class="sb-filter-label">Filter</span>
+        <p class="sb-filter-copy">Search by topic, author, or excerpt.</p>
       </div>
-    </div>
+      <div id="tagFilters" class="sb-filter-tags"></div>
+      <div class="sb-search-wrap">
+        <label class="sb-visually-hidden" for="searchInput">Search posts</label>
+        <input
+          id="searchInput"
+          name="query"
+          type="search"
+          inputmode="search"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Search posts…"
+          class="sb-search"
+        >
+      </div>
+    </section>
 
     <!-- ── Post Grid ── -->
-    <div id="postsGrid" class="sb-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:64px;"></div>
+    <section id="postsGrid" class="sb-grid" aria-live="polite"></section>
 
     <!-- ── Loading Skeletons ── -->
-    <div id="loadingState" class="sb-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:64px;">
+    <div id="loadingState" class="sb-grid sb-grid-loading" aria-hidden="true">
       {% for i in (1..6) %}
-      <div class="sb-card-wrap" style="border-radius:var(--radius-lg);overflow:hidden;">
-        <div class="skeleton" style="height:170px;border-radius:0;"></div>
-        <div style="padding:20px;">
-          <div class="skeleton" style="height:13px;width:55%;margin-bottom:10px;"></div>
-          <div class="skeleton" style="height:19px;width:88%;margin-bottom:8px;"></div>
-          <div class="skeleton" style="height:11px;width:100%;margin-bottom:6px;"></div>
-          <div class="skeleton" style="height:11px;width:70%;margin-bottom:16px;"></div>
-          <div style="display:flex;gap:8px;">
-            <div class="skeleton" style="height:20px;width:58px;border-radius:999px;"></div>
-            <div class="skeleton" style="height:20px;width:48px;border-radius:999px;"></div>
+      <div class="sb-card-wrap sb-card-wrap--loading">
+        <div class="skeleton sb-skeleton-thumb"></div>
+        <div class="sb-skeleton-body">
+          <div class="skeleton sb-skeleton-meta"></div>
+          <div class="skeleton sb-skeleton-title"></div>
+          <div class="skeleton sb-skeleton-line"></div>
+          <div class="skeleton sb-skeleton-line sb-skeleton-line--short"></div>
+          <div class="sb-skeleton-tags">
+            <div class="skeleton sb-skeleton-tag"></div>
+            <div class="skeleton sb-skeleton-tag sb-skeleton-tag--small"></div>
           </div>
         </div>
       </div>
@@ -81,16 +94,16 @@ permalink: /student-blog.html
     </div>
 
     <!-- ── Empty State ── -->
-    <div id="emptyState" style="display:none;text-align:center;padding:80px 20px;">
-      <div style="width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:rgba(123,192,67,0.07);border:1px solid rgba(123,192,67,0.2);display:flex;align-items:center;justify-content:center;">
-        <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="#7bc043" stroke-width="1.4"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" stroke-opacity="0.7"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" stroke-opacity="0.5"/></svg>
+    <div id="emptyState" class="sb-empty-state" style="display:none;">
+      <div class="sb-empty-state__icon">
+        <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="#7bc043" stroke-width="1.4" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" stroke-opacity="0.7"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" stroke-opacity="0.5"/></svg>
       </div>
-      <h3 style="color:#fff;font-weight:700;margin:0 0 8px;">No posts yet</h3>
-      <p id="emptyMsg" style="color:rgba(255,255,255,0.42);font-size:0.88rem;margin:0 0 24px;">Be the first to share your research!</p>
+      <h2 class="sb-empty-state__title">No posts yet</h2>
+      <p id="emptyMsg" class="sb-empty-state__copy">Be the first to share your research!</p>
       <a href="{{ relativebase }}admin/" class="sb-btn-primary">Write a Post</a>
     </div>
 
-  </div><!-- End content wrapper -->
+  </main><!-- End content wrapper -->
 
   {% include footer.html %}
 </div>
@@ -133,10 +146,26 @@ permalink: /student-blog.html
     return ACCENTS[Math.abs(h) % ACCENTS.length];
   }
 
+  const CARD_DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+
+  function escapeHTML(value = '') {
+    return String(value).replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[char]);
+  }
+
   function formatDate(ts) {
     if (!ts) return '';
     const d = ts.toDate ? ts.toDate() : new Date(ts);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    return CARD_DATE_FORMATTER.format(d);
   }
 
   function readTime(html) {
@@ -146,44 +175,44 @@ permalink: /student-blog.html
 
   function renderCard(post) {
     const accent = accentFor(post.title || post.id);
-    const tags = (post.tags || []).map(t =>
-      `<button class="sb-tag-btn" data-tag="${t}">${t}</button>`
+    const safeId = encodeURIComponent(post.id);
+    const safeTitle = escapeHTML(post.title || 'Untitled Post');
+    const safeAuthor = escapeHTML(post.author || 'Anonymous');
+    const safeExcerpt = escapeHTML(
+      post.excerpt || (post.content || '').replace(/<[^>]+>/g, ' ').slice(0, 150) + '…'
+    );
+    const tags = (post.tags || []).map(tag =>
+      `<button type="button" class="sb-tag-btn" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</button>`
     ).join('');
-    const excerpt = post.excerpt
-      || (post.content || '').replace(/<[^>]+>/g, ' ').slice(0, 150) + '…';
     const mins = readTime(post.content || '');
 
     return `
-      <article class="sb-card-wrap" style="overflow:hidden;padding:0;display:flex;flex-direction:column;">
-        <!-- Thumbnail: dark + DNA helix + accent top-bar -->
-        <div style="height:160px;background:linear-gradient(135deg,#080c14 0%,#0d1a12 100%);position:relative;flex-shrink:0;overflow:hidden;">
-          <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(123,192,67,0.055) 1px,transparent 1px);background-size:16px 16px;"></div>
-          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,${accent},transparent);"></div>
-          <svg style="position:absolute;inset:0;margin:auto;opacity:0.14;" width="64" height="64" viewBox="0 0 24 24" fill="none">
+      <article class="sb-card-wrap">
+        <div class="sb-card-thumb" aria-hidden="true">
+          <div class="sb-card-thumb__grid"></div>
+          <div class="sb-card-thumb__accent" style="background:linear-gradient(90deg, ${accent}, transparent);"></div>
+          <svg class="sb-card-thumb__dna" width="64" height="64" viewBox="0 0 24 24" fill="none">
             <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="${accent}" stroke-width="1" stroke-linecap="round"/>
             <path d="M8 4.5h8M8 8h8M8 16h8M8 19.5h8" stroke="#00bcd4" stroke-width="0.6" stroke-dasharray="2 2"/>
           </svg>
-          <div style="position:absolute;bottom:10px;left:14px;">
-            <span style="font-size:0.65rem;font-weight:800;letter-spacing:0.13em;color:${accent};text-transform:uppercase;opacity:0.85;">EGLab</span>
-          </div>
+          <span class="sb-card-thumb__label" style="color:${accent};">EGLab</span>
         </div>
-        <!-- Body -->
-        <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:9px;font-size:0.73rem;color:rgba(255,255,255,0.48);flex-wrap:wrap;">
+        <div class="sb-card-body">
+          <div class="sb-card-meta">
             <span>${formatDate(post.createdAt)}</span>
             <span>·</span>
             <span>${mins} min read</span>
             <span>·</span>
-            <span style="font-weight:600;color:rgba(0,188,212,0.75);">${post.author || 'Anonymous'}</span>
+            <span class="sb-card-author">${safeAuthor}</span>
           </div>
-          <h3 style="margin:0 0 10px;font-size:1.02rem;font-weight:700;color:#fff;line-height:1.42;">
-            <a href="student-post.html?id=${post.id}" style="color:inherit;text-decoration:none;">${post.title}</a>
-          </h3>
-          <p style="margin:0 0 13px;font-size:0.87rem;color:rgba(255,255,255,0.66);line-height:1.72;flex:1;">${excerpt}</p>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px;">${tags}</div>
-          <a href="student-post.html?id=${post.id}" style="display:inline-flex;align-items:center;gap:5px;font-size:0.79rem;font-weight:700;color:#7bc043;text-decoration:none;letter-spacing:0.02em;">
-            Read More
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+          <h2 class="sb-card-title">
+            <a href="student-post.html?id=${safeId}" class="sb-card-link">${safeTitle}</a>
+          </h2>
+          <p class="sb-card-excerpt">${safeExcerpt}</p>
+          <div class="sb-card-tags">${tags}</div>
+          <a href="student-post.html?id=${safeId}" class="sb-card-cta">
+            Read Post
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
           </a>
         </div>
       </article>`;
@@ -241,10 +270,7 @@ permalink: /student-blog.html
 
   function updateTagHighlight() {
     tagFiltersEl.querySelectorAll('.sb-filter-tag').forEach(btn => {
-      const active = btn.dataset.tag === activeTag;
-      btn.style.background = active ? '#7bc043'               : 'rgba(123,192,67,0.09)';
-      btn.style.color       = active ? '#fff'                 : '#7bc043';
-      btn.style.borderColor = active ? '#7bc043'              : 'rgba(123,192,67,0.25)';
+      btn.classList.toggle('is-active', btn.dataset.tag === activeTag);
     });
   }
 
@@ -253,11 +279,9 @@ permalink: /student-blog.html
     posts.forEach(p => (p.tags || []).forEach(t => { counts[t] = (counts[t] || 0) + 1; }));
     const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
     tagFiltersEl.innerHTML = sorted.map(([tag, cnt]) =>
-      `<button class="sb-filter-tag" data-tag="${tag}"
-         style="cursor:pointer;font-size:0.73rem;font-weight:600;padding:4px 12px;border-radius:999px;
-                border:1px solid rgba(123,192,67,0.25);background:rgba(123,192,67,0.09);
-                color:#7bc043;transition:background 0.15s,color 0.15s;"
-       >${tag} <span style="opacity:0.55;">(${cnt})</span></button>`
+      `<button type="button" class="sb-filter-tag" data-tag="${escapeHTML(tag)}">
+        ${escapeHTML(tag)} <span class="sb-filter-tag__count">(${cnt})</span>
+      </button>`
     ).join('');
     tagFiltersEl.querySelectorAll('.sb-filter-tag').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -277,7 +301,12 @@ permalink: /student-blog.html
         orderBy('createdAt', 'desc')
       );
       const snap = await getDocs(q);
-      allPosts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      // Filter out general posts (postType === 'post') — show only student posts or legacy posts
+      const filteredDocs = snap.docs.filter(d => {
+        const pt = d.data().postType;
+        return !pt || pt === 'student';
+      });
+      allPosts = filteredDocs.map(d => ({ id: d.id, ...d.data() }));
       loadingEl.style.display = 'none';
       buildTagCloud(allPosts);
       updateTagHighlight();
@@ -287,7 +316,7 @@ permalink: /student-blog.html
       console.error('Failed to load posts:', err);
       emptyEl.style.display = 'block';
       const isIndexErr = err.message && err.message.includes('index');
-      document.querySelector('#emptyState h3').textContent =
+      emptyEl.querySelector('.sb-empty-state__title').textContent =
         isIndexErr ? 'Database index building…' : 'Could not load posts';
       emptyMsg.textContent = isIndexErr
         ? 'Firestore is building a required index. This takes 1–2 minutes on first run. Refresh to retry.'
@@ -317,80 +346,470 @@ permalink: /student-blog.html
   --eglab-dark:  #141424;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+.student-blog-shell {
+  padding-block: 1.5rem 4.5rem;
+}
+
+.sb-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.student-blog-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 2.5rem 0 2rem;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background: linear-gradient(135deg, #0a0e1a 0%, #0d1a14 45%, #0a0e1a 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(123,192,67,0.16);
+  box-shadow: 0 20px 46px rgba(0,0,0,0.18);
+}
+
+.sb-hero__backdrop {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(#7bc043 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+.sb-hero__dna {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.09;
+  pointer-events: none;
+}
+
+.sb-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 38rem;
+}
+
+.sb-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.sb-hero__wordmark {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.sb-hero__wordmark-eg {
+  color: #7bc043;
+}
+
+.sb-hero__wordmark-lab {
+  color: #fff;
+}
+
+.sb-hero__divider {
+  width: 1px;
+  height: 1rem;
+  background: rgba(123,192,67,0.3);
+}
+
+.sb-hero__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,188,212,0.85);
+}
+
+.sb-hero__title {
+  margin: 0 0 0.9rem;
+  font-size: clamp(2.25rem, 4vw, 3.4rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.sb-hero__lede {
+  margin: 0;
+  max-width: 33rem;
+  font-size: 1.02rem;
+  color: rgba(255,255,255,0.74);
+  line-height: 1.8;
+}
+
+.sb-hero__support {
+  margin: 1rem 0 0;
+  max-width: 35rem;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.75;
+}
+
+.sb-hero__actions {
+  margin-top: 1.75rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 /* Buttons */
 .sb-btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 24px; background: var(--eglab-green); border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 2.75rem;
+  padding: 10px 24px;
+  background: var(--eglab-green);
+  border: none;
   border-radius: 999px; color: #fff; text-decoration: none;
   font-size: 0.85rem; font-weight: 700; letter-spacing: 0.025em;
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   box-shadow: 0 0 20px rgba(123,192,67,0.28);
+  touch-action: manipulation;
 }
 .sb-btn-primary:hover { background: #8cd64a; transform: translateY(-1px); box-shadow: 0 0 28px rgba(123,192,67,0.40); }
 
 .sb-btn-outline {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 10px 22px; background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 2.75rem;
+  padding: 10px 22px;
+  background: transparent;
   border: 1px solid rgba(0,188,212,0.38); border-radius: 999px;
   color: #00bcd4; text-decoration: none; font-size: 0.85rem; font-weight: 600;
   transition: border-color 0.2s, color 0.2s;
+  touch-action: manipulation;
 }
 .sb-btn-outline:hover { border-color: rgba(0,188,212,0.7); color: #33d1e8; }
 
 .sb-filter-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
   padding: 14px 16px;
   border-radius: 16px;
   background: rgba(20,20,36,0.88);
   border: 1px solid rgba(123,192,67,0.12);
+  margin-bottom: 1.75rem;
+}
+
+.sb-filter-bar__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sb-filter-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(123,192,67,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.sb-filter-copy {
+  margin: 0;
+  color: rgba(255,255,255,0.46);
+  font-size: 0.83rem;
+}
+
+.sb-filter-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sb-filter-tag {
+  cursor: pointer;
+  font-size: 0.73rem;
+  font-weight: 600;
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(123,192,67,0.22);
+  background: rgba(123,192,67,0.08);
+  color: #7bc043;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  touch-action: manipulation;
+}
+
+.sb-filter-tag:hover {
+  border-color: rgba(123,192,67,0.35);
+  background: rgba(123,192,67,0.16);
+}
+
+.sb-filter-tag.is-active {
+  background: #7bc043;
+  color: #fff;
+  border-color: #7bc043;
+}
+
+.sb-filter-tag__count {
+  opacity: 0.6;
+}
+
+.sb-search-wrap {
+  width: min(100%, 20rem);
 }
 
 /* Post cards */
+.sb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
 .sb-card-wrap {
   background: var(--eglab-dark);
   border: 1px solid rgba(123,192,67,0.1);
   border-radius: var(--radius-lg);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .sb-card-wrap:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 40px rgba(123,192,67,0.14), 0 0 0 1px rgba(123,192,67,0.22);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(123,192,67,0.12), 0 0 0 1px rgba(123,192,67,0.18);
   border-color: rgba(123,192,67,0.28) !important;
+}
+
+.sb-card-thumb {
+  position: relative;
+  height: 9.5rem;
+  background: linear-gradient(135deg, #080c14 0%, #0d1a12 100%);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.sb-card-thumb__grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(123,192,67,0.055) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.sb-card-thumb__accent {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+}
+
+.sb-card-thumb__dna {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  opacity: 0.14;
+}
+
+.sb-card-thumb__label {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.9rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.sb-card-body {
+  padding: 1.2rem 1.25rem 1.3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sb-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.73rem;
+  color: rgba(255,255,255,0.46);
+  flex-wrap: wrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-card-author {
+  font-weight: 600;
+  color: rgba(0,188,212,0.75);
+}
+
+.sb-card-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.sb-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sb-card-excerpt {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.82;
+  flex: 1;
+  overflow-wrap: break-word;
+}
+
+.sb-card-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
 }
 
 /* Tag chips inside cards */
 .sb-tag-btn {
-  cursor: pointer; border: none;
+  cursor: pointer;
+  border: none;
   background: rgba(123,192,67,0.10); color: #7bc043;
   font-size: 0.7rem; font-weight: 600;
   padding: 3px 9px; border-radius: 999px;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
+  touch-action: manipulation;
 }
 .sb-tag-btn:hover { background: rgba(123,192,67,0.22); }
 
+.sb-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.79rem;
+  font-weight: 700;
+  color: #7bc043;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
 /* Search input */
 .sb-search {
-  padding: 7px 14px;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.7rem 0.95rem;
   border: 1px solid rgba(0,188,212,0.22);
   border-radius: 999px;
   background: rgba(0,188,212,0.04);
   color: #e8eaf0;
   font-size: 0.84rem;
-  outline: none;
-  width: 240px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
-.sb-search:focus { border-color: rgba(0,188,212,0.55); }
+.sb-search:focus { border-color: rgba(0,188,212,0.55); background: rgba(0,188,212,0.08); }
 .sb-search::placeholder { color: rgba(255,255,255,0.38); }
 
-/* Responsive grid */
-@media (max-width: 900px) {
-  #postsGrid, #loadingState { grid-template-columns: repeat(2,1fr) !important; }
+.sb-empty-state {
+  text-align: center;
+  padding: 5rem 1.25rem;
 }
-@media (max-width: 580px) {
-  #postsGrid, #loadingState { grid-template-columns: 1fr !important; }
-  .sb-hero { padding: 32px 20px !important; margin: 24px 0 32px !important; }
-  .sb-filter-bar { align-items: stretch !important; }
-  .sb-filter-bar > div:last-child { margin-left: 0 !important; width: 100%; }
-  .sb-search { width: 100%; }
+
+.sb-empty-state__icon {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: rgba(123,192,67,0.07);
+  border: 1px solid rgba(123,192,67,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sb-empty-state__title {
+  color: #fff;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.sb-empty-state__copy {
+  color: rgba(255,255,255,0.42);
+  font-size: 0.88rem;
+  margin: 0 0 1.5rem;
+}
+
+.sb-skeleton-thumb { height: 9.5rem; border-radius: 0; }
+.sb-skeleton-body { padding: 1.25rem; }
+.sb-skeleton-meta { height: 0.8rem; width: 55%; margin-bottom: 0.85rem; }
+.sb-skeleton-title { height: 1.1rem; width: 88%; margin-bottom: 0.7rem; }
+.sb-skeleton-line { height: 0.72rem; width: 100%; margin-bottom: 0.45rem; }
+.sb-skeleton-line--short { width: 72%; margin-bottom: 1rem; }
+.sb-skeleton-tags { display: flex; gap: 0.5rem; }
+.sb-skeleton-tag { height: 1.25rem; width: 3.7rem; border-radius: 999px; }
+.sb-skeleton-tag--small { width: 3rem; }
+
+.sb-btn-primary:focus-visible,
+.sb-btn-outline:focus-visible,
+.sb-filter-tag:focus-visible,
+.sb-tag-btn:focus-visible,
+.sb-search:focus-visible,
+.sb-card-link:focus-visible,
+.sb-card-cta:focus-visible {
+  outline: 2px solid rgba(0,188,212,0.82);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .student-blog-shell {
+    padding-block: 1rem 3.5rem;
+  }
+
+  .student-blog-hero {
+    margin-block: 1.5rem;
+  }
+
+  .sb-hero__dna {
+    display: none;
+  }
+
+  .sb-hero__actions,
+  .sb-filter-bar__heading {
+    align-items: stretch;
+  }
+
+  .sb-search-wrap {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-card-wrap,
+  .sb-btn-primary,
+  .sb-btn-outline,
+  .sb-filter-tag,
+  .sb-tag-btn,
+  .sb-search,
+  .skeleton {
+    transition: none;
+    animation: none;
+  }
 }
 </style>

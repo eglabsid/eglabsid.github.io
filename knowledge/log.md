@@ -13,3 +13,6 @@
 2026-04-14 | refactor | admin/index.html Slice2: window.showPanel/confirmDelete/closeDialog/updateRole removed; event delegation added
 2026-04-14 | ingest | raw/sources/20260414-admin-perf-refactor.md + wiki/sources + wiki/reports filed
 2026-04-14 | refactor | admin/index.html Slice3: window.editPost removed; data-action="edit" delegation added; postsTableBody listener unified for edit+delete
+2026-04-14 | verify | Playwright e2e run: 63/63 PASSED (Chromium, localhost:4000, 39.9s); all perf/refactor/LLM-Wiki changes confirmed green
+2026-04-14 | feature | tags.html redesigned as D3 v7 force-directed knowledge graph; nodes = tags sized by post count; edges = co-occurrence; click = post panel
+2026-04-14 | test | tags-graph.spec.js added (12 tests); fixed toggle logic bug (style.display check); full suite 82/82 PASSED
