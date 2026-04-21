@@ -12,9 +12,9 @@ permalink: /student-post.html
 
     <!-- Back link -->
     <div class="student-post-back">
-      <a href="{{ relativebase }}student-blog.html" class="sp-back-link">
+      <a id="backLink" href="{{ relativebase }}student-blog.html" class="sp-back-link">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-        Back to Student Blog
+        <span id="backLinkText">Back to Student Blog</span>
       </a>
     </div>
 
@@ -44,7 +44,7 @@ permalink: /student-post.html
           <div class="student-post-hero__wordmark">
             <span class="student-post-hero__logo-text"><span class="student-post-hero__logo-eg">EG</span><span class="student-post-hero__logo-lab">LAB</span></span>
             <span class="student-post-hero__pipe"></span>
-            <span class="student-post-hero__lab-label">Student Research</span>
+            <span id="heroLabel" class="student-post-hero__lab-label">Student Research</span>
           </div>
           <div id="postTags" class="student-post-tags"></div>
           <h1 id="postTitle"></h1>
@@ -71,7 +71,7 @@ permalink: /student-post.html
         </div>
         <div>
           <div id="authorName"></div>
-          <div class="student-post-author__role">EGLab Student Researcher</div>
+          <div id="authorRole" class="student-post-author__role">EGLab Student Researcher</div>
         </div>
       </div>
     </article>
@@ -149,12 +149,19 @@ permalink: /student-post.html
       const post = snap.data();
       loadingEl.style.display = 'none';
 
-      document.title = post.title + ' — EGLab Student Blog';
+      const isGeneralPost = post.postType === 'post';
+      const blogBase = isGeneralPost ? 'post.html' : 'student-blog.html';
+
+      document.title = post.title + (isGeneralPost ? ' — EGLab Posts' : ' — EGLab Student Blog');
+      document.getElementById('backLink').href = blogBase;
+      document.getElementById('backLinkText').textContent = isGeneralPost ? 'Back to Posts' : 'Back to Student Blog';
+      document.getElementById('heroLabel').textContent = isGeneralPost ? 'EGLab Research' : 'Student Research';
+      document.getElementById('authorRole').textContent = isGeneralPost ? 'EGLab Researcher' : 'EGLab Student Researcher';
 
       // Tags
       if (post.tags && post.tags.length) {
         document.getElementById('postTags').innerHTML = post.tags.map(t =>
-          `<a href="student-blog.html?tag=${encodeURIComponent(t)}" class="tag-badge">${escapeHTML(t)}</a>`
+          `<a href="${blogBase}?tag=${encodeURIComponent(t)}" class="tag-badge">${escapeHTML(t)}</a>`
         ).join('');
       }
 
