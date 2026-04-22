@@ -7,12 +7,13 @@ test.describe('Homepage poster layout', () => {
     await page.waitForLoadState('domcontentloaded');
 
     const metrics = await page.evaluate(() => {
-      const list = document.querySelector('.post-card-box');
-      const item = list?.querySelector('li');
-      const card = item?.querySelector('.post-card');
-      const image = card?.querySelector('.post-card-image-wrapper');
+      // Support both old (.post-card-box) and new (.hp-post-grid) homepage layouts
+      const list = document.querySelector('.hp-post-grid') || document.querySelector('.post-card-box');
+      const item = list?.querySelector('article') || list?.querySelector('li');
+      const card = item?.classList.contains('hp-post-card') ? item : item?.querySelector('.post-card');
+      const image = item?.querySelector('.hp-post-card__thumb') || card?.querySelector('.post-card-image-wrapper');
 
-      if (!list || !item || !card || !image) {
+      if (!list || !item || !image) {
         return null;
       }
 
@@ -26,7 +27,7 @@ test.describe('Homepage poster layout', () => {
         listDisplay: getComputedStyle(list).display,
         itemFloat: getComputedStyle(item).float,
         columns: cols,
-        cardWidth: card.getBoundingClientRect().width,
+        cardWidth: item.getBoundingClientRect().width,
         imageWidth: image.getBoundingClientRect().width,
       };
     });
