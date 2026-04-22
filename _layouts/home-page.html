@@ -2,65 +2,7 @@
 layout: default
 ---
 <div class="flex-container transparent hp-root">
-  <header class="main-header hp-header">
-    <div class="wrapper">
-      <div class="header-flex">
-        <div class="menu-icon-container">
-          <span class="menu-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
-        </div>
-        <nav class="main-nav">
-          <span class="menu-icon-close"><i class="fa fa-times" aria-hidden="true"></i></span>
-          {% include calculate_relative_base.html %}
-          {% assign current_url = page.url | default: "/" %}
-          {% assign normalized_url = current_url | replace: 'index.html', '' %}
-          <ul>
-            <li class="nav-highlight">
-              <a href="{{ relativebase }}">
-                <div class="left">Home</div>
-                <div class="right"><svg width="24px" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g><rect x="83.534" y="40.929" width="3.997" height="20.071"/></g><path d="M16.466,41.931l33.548-25.123L92.81,48.877l2.396-3.198L50.015,11.814L4.794,45.679l2.396,3.199l5.279-3.954v42.763h75.062V61h-3.997v22.69H64.598V54.068H35.402V83.69H16.466V41.931z M39.399,58.065h21.202V83.69H39.399V58.065z"/></svg></div>
-              </a>
-            </li>
-            <li{% if normalized_url contains '/archive' or page.layout == 'post' %} class="nav-highlight"{% endif %}>
-              <a href="{{ relativebase }}archive.html">
-                <div class="left">All Posts</div>
-                <div class="right"><svg width="24px" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="-3 3 64 64"><path d="M60.992,31.985c0-15.979-13-28.978-28.979-28.978c-15.994,0-29.006,12.999-29.006,28.978c0,15.994,13.012,29.007,29.006,29.007v-2c-14.891,0-27.006-12.115-27.006-27.007c0-14.875,12.115-26.978,27.006-26.978c14.876,0,26.979,12.103,26.979,26.978c0,8.945-4.479,17.329-11.804,22.338l0.874-10.062l-1.992-0.174l-1.135,13.071l13.042,1.136l0.174-1.992l-9.183-0.799C56.443,50.079,60.992,41.321,60.992,31.985z"/><polygon points="33.014,12.682 31.014,12.682 31.014,32.398 39.811,41.224 41.227,39.812 33.014,31.572"/></svg></div>
-              </a>
-            </li>
-            <li{% if normalized_url contains '/tags' or normalized_url contains '/tag' %} class="nav-highlight"{% endif %}>
-              <a href="{{ relativebase }}tags.html">
-                <div class="left">Tags</div>
-                <div class="right"><svg width="24px" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M75.244,15.066c-2.59,0-5.027,1.012-6.857,2.843c-3.781,3.785-3.778,9.94,0.002,13.724c1.831,1.833,4.266,2.843,6.857,2.843s5.026-1.01,6.861-2.843c3.781-3.785,3.781-9.943-0.002-13.724C80.275,16.076,77.838,15.066,75.244,15.066z M78.766,28.252c-1.871,1.869-5.129,1.869-6.996,0c-1.929-1.931-1.931-5.069-0.002-7c0.934-0.934,2.175-1.448,3.498-1.448c1.322,0,2.564,0.515,3.5,1.448C80.691,23.183,80.691,26.321,78.766,28.252z M94.632,41.027l0.005-28.872c0-3.745-3.05-6.792-6.792-6.792L58.973,5.368l-1.237-0.004c-1.893,0-4.75,0-6.617,1.869L7.008,51.342c-1.06,1.059-1.645,2.467-1.645,3.966s0.583,2.908,1.644,3.968l33.717,33.717c1.058,1.06,2.467,1.645,3.966,1.645s2.908-0.585,3.968-1.645l44.106-44.111c1.893-1.886,1.88-4.604,1.869-7.227L94.632,41.027z M90.022,46.139L45.913,90.25c-0.654,0.65-1.792,0.652-2.443,0L9.752,56.532c-0.328-0.327-0.507-0.762-0.507-1.225c0-0.462,0.18-0.894,0.507-1.221L53.861,9.976c0.676-0.674,2.284-0.731,3.874-0.731l1.237,0.004l28.872-0.004c1.604,0,2.909,1.306,2.909,2.911l-0.005,28.872l0.005,0.642C90.76,43.585,90.769,45.392,90.022,46.139z"/></svg></div>
-              </a>
-            </li>
-            <li{% if normalized_url contains '/about' %} class="nav-highlight"{% endif %}>
-              <a href="{{ relativebase }}about.html">
-                <div class="left">About</div>
-                <div class="right"><svg width='24px' fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846.66 846.66"><path d="M351.26 453.22c-276.42,134.06 -224.86,336.22 -224.73,336.8 6.03,25.41 -32.58,34.56 -38.6,9.15 -0.15,-0.65 -55.78,-219.32 218.87,-367.66 -60.98,-39 -100.02,-106.82 -100.02,-182.56 0,-119.6 96.95,-216.55 216.55,-216.55 119.6,0 216.55,96.95 216.55,216.55 0,75.74 -39.04,143.56 -100.02,182.56 274.65,148.34 219.02,367.01 218.87,367.66 -6.02,25.41 -44.63,16.26 -38.6,-9.15 0.13,-0.58 51.69,-202.74 -224.73,-336.8 -22.55,7.96 -46.8,12.29 -72.07,12.29 -25.27,0 -49.52,-4.33 -72.07,-12.29zm72.07 -381.14c-97.68,0 -176.87,79.19 -176.87,176.87 0,97.69 79.19,176.87 176.87,176.87 97.68,0 176.87,-79.18 176.87,-176.87 0,-97.68 -79.19,-176.87 -176.87,-176.87z"/></svg></div>
-              </a>
-            </li>
-            <li{% if normalized_url contains '/student-blog' or normalized_url contains '/student-post' %} class="nav-highlight"{% endif %}>
-              <a href="{{ relativebase }}student-blog.html">
-                <div class="left">Student Blog</div>
-                <div class="right"><svg width="24px" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
-              </a>
-            </li>
-            <li{% if normalized_url contains '/post' and normalized_url != '/student-post' %} class="nav-highlight"{% endif %}>
-              <a href="{{ relativebase }}post.html">
-                <div class="left">Posts</div>
-                <div class="right"><svg width="24px" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        {% capture logo_url %}{{ relativebase }}{{ site.logo }}{% endcapture %}
-        {% assign logo_url = logo_url | replace: "//", "/" %}
-        <div class="logo"><a href="{{ relativebase }}"><img class="logo" id="logo" src="{{ logo_url }}" alt="{{ site.title }}"></a></div>
-        <div class="search-icon-container">
-          <span class="search-icon"><a><i class="fa fa-search" aria-hidden="true"></i></a></span>
-        </div>
-      </div>
-    </div>
-  </header>
+  {% include header.html extra_class="hp-header" %}
 
   <div class="content hp-content">
     {{ content }}

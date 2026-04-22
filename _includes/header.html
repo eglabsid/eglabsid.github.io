@@ -3,7 +3,7 @@
 {% assign current_url = page.url | default: "/" %}
 {% assign normalized_url = current_url | replace: 'index.html', '' %}
 
-<header class="main-header">
+<header class="main-header{% if include.extra_class %} {{ include.extra_class }}{% endif %}">
   <div class="wrapper">
     <div class="header-flex">
       <div class="menu-icon-container">

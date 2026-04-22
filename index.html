@@ -585,7 +585,7 @@ layout: home-page
   <div class="hp-hero">
 
     <!-- Illustrated letterforms SVG: colorful EG·LAB -->
-    <svg class="hp-hero__svg-stage" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+    <svg class="hp-hero__svg-stage" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Background deco: subtle dots grid -->
       <defs>
         <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -823,13 +823,13 @@ layout: home-page
         <article class="hp-post-card">
           <div class="hp-post-card__thumb">
             <a href="{{ post_url }}"
-               title="{{ post.title }}"
+               title="{{ post.title | escape }}"
                style="background-image: url('{{ relativebase }}assets/img/{{ post.img }}');"
-               aria-label="{{ post.title }}">
+               aria-label="{{ post.title | escape }}">
             </a>
           </div>
           <div class="hp-post-card__body">
-            <a href="{{ post_url }}" class="hp-post-card__title-link" title="{{ post.title }}">
+            <a href="{{ post_url }}" class="hp-post-card__title-link" title="{{ post.title | escape }}">
               <h3 class="hp-post-card__title">{{ post.title }}</h3>
             </a>
             {% if post.description %}
