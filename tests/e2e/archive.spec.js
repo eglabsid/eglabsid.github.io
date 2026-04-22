@@ -38,7 +38,7 @@ test.describe('Archive Page Readability', () => {
     await expect(archiveContainer).toBeVisible();
   });
 
-  test('post title color is near-white (not old cyan)', async ({ page }) => {
+  test('post title color is dark ink on light background (not cyan, not near-white)', async ({ page }) => {
     await page.goto('/archive.html');
     await page.waitForLoadState('domcontentloaded');
 
@@ -52,14 +52,17 @@ test.describe('Archive Page Readability', () => {
     );
 
     // Verify it's NOT the old cyan (0, 188, 212)
-    // It should be near-white: rgb(232, ...), rgb(234, ...), or rgb(240, ...)
     expect(computedColor).not.toMatch(/rgb\(0,\s*188,\s*212\)/);
 
-    // Verify it contains values indicating near-white
-    const hasNearWhiteValue = /rgb\((\d+),\s*\d+,\s*\d+\)/.test(computedColor) &&
-      (computedColor.includes('232') || computedColor.includes('234') || computedColor.includes('240'));
-
-    expect(hasNearWhiteValue).toBe(true);
+    // Light theme: title should be dark ink #1a1a2e = rgb(26, 26, 46)
+    // Verify it is dark (all channels < 100)
+    const match = computedColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    if (match) {
+      const [, r, g, b] = match.map(Number);
+      expect(r).toBeLessThan(100);
+      expect(g).toBeLessThan(100);
+      expect(b).toBeLessThan(100);
+    }
   });
 
   test('post excerpt exists and is visible', async ({ page }) => {

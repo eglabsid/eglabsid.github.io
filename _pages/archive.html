@@ -4,10 +4,14 @@ title: Archive
 permalink: archive:output_ext
 infinite: yes
 ---
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── EGLab Archive — Brand Override ── */
+
+/* ── EGLab Archive — Ice Bear × EGLab Light Theme ── */
 body {
-  background: #0a0e1a;
+  background: #fdfdfd;
 }
 
 .archive-shell {
@@ -21,16 +25,16 @@ body {
   overflow: hidden;
   margin: 40px 0 0;
   padding: 52px 40px;
-  background: linear-gradient(135deg, #0a0e1a 0%, #0d1a14 45%, #0a0e1a 100%);
+  background: #C4E8F8;
   border-radius: 18px;
-  border: 1px solid rgba(123,192,67,0.18);
+  border: 1px solid rgba(98,179,229,0.2);
 }
 
 .archive-hero__dot-grid {
   position: absolute;
   inset: 0;
-  opacity: 0.05;
-  background-image: radial-gradient(#7bc043 1px, transparent 1px);
+  opacity: 0.18;
+  background-image: radial-gradient(#62B3E5 1px, transparent 1px);
   background-size: 26px 26px;
   pointer-events: none;
 }
@@ -40,7 +44,7 @@ body {
   right: 32px;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.10;
+  opacity: 0.18;
   pointer-events: none;
 }
 
@@ -70,13 +74,13 @@ body {
 }
 
 .archive-hero__logo-lab {
-  color: #ffffff;
+  color: #1a1a2e;
 }
 
 .archive-hero__pipe {
   width: 1px;
   height: 16px;
-  background: rgba(123,192,67,0.3);
+  background: rgba(98,179,229,0.4);
   flex-shrink: 0;
 }
 
@@ -86,7 +90,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(0,188,212,0.85);
+  color: #00bcd4;
 }
 
 .archive-hero h1 {
@@ -94,7 +98,7 @@ body {
   font-family: 'Lato', sans-serif;
   font-size: 2.4rem;
   font-weight: 900;
-  color: #ffffff;
+  color: #1a1a2e;
   line-height: 1.12;
   letter-spacing: -0.025em;
 }
@@ -103,7 +107,7 @@ body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
-  color: rgba(255,255,255,0.6);
+  color: #3a3a4e;
   max-width: 560px;
   line-height: 1.7;
 }
@@ -133,12 +137,13 @@ body {
 
 .archive-hero__btn--green {
   background: #7bc043;
-  color: #0a0e1a;
+  color: #fdfdfd;
 }
 
 .archive-hero__btn--blue {
   color: #00bcd4;
   border: 1.5px solid #00bcd4;
+  background: rgba(255,255,255,0.5);
 }
 
 .archive-hero__stats {
@@ -154,28 +159,29 @@ body {
   padding: 4px 14px;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.78rem;
+  background: rgba(255,255,255,0.55);
 }
 
 .archive-hero__stat--green {
-  border: 1px solid rgba(123,192,67,0.4);
+  border: 1px solid rgba(123,192,67,0.5);
   color: #7bc043;
 }
 
 .archive-hero__stat--blue {
-  border: 1px solid rgba(0,188,212,0.4);
+  border: 1px solid rgba(0,188,212,0.5);
   color: #00bcd4;
 }
 
 .archive-hero__stat--muted {
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(98,179,229,0.35);
+  color: #3a3a4e;
 }
 
 .archive.tag-master {
-  background: #141424;
+  background: #f0f7fe;
   border-radius: 18px;
-  border: 1px solid rgba(123,192,67,0.18);
-  box-shadow: 0 20px 48px rgba(0,0,0,0.24);
+  border: 1px solid rgba(98,179,229,0.2);
+  box-shadow: 0 4px 20px rgba(26,26,46,0.08);
   padding: clamp(24px, 3vw, 36px);
   margin: 0 auto 40px;
   max-width: 58rem;
@@ -191,22 +197,22 @@ body {
 }
 .archive input#search-input.search {
   width: 100%;
-  background: #0d1220;
-  border: 1px solid rgba(123,192,67,0.2);
+  background: #ffffff;
+  border: 1px solid rgba(98,179,229,0.3);
   border-radius: 8px;
   padding: 10px 16px;
   font-size: 0.92rem;
-  color: #fff;
+  color: #1a1a2e;
   font-family: 'Montserrat', sans-serif;
   outline: none;
   transition: border-color 0.2s;
 }
 .archive input#search-input.search::placeholder {
-  color: rgba(255,255,255,0.45);
+  color: rgba(58,58,78,0.5);
 }
 .archive input#search-input.search:focus {
-  border-color: #7bc043;
-  box-shadow: 0 0 0 3px rgba(123,192,67,0.1);
+  border-color: #62B3E5;
+  box-shadow: 0 0 0 3px rgba(98,179,229,0.15);
 }
 
 /* Post list */
@@ -218,16 +224,16 @@ body {
 
 /* Individual post card */
 .archive .post {
-  background: linear-gradient(180deg, rgba(20,20,36,0.96) 0%, rgba(16,18,32,1) 100%);
-  border: 1px solid rgba(123,192,67,0.18);
-  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(98,179,229,0.2);
+  border-radius: 16px;
   padding: 22px 24px;
-  box-shadow: 0 10px 24px rgba(8,12,20,0.18);
+  box-shadow: 0 4px 20px rgba(26,26,46,0.08);
   transition: border-color 0.2s, transform 0.15s, box-shadow 0.15s;
 }
 .archive .post:hover {
-  border-color: rgba(123,192,67,0.42);
-  box-shadow: 0 18px 36px rgba(8,12,20,0.26);
+  border-color: rgba(98,179,229,0.45);
+  box-shadow: 0 10px 32px rgba(26,26,46,0.13);
   transform: translateY(-3px);
 }
 
@@ -237,7 +243,7 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 900;
   font-size: 1.16rem;
-  color: #e8eaf0;
+  color: #1a1a2e;
   text-decoration: none;
   margin-bottom: 6px;
   line-height: 1.38;
@@ -250,12 +256,12 @@ body {
 /* Post meta */
 .archive .post-card-meta {
   font-size: 0.75rem;
-  color: rgba(123,192,67,0.85);
+  color: #62B3E5;
   margin-bottom: 12px;
   font-family: 'Montserrat', sans-serif;
 }
 .archive .post-card-meta a {
-  color: rgba(123,192,67,0.85);
+  color: #62B3E5;
   text-decoration: none;
 }
 .archive .post-card-meta a:hover {
@@ -265,7 +271,7 @@ body {
 /* Post excerpt */
 .archive .post-excerpt {
   font-size: 0.94rem;
-  color: rgba(232,234,240,0.84);
+  color: #3a3a4e;
   line-height: 1.72;
   font-family: 'Montserrat', sans-serif;
   max-width: 66ch;
@@ -298,7 +304,7 @@ body {
   font-size: 0.9rem;
   padding: 6px 0;
   display: block;
-  border-bottom: 1px solid rgba(123,192,67,0.15);
+  border-bottom: 1px solid rgba(98,179,229,0.2);
   transition: color 0.2s;
 }
 .archive ul#results-container.results-search li a:hover {

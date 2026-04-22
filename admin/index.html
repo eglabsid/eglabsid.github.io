@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,20 +22,20 @@
     :root {
       --color-primary:       #7bc043;
       --color-primary-light: #95d45a;
-      --color-secondary:     #00bcd4;
-      --color-accent:        #00bcd4;
-      --color-accent-light:  #26d4ec;
-      --color-bg:            #0a0e1a;
-      --color-surface:       #141424;
-      --color-surface-raised:#1a1e30;
-      --color-border:        rgba(123,192,67,0.15);
-      --color-text:          #e8eaf0;
-      --color-text-muted:    rgba(255,255,255,0.6);
-      --color-text-subtle:   rgba(255,255,255,0.35);
-      --gradient-brand:      linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#141424 100%);
-      --shadow-sm:           0 2px 8px rgba(0,0,0,0.3);
-      --shadow-md:           0 4px 20px rgba(0,0,0,0.4);
-      --shadow-lg:           0 8px 40px rgba(0,0,0,0.5);
+      --color-secondary:     #62B3E5;
+      --color-accent:        #62B3E5;
+      --color-accent-light:  #89caef;
+      --color-bg:            #fdfdfd;
+      --color-surface:       #ffffff;
+      --color-surface-raised:#f0f7fe;
+      --color-border:        rgba(98,179,229,0.15);
+      --color-text:          #1a1a2e;
+      --color-text-muted:    #3a3a4e;
+      --color-text-subtle:   rgba(26,26,46,0.45);
+      --gradient-brand:      linear-gradient(135deg,#C4E8F8 0%,#d6f0c8 50%,#C4E8F8 100%);
+      --shadow-sm:           0 2px 8px rgba(26,26,46,0.08);
+      --shadow-md:           0 4px 20px rgba(26,26,46,0.10);
+      --shadow-lg:           0 8px 40px rgba(26,26,46,0.14);
       --radius-sm:           6px;
       --radius-md:           12px;
       --radius-lg:           18px;
@@ -43,17 +43,7 @@
       --font-heading:        'Lato', sans-serif;
       --font-body:           'Montserrat', sans-serif;
       --transition-base:     300ms ease;
-      color-scheme:          dark;
-    }
-
-    [data-theme="dark"] {
-      --color-bg:            #080c14;
-      --color-surface:       #0f1220;
-      --color-surface-raised:#141824;
-      --color-border:        rgba(123,192,67,0.2);
-      --color-text:          #f0f4ff;
-      --color-text-muted:    rgba(255,255,255,0.65);
-      --color-text-subtle:   rgba(255,255,255,0.38);
+      color-scheme:          light;
     }
 
     body {
@@ -63,7 +53,7 @@
       min-height:  100vh;
       font-size:   14px;
       line-height: 1.5;
-      -webkit-tap-highlight-color: rgba(0,188,212,0.18);
+      -webkit-tap-highlight-color: rgba(98,179,229,0.18);
     }
 
     .sr-only {
@@ -84,7 +74,7 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background: linear-gradient(135deg,#050810 0%,#0a1a0f 50%,#050810 100%);
+      background: linear-gradient(135deg,#e8f4fd 0%,#f0fae8 50%,#e8f4fd 100%);
       position: fixed;
       inset: 0;
       z-index: 1000;
@@ -92,13 +82,13 @@
     }
 
     .login-card {
-      background:    rgba(20,20,36,0.97);
+      background:    #ffffff;
       border-radius: var(--radius-lg);
       padding:       clamp(28px, 4vw, 48px) clamp(24px, 4vw, 40px);
       width:         min(420px, 100%);
       text-align:    center;
       box-shadow:    0 24px 64px rgba(0,0,0,0.28);
-      border:        1px solid rgba(123,192,67,0.14);
+      border:        1px solid rgba(98,179,229,0.18);
     }
 
     .login-logo {
@@ -135,9 +125,9 @@
       border-radius: var(--radius-md);
       font-size: 0.82rem;
       line-height: 1.55;
-      border: 1px solid rgba(0,188,212,0.24);
-      background: rgba(0,188,212,0.08);
-      color: #9feef9;
+      border: 1px solid rgba(98,179,229,0.30);
+      background: rgba(196,232,248,0.25);
+      color: #1a6cbf;
     }
 
     .login-status[data-state="error"] {
@@ -181,11 +171,11 @@
       display:       none;
       margin-top:    20px;
       padding:       14px 16px;
-      background:    rgba(200,150,50,0.12);
-      border:        1px solid rgba(200,150,50,0.35);
+      background:    rgba(255,193,7,0.10);
+      border:        1px solid rgba(255,193,7,0.35);
       border-radius: var(--radius-md);
       font-size:     0.84rem;
-      color:         #9a6f10;
+      color:         #856404;
       line-height:   1.5;
     }
 
@@ -194,7 +184,7 @@
 
     .app-header {
       min-height:      60px;
-      background:      var(--color-surface);
+      background:      #C4E8F8;
       border-bottom:   1px solid var(--color-border);
       display:         flex;
       align-items:     center;
@@ -255,7 +245,7 @@
       touch-action: manipulation;
     }
 
-    .nav-tab:hover   { background: var(--color-surface-raised); color: var(--color-text); }
+    .nav-tab:hover   { background: #e0eefa; color: #1a1a2e; }
     .nav-tab.active  { background: var(--color-primary); color: #fff; }
 
     .header-user {
@@ -281,7 +271,7 @@
       border-radius: var(--radius-pill);
       border:        1px solid var(--color-border);
       background:    transparent;
-      color:         var(--color-text-muted);
+      color:         #3a3a4e;
       font-size:     0.78rem;
       font-weight:   600;
       cursor:        pointer;
@@ -289,7 +279,7 @@
       touch-action: manipulation;
     }
 
-    .btn-signout:hover { border-color: var(--color-secondary); color: var(--color-secondary); }
+    .btn-signout:hover { border-color: #62B3E5; color: #62B3E5; }
 
     /* ── Main Content ──────────────────────────────────────── */
     .app-body {
@@ -315,7 +305,7 @@
       padding:       14px 16px;
       border:        1px solid var(--color-border);
       border-radius: var(--radius-md);
-      background:    var(--color-surface);
+      background:    #ffffff;
       color:         var(--color-text);
       font-family:   var(--font-heading);
       font-size:     1.5rem;
@@ -351,9 +341,9 @@
 
     .form-input, .form-select {
       padding:       9px 12px;
-      border:        1px solid var(--color-border);
+      border:        1px solid rgba(98,179,229,0.3);
       border-radius: var(--radius-sm);
-      background:    var(--color-surface);
+      background:    #ffffff;
       color:         var(--color-text);
       font-family:   var(--font-body);
       font-size:     0.88rem;
@@ -369,13 +359,13 @@
       border-radius: var(--radius-md);
       overflow:      hidden;
       margin-bottom: 16px;
-      background:    var(--color-surface);
+      background:    #f8f9fa;
     }
 
     .ql-toolbar.ql-snow {
       border: none;
       border-bottom: 1px solid var(--color-border);
-      background: var(--color-surface-raised);
+      background: #ffffff;
     }
 
     .ql-container.ql-snow {
@@ -384,7 +374,7 @@
       font-size: 0.95rem;
     }
 
-    .ql-editor { min-height: 320px; color: var(--color-text); }
+    .ql-editor { min-height: 320px; color: #1a1a2e; background: #f8f9fa; }
 
     .editor-actions {
       display: flex;
@@ -413,14 +403,14 @@
     .btn:active { transform: translateY(0); }
 
     .btn-primary {
-      background: var(--gradient-brand);
+      background: #7bc043;
       color: #fff;
     }
 
     .btn-secondary {
-      background: var(--color-surface-raised);
-      color: var(--color-text);
-      border: 1px solid var(--color-border);
+      background: #f0f7fe;
+      color: #1a1a2e;
+      border: 1px solid rgba(98,179,229,0.3);
     }
 
     .btn-danger {
@@ -432,8 +422,8 @@
     .btn-sm { padding: 6px 14px; font-size: 0.78rem; }
     .btn-outline {
       background: transparent;
-      color: var(--color-accent);
-      border: 1.5px solid var(--color-accent);
+      color: #62B3E5;
+      border: 1.5px solid #62B3E5;
     }
 
     /* ── Post List ─────────────────────────────────────────── */
@@ -447,10 +437,11 @@
     .post-table {
       width: 100%;
       border-collapse: collapse;
-      background: var(--color-surface);
+      background: #ffffff;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 2px 8px rgba(26,26,46,0.08);
+      border: 1px solid rgba(98,179,229,0.15);
       min-width: 42rem;
     }
 
@@ -461,21 +452,21 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--color-text-subtle);
-      background: var(--color-surface-raised);
-      border-bottom: 1px solid var(--color-border);
+      color: #3a3a4e;
+      background: #f0f7fe;
+      border-bottom: 1px solid rgba(98,179,229,0.15);
     }
 
     .post-table td {
       padding: 13px 16px;
       font-size: 0.85rem;
-      color: var(--color-text);
-      border-bottom: 1px solid var(--color-border);
+      color: #1a1a2e;
+      border-bottom: 1px solid rgba(98,179,229,0.15);
       vertical-align: middle;
     }
 
     .post-table tr:last-child td { border-bottom: none; }
-    .post-table tbody tr:hover { background: var(--color-surface-raised); }
+    .post-table tbody tr:hover { background: #f0f7fe; }
 
     .badge {
       display:       inline-block;
@@ -492,10 +483,11 @@
 
     /* ── User Management ───────────────────────────────────── */
     .user-table-wrap {
-      background:    var(--color-surface);
+      background:    #ffffff;
       border-radius: var(--radius-lg);
       overflow:      auto;
-      box-shadow:    var(--shadow-sm);
+      box-shadow:    0 2px 8px rgba(26,26,46,0.08);
+      border:        1px solid rgba(98,179,229,0.15);
       -webkit-overflow-scrolling: touch;
     }
 
@@ -513,15 +505,15 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--color-text-subtle);
-      background: var(--color-surface-raised);
-      border-bottom: 1px solid var(--color-border);
+      color: #3a3a4e;
+      background: #f0f7fe;
+      border-bottom: 1px solid rgba(98,179,229,0.15);
     }
     .user-table td {
       padding: 13px 16px;
       font-size: 0.85rem;
-      color: var(--color-text);
-      border-bottom: 1px solid var(--color-border);
+      color: #1a1a2e;
+      border-bottom: 1px solid rgba(98,179,229,0.15);
       vertical-align: middle;
     }
     .user-table tr:last-child td { border-bottom: none; }
@@ -529,9 +521,9 @@
     .role-select {
       padding: 5px 10px;
       border-radius: var(--radius-sm);
-      border: 1px solid var(--color-border);
-      background: var(--color-surface);
-      color: var(--color-text);
+      border: 1px solid rgba(98,179,229,0.3);
+      background: #ffffff;
+      color: #1a1a2e;
       font-size: 0.82rem;
       cursor: pointer;
     }
@@ -579,15 +571,15 @@
     }
     .dialog-overlay.open { display: flex; }
     .dialog-box {
-      background:    var(--color-surface);
+      background:    #ffffff;
       border-radius: var(--radius-lg);
       padding:       32px;
       width:         380px;
       max-width:     90vw;
       box-shadow:    var(--shadow-lg);
     }
-    .dialog-title { font-size:1.1rem; font-weight:700; margin-bottom:10px; color:var(--color-text); }
-    .dialog-msg   { font-size:0.88rem; color:var(--color-text-muted); margin-bottom:24px; line-height:1.55; }
+    .dialog-title { font-size:1.1rem; font-weight:700; margin-bottom:10px; color:#1a1a2e; }
+    .dialog-msg   { font-size:0.88rem; color:#3a3a4e; margin-bottom:24px; line-height:1.55; }
     .dialog-actions { display:flex; gap:10px; justify-content:flex-end; }
 
     .btn-google:focus-visible,
@@ -598,7 +590,7 @@
     .form-select:focus-visible,
     .role-select:focus-visible,
     .app-logo:focus-visible {
-      outline: 2px solid rgba(0,188,212,0.82);
+      outline: 2px solid rgba(98,179,229,0.82);
       outline-offset: 3px;
     }
 
@@ -748,7 +740,7 @@
       <div class="form-row">
         <div class="form-field">
           <label class="form-label" for="postType">Post Type</label>
-          <select class="form-input" id="postType" name="postType" style="background:var(--color-surface-raised);cursor:pointer;">
+          <select class="form-input" id="postType" name="postType" style="background:#f0f7fe;cursor:pointer;">
             <option value="student" selected>Student Post (/student_post)</option>
             <option value="post">General Post (/post)</option>
           </select>
@@ -757,7 +749,7 @@
 
       <!-- Jekyll Post Extra Fields — shown only when Post Type = General Post -->
       <div id="postExtraFields" style="display:none;">
-        <div style="margin:8px 0 12px;padding:10px 14px;background:rgba(0,188,212,0.06);border-left:3px solid rgba(0,188,212,0.4);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.78rem;color:rgba(0,188,212,0.85);">
+        <div style="margin:8px 0 12px;padding:10px 14px;background:rgba(98,179,229,0.08);border-left:3px solid rgba(98,179,229,0.5);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.78rem;color:#1a6cbf;">
           General Post fields — matches <code style="font-size:0.75rem;">_posts/</code> front matter format
         </div>
 

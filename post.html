@@ -10,11 +10,11 @@ permalink: /post
   <div class="content wrapper">
 
     <!-- ── Hero Section — EGLab Brand ── -->
-    <div class="sb-hero student-blog-hero" style="position:relative;overflow:hidden;margin:40px 0 48px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:var(--radius-lg);border:1px solid rgba(123,192,67,0.18);">
-      <!-- Dot-grid background (gaming aesthetic) -->
-      <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
+    <div class="sb-hero student-blog-hero" style="position:relative;overflow:hidden;margin:40px 0 48px;padding:52px 40px;background:#C4E8F8;border-radius:var(--radius-lg);border:1px solid rgba(98,179,229,0.30);">
+      <!-- Dot-grid background (light aesthetic) -->
+      <div style="position:absolute;inset:0;opacity:0.18;background-image:radial-gradient(#62B3E5 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
       <!-- DNA helix decoration (right side) -->
-      <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+      <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.18;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
         <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
         <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
       </svg>
@@ -22,15 +22,15 @@ permalink: /post
         <!-- EGLab logo wordmark (color-matched) -->
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
           <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;">
-            <span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span>
+            <span style="color:#7bc043;">EG</span><span style="color:#1a1a2e;">LAB</span>
           </span>
-          <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
-          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Research &amp; Insights</span>
+          <span style="width:1px;height:16px;background:rgba(26,26,46,0.20);flex-shrink:0;"></span>
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#00bcd4;">Research &amp; Insights</span>
         </div>
-        <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">
+        <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#1a1a2e;line-height:1.12;letter-spacing:-0.025em;">
           <span style="color:#7bc043;">Posts</span>
         </h1>
-        <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;">
+        <p style="margin:0;font-size:1rem;color:#3a3a4e;max-width:500px;line-height:1.7;">
           Research and insights from <span style="color:#00bcd4;font-weight:600;">EGLab</span>
         </p>
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
@@ -38,7 +38,7 @@ permalink: /post
             <svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
             Write Post
           </a>
-          <a href="#postsGrid" class="sb-btn-outline">
+          <a href="#postsGrid" class="sb-btn-outline" style="border-color:rgba(26,26,46,0.30);color:#1a1a2e;">
             Browse Posts
             <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
           </a>
@@ -48,7 +48,7 @@ permalink: /post
 
     <!-- ── Filter Bar ── -->
     <div class="sb-filter-bar" id="filterBar" style="margin-bottom:32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <span style="font-size:0.75rem;font-weight:700;color:rgba(123,192,67,0.8);text-transform:uppercase;letter-spacing:0.1em;">Filter:</span>
+      <span style="font-size:0.75rem;font-weight:700;color:#7bc043;text-transform:uppercase;letter-spacing:0.1em;">Filter:</span>
       <div id="tagFilters" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
       <div style="margin-left:auto;">
         <input id="searchInput" type="text" placeholder="Search posts…" class="sb-search">
@@ -79,11 +79,11 @@ permalink: /post
 
     <!-- ── Empty State ── -->
     <div id="emptyState" style="display:none;text-align:center;padding:80px 20px;">
-      <div style="width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:rgba(123,192,67,0.07);border:1px solid rgba(123,192,67,0.2);display:flex;align-items:center;justify-content:center;">
+      <div style="width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:rgba(123,192,67,0.10);border:1px solid rgba(123,192,67,0.25);display:flex;align-items:center;justify-content:center;">
         <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="#7bc043" stroke-width="1.4"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" stroke-opacity="0.7"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" stroke-opacity="0.5"/></svg>
       </div>
-      <h3 style="color:#fff;font-weight:700;margin:0 0 8px;">No posts published yet.</h3>
-      <p id="emptyMsg" style="color:rgba(255,255,255,0.42);font-size:0.88rem;margin:0 0 24px;">Be the first to share your research!</p>
+      <h3 style="color:#1a1a2e;font-weight:700;margin:0 0 8px;">No posts published yet.</h3>
+      <p id="emptyMsg" style="color:#3a3a4e;font-size:0.88rem;margin:0 0 24px;">Be the first to share your research!</p>
       <a href="{{ relativebase }}admin/" class="sb-btn-primary">Write Post</a>
     </div>
 
@@ -170,10 +170,10 @@ permalink: /post
         <!-- Thumbnail: featured image or dark + DNA helix fallback -->
         ${safeImg
           ? `<img src="/assets/img/${safeImg}" alt="${safeTitle}" style="width:100%;height:160px;object-fit:cover;border-radius:var(--radius-lg) var(--radius-lg) 0 0;flex-shrink:0;display:block;">`
-          : `<div style="height:160px;background:linear-gradient(135deg,#080c14 0%,#0d1a12 100%);position:relative;flex-shrink:0;overflow:hidden;">
-          <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(123,192,67,0.055) 1px,transparent 1px);background-size:16px 16px;"></div>
+          : `<div style="height:160px;background:linear-gradient(135deg,#e8f4fb 0%,#d0eaf7 100%);position:relative;flex-shrink:0;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(98,179,229,0.18) 1px,transparent 1px);background-size:16px 16px;"></div>
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,${accent},transparent);"></div>
-          <svg style="position:absolute;inset:0;margin:auto;opacity:0.14;" width="64" height="64" viewBox="0 0 24 24" fill="none">
+          <svg style="position:absolute;inset:0;margin:auto;opacity:0.22;" width="64" height="64" viewBox="0 0 24 24" fill="none">
             <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="${accent}" stroke-width="1" stroke-linecap="round"/>
             <path d="M8 4.5h8M8 8h8M8 16h8M8 19.5h8" stroke="#00bcd4" stroke-width="0.6" stroke-dasharray="2 2"/>
           </svg>
@@ -183,21 +183,21 @@ permalink: /post
         </div>`}
         <!-- Body -->
         <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;">
-          ${safeCategory ? `<span style="display:inline-block;margin-bottom:9px;padding:2px 10px;border-radius:999px;background:rgba(0,188,212,0.15);color:#00bcd4;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">${safeCategory}</span>` : ''}
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:9px;font-size:0.73rem;color:rgba(255,255,255,0.48);flex-wrap:wrap;">
+          ${safeCategory ? `<span style="display:inline-block;margin-bottom:9px;padding:2px 10px;border-radius:999px;background:rgba(0,188,212,0.10);color:#00bcd4;border:1px solid rgba(0,188,212,0.28);font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">${safeCategory}</span>` : ''}
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:9px;font-size:0.73rem;color:#3a3a4e;flex-wrap:wrap;">
             <span>${formatDate(post.createdAt)}</span>
             <span>·</span>
             <span>${mins} min read</span>
             <span>·</span>
-            <span style="font-weight:600;color:rgba(0,188,212,0.75);">${safeAuthor}</span>
+            <span style="font-weight:600;color:#00bcd4;">${safeAuthor}</span>
           </div>
-          <h3 style="margin:0 0 10px;font-size:1.02rem;font-weight:700;color:#fff;line-height:1.42;">
+          <h3 style="margin:0 0 10px;font-size:1.02rem;font-weight:700;color:#1a1a2e;line-height:1.42;">
             <a href="student-post.html?id=${safeId}" style="color:inherit;text-decoration:none;">${safeTitle}</a>
           </h3>
-          <p style="margin:0 0 13px;font-size:0.87rem;color:rgba(255,255,255,0.66);line-height:1.72;flex:1;">${safeExcerpt}</p>
+          <p style="margin:0 0 13px;font-size:0.87rem;color:#3a3a4e;line-height:1.72;flex:1;">${safeExcerpt}</p>
           <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:13px;">
             ${tags}
-            ${safeGithub ? `<a href="${escapeHTML(safeGithub)}" target="_blank" rel="noopener noreferrer" style="margin-left:auto;display:inline-flex;align-items:center;color:rgba(255,255,255,0.55);transition:color 0.15s;" title="GitHub">
+            ${safeGithub ? `<a href="${escapeHTML(safeGithub)}" target="_blank" rel="noopener noreferrer" style="margin-left:auto;display:inline-flex;align-items:center;color:#62B3E5;transition:color 0.15s;" title="GitHub">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>` : ''}
           </div>
@@ -262,9 +262,9 @@ permalink: /post
   function updateTagHighlight() {
     tagFiltersEl.querySelectorAll('.sb-filter-tag').forEach(btn => {
       const active = btn.dataset.tag === activeTag;
-      btn.style.background = active ? '#7bc043'               : 'rgba(123,192,67,0.09)';
-      btn.style.color       = active ? '#fff'                 : '#7bc043';
-      btn.style.borderColor = active ? '#7bc043'              : 'rgba(123,192,67,0.25)';
+      btn.style.background  = active ? '#7bc043'              : 'rgba(123,192,67,0.09)';
+      btn.style.color       = active ? '#fff'                 : '#5a8f2a';
+      btn.style.borderColor = active ? '#7bc043'              : 'rgba(123,192,67,0.28)';
     });
   }
 
@@ -275,8 +275,8 @@ permalink: /post
     tagFiltersEl.innerHTML = sorted.map(([tag, cnt]) =>
       `<button class="sb-filter-tag" data-tag="${tag}"
          style="cursor:pointer;font-size:0.73rem;font-weight:600;padding:4px 12px;border-radius:999px;
-                border:1px solid rgba(123,192,67,0.25);background:rgba(123,192,67,0.09);
-                color:#7bc043;transition:background 0.15s,color 0.15s;"
+                border:1px solid rgba(123,192,67,0.28);background:rgba(123,192,67,0.09);
+                color:#5a8f2a;transition:background 0.15s,color 0.15s,border-color 0.15s;"
        >${tag} <span style="opacity:0.55;">(${cnt})</span></button>`
     ).join('');
     tagFiltersEl.querySelectorAll('.sb-filter-tag').forEach(btn => {
@@ -331,11 +331,12 @@ permalink: /post
 </script>
 
 <style>
-/* ── EGLab Posts — Gaming / DNA Theme ── */
+/* ── EGLab Posts — Ice Bear × EGLab Light Theme ── */
 :root {
   --eglab-green: #7bc043;
   --eglab-blue:  #00bcd4;
-  --eglab-dark:  #141424;
+  --eglab-sky:   #62B3E5;
+  --eglab-dark:  #1a1a2e;
 }
 
 /* Buttons */
@@ -345,63 +346,77 @@ permalink: /post
   border-radius: 999px; color: #fff; text-decoration: none;
   font-size: 0.85rem; font-weight: 700; letter-spacing: 0.025em;
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 0 20px rgba(123,192,67,0.28);
+  box-shadow: 0 4px 16px rgba(123,192,67,0.30);
 }
-.sb-btn-primary:hover { background: #8cd64a; transform: translateY(-1px); box-shadow: 0 0 28px rgba(123,192,67,0.40); }
+.sb-btn-primary:hover { background: #8cd64a; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(123,192,67,0.40); }
 
 .sb-btn-outline {
   display: inline-flex; align-items: center; gap: 7px;
-  padding: 10px 22px; background: transparent;
-  border: 1px solid rgba(0,188,212,0.38); border-radius: 999px;
-  color: #00bcd4; text-decoration: none; font-size: 0.85rem; font-weight: 600;
-  transition: border-color 0.2s, color 0.2s;
+  padding: 10px 22px; background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(26,26,46,0.30); border-radius: 999px;
+  color: #1a1a2e; text-decoration: none; font-size: 0.85rem; font-weight: 600;
+  transition: border-color 0.2s, background 0.2s;
 }
-.sb-btn-outline:hover { border-color: rgba(0,188,212,0.7); color: #33d1e8; }
+.sb-btn-outline:hover { border-color: rgba(26,26,46,0.55); background: rgba(255,255,255,0.80); }
 
 .sb-filter-bar {
   padding: 14px 16px;
   border-radius: 16px;
-  background: rgba(20,20,36,0.88);
-  border: 1px solid rgba(123,192,67,0.12);
+  background: #f0f7fe;
+  border: 1px solid rgba(98,179,229,0.22);
 }
 
 /* Post cards */
 .sb-card-wrap {
-  background: var(--eglab-dark);
-  border: 1px solid rgba(123,192,67,0.1);
-  border-radius: var(--radius-lg);
+  background: #ffffff;
+  border: 1px solid rgba(98,179,229,0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(26,26,46,0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .sb-card-wrap:hover {
   transform: translateY(-5px);
-  box-shadow: 0 14px 40px rgba(123,192,67,0.14), 0 0 0 1px rgba(123,192,67,0.22);
-  border-color: rgba(123,192,67,0.28) !important;
+  box-shadow: 0 12px 36px rgba(26,26,46,0.13);
+  border-color: rgba(123,192,67,0.35) !important;
 }
 
 /* Tag chips inside cards */
 .sb-tag-btn {
-  cursor: pointer; border: none;
-  background: rgba(123,192,67,0.10); color: #7bc043;
+  cursor: pointer;
+  border: 1px solid rgba(123,192,67,0.30);
+  background: rgba(123,192,67,0.08); color: #5a8f2a;
   font-size: 0.7rem; font-weight: 600;
   padding: 3px 9px; border-radius: 999px;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s;
 }
-.sb-tag-btn:hover { background: rgba(123,192,67,0.22); }
+.sb-tag-btn:hover { background: rgba(123,192,67,0.18); border-color: rgba(123,192,67,0.50); }
 
 /* Search input */
 .sb-search {
   padding: 7px 14px;
-  border: 1px solid rgba(0,188,212,0.22);
+  border: 1px solid rgba(98,179,229,0.35);
   border-radius: 999px;
-  background: rgba(0,188,212,0.04);
-  color: #e8eaf0;
+  background: #ffffff;
+  color: #1a1a2e;
   font-size: 0.84rem;
   outline: none;
   width: 240px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.sb-search:focus { border-color: rgba(0,188,212,0.55); }
-.sb-search::placeholder { color: rgba(255,255,255,0.38); }
+.sb-search:focus { border-color: #62B3E5; box-shadow: 0 0 0 3px rgba(98,179,229,0.15); }
+.sb-search::placeholder { color: rgba(26,26,46,0.38); }
+
+/* Skeleton shimmer on light bg */
+.skeleton {
+  background: linear-gradient(90deg, #e8f0f8 25%, #d4e6f4 50%, #e8f0f8 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 
 /* Responsive grid */
 @media (max-width: 900px) {

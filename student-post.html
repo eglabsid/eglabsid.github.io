@@ -81,7 +81,7 @@ permalink: /student-post.html
       <svg width="64" height="64" fill="var(--color-text-subtle)" viewBox="0 0 24 24" style="margin-bottom:16px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
       <h3 style="color:var(--color-text-muted);font-weight:600;margin:0 0 8px;">Post not found</h3>
       <p style="color:var(--color-text-subtle);font-size:0.9rem;margin:0 0 24px;">This post may have been removed or the link is invalid.</p>
-      <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#7bc043;border-radius:999px;color:#0a0e1a;text-decoration:none;font-size:0.88rem;font-weight:600;">Back to Blog</a>
+      <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#7bc043;border-radius:999px;color:#1a1a2e;text-decoration:none;font-size:0.88rem;font-weight:600;">Back to Blog</a>
     </div>
 
   </main>
@@ -216,8 +216,8 @@ permalink: /student-post.html
 
 <style>
 body {
-  background: #0a0e1a;
-  color-scheme: dark;
+  background: #fdfdfd;
+  color: #1a1a2e;
   overflow-x: hidden;
 }
 
@@ -234,7 +234,7 @@ body {
 }
 
 .sp-back-link {
-  color: rgba(123,192,67,0.8);
+  color: #62B3E5;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -249,10 +249,10 @@ body {
 .student-post-loading,
 .student-post-body-card,
 .student-post-author {
-  background: #141424;
-  border: 1px solid rgba(123,192,67,0.14);
+  background: #ffffff;
+  border: 1px solid rgba(98,179,229,0.18);
   border-radius: 18px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  box-shadow: 0 4px 20px rgba(26,26,46,0.08);
 }
 
 .student-post-loading {
@@ -269,17 +269,17 @@ body {
   position: relative;
   overflow: hidden;
   padding: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #0a0e1a 0%, #0d1a14 45%, #0a0e1a 100%);
+  background: #C4E8F8;
   border-radius: 20px;
-  border: 1px solid rgba(123,192,67,0.18);
-  box-shadow: 0 20px 48px rgba(0,0,0,0.24);
+  border: 1px solid rgba(98,179,229,0.28);
+  box-shadow: 0 4px 20px rgba(26,26,46,0.08);
 }
 
 .student-post-hero__dot-grid {
   position: absolute;
   inset: 0;
-  opacity: 0.05;
-  background-image: radial-gradient(#7bc043 1px, transparent 1px);
+  opacity: 0.12;
+  background-image: radial-gradient(#62B3E5 1px, transparent 1px);
   background-size: 26px 26px;
   pointer-events: none;
 }
@@ -289,7 +289,7 @@ body {
   right: -6px;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.10;
+  opacity: 0.18;
   pointer-events: none;
 }
 
@@ -319,13 +319,13 @@ body {
 }
 
 .student-post-hero__logo-lab {
-  color: #ffffff;
+  color: #1a1a2e;
 }
 
 .student-post-hero__pipe {
   width: 1px;
   height: 16px;
-  background: rgba(123,192,67,0.3);
+  background: rgba(26,26,46,0.2);
   flex-shrink: 0;
 }
 
@@ -335,7 +335,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(0,188,212,0.85);
+  color: #00bcd4;
 }
 
 .student-post-tags {
@@ -346,7 +346,7 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg,#141424 25%,#1a1e30 50%,#141424 75%);
+  background: linear-gradient(90deg,#e8f4fb 25%,#d0e8f5 50%,#e8f4fb 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
   border-radius: 4px;
@@ -357,9 +357,9 @@ body {
 }
 
 .tag-badge {
-  background: rgba(123,192,67,0.12);
-  border: 1px solid rgba(123,192,67,0.35);
-  color: #7bc043;
+  background: #ffffff;
+  border: 1.5px solid #62B3E5;
+  color: #00bcd4;
   border-radius: 999px;
   padding: 3px 12px;
   font-size: 0.75rem;
@@ -367,11 +367,16 @@ body {
   text-decoration: none;
   display: inline-block;
   touch-action: manipulation;
+  transition: background 0.15s, color 0.15s;
+}
+.tag-badge:hover {
+  background: #62B3E5;
+  color: #ffffff;
 }
 
 #postTitle {
   margin: 0;
-  color: #e8eaf0;
+  color: #1a1a2e;
   line-height: 1.18;
   font-family: 'Lato', sans-serif;
   font-size: clamp(2rem, 4vw, 2.9rem);
@@ -386,7 +391,7 @@ body {
   align-items: center;
   gap: 10px 18px;
   flex-wrap: wrap;
-  color: rgba(123,192,67,0.82);
+  color: #3a3a4e;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.84rem;
   font-variant-numeric: tabular-nums;
@@ -399,8 +404,8 @@ body {
 }
 
 .student-post-abstract {
-  background: rgba(0,188,212,0.08);
-  border: 1px solid rgba(0,188,212,0.22);
+  background: #f0f7fe;
+  border: 1px solid rgba(0,188,212,0.28);
   padding: 22px 24px;
   border-radius: 18px;
 }
@@ -416,7 +421,7 @@ body {
 
 #postAbstractText {
   margin: 0;
-  color: rgba(255,255,255,0.78);
+  color: #3a3a4e;
   font-style: italic;
   line-height: 1.8;
 }
@@ -428,7 +433,7 @@ body {
 .student-post-body {
   font-size: clamp(1.02rem, 0.98rem + 0.22vw, 1.1rem);
   line-height: 1.9;
-  color: var(--color-text);
+  color: #1a1a2e;
   background: transparent !important;
   box-shadow: none !important;
   border-radius: 0 !important;
@@ -466,36 +471,36 @@ body {
   padding-left: 16px;
   margin-left: 0;
   font-style: italic;
-  color: rgba(255,255,255,0.6);
+  color: #3a3a4e;
 }
 
 .student-post-body pre {
-  background: #141424;
-  border: 1px solid rgba(123,192,67,0.15);
+  background: #f0f7fe;
+  border: 1px solid rgba(98,179,229,0.3);
   border-radius: 10px;
   padding: 16px 20px;
   overflow-x: auto;
   max-width: 100%;
 }
 .student-post-body code {
-  background: rgba(123,192,67,0.1);
-  color: #7bc043;
+  background: #f0f7fe;
+  color: #00bcd4;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.88em;
 }
-.student-post-body pre code { background: transparent; padding: 0; color: #e8eaf0; }
+.student-post-body pre code { background: transparent; padding: 0; color: #1a1a2e; }
 
 .student-post-body img {
   border-radius: 10px;
   max-width: 100%;
   height: auto;
-  border: 1px solid rgba(123,192,67,0.1);
+  border: 1px solid rgba(98,179,229,0.2);
 }
 
 .student-post-body p,
 .student-post-body li {
-  color: rgba(255,255,255,0.86);
+  color: #1a1a2e;
   line-height: 1.9;
 }
 
@@ -526,7 +531,7 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg,#0a0e1a 0%,#0d1a14 100%);
+  background: linear-gradient(135deg,#C4E8F8 0%,#f0f7fe 100%);
   border: 2px solid #7bc043;
   flex-shrink: 0;
   display: flex;
@@ -534,17 +539,21 @@ body {
   justify-content: center;
 }
 
-.student-post-author__role {
-  font-size: 0.82rem;
-  color: var(--color-text-subtle);
+.student-post-author__avatar svg {
+  fill: #62B3E5;
 }
 
-#authorName { color: #e8eaf0; font-weight: 700; }
+.student-post-author__role {
+  font-size: 0.82rem;
+  color: #3a3a4e;
+}
 
-#notFoundState svg  { fill: rgba(255,255,255,0.3); }
-#notFoundState h3   { color: rgba(255,255,255,0.6); }
-#notFoundState p    { color: rgba(255,255,255,0.35); }
-#notFoundState a    { background: #7bc043; color: #0a0e1a !important; font-weight: 700; }
+#authorName { color: #1a1a2e; font-weight: 700; }
+
+#notFoundState svg  { fill: rgba(26,26,46,0.25); }
+#notFoundState h3   { color: #3a3a4e; }
+#notFoundState p    { color: rgba(58,58,78,0.65); }
+#notFoundState a    { background: #7bc043; color: #1a1a2e !important; font-weight: 700; }
 
 .sp-back-link:focus-visible,
 .tag-badge:focus-visible,

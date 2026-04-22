@@ -6,8 +6,11 @@ permalink: tags:output_ext
 {% include calculate_relative_base.html %}
 {% include get-site-tags.html %}
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 <style>
-/* ── EGLab Tags — Knowledge Graph ─────────────────────────── */
+/* ── EGLab Tags — Knowledge Graph · Ice Bear × EGLab Light ── */
 
 .blog-tags h2 { display: none; }
 .blog-tags    { background: transparent; }
@@ -16,12 +19,12 @@ permalink: tags:output_ext
 #kg-wrap {
   position: relative;
   width: 100%;
-  background: #080c18;
+  background: #fdfdfd;
   border-radius: 18px;
-  border: 1px solid rgba(123,192,67,0.18);
+  border: 1px solid rgba(98,179,229,0.3);
   overflow: hidden;
   margin-bottom: 24px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  box-shadow: 0 8px 32px rgba(98,179,229,0.12);
 }
 
 #kg-svg {
@@ -36,55 +39,58 @@ permalink: tags:output_ext
   align-items: center;
   gap: 10px;
   padding: 10px 16px;
-  background: rgba(0,0,0,0.25);
-  border-bottom: 1px solid rgba(123,192,67,0.10);
+  background: #f0f7fe;
+  border-bottom: 1px solid rgba(98,179,229,0.2);
 }
 
 #kg-controls button {
   background: rgba(123,192,67,0.08);
-  border: 1px solid rgba(123,192,67,0.28);
-  color: #7bc043;
+  border: 1px solid rgba(123,192,67,0.35);
+  color: #5a8f1f;
   border-radius: 6px;
   padding: 5px 14px;
   font-size: 0.78rem;
   font-weight: 700;
+  font-family: 'Lato', sans-serif;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
-#kg-controls button:hover  { background: rgba(123,192,67,0.18); color: #a0d860; }
-#kg-controls button.active { background: rgba(123,192,67,0.24); color: #fff; border-color: #7bc043; }
+#kg-controls button:hover  { background: rgba(123,192,67,0.18); color: #3d6b0f; }
+#kg-controls button.active { background: #7bc043; color: #fff; border-color: #7bc043; }
 
 #kg-hint {
   margin-left: auto;
   font-size: 0.74rem;
-  color: rgba(255,255,255,0.28);
+  color: rgba(26,26,46,0.45);
   letter-spacing: 0.03em;
+  font-family: 'Lato', sans-serif;
 }
 
 /* Node tooltip (hover) */
 #kg-tooltip {
   position: fixed;
   pointer-events: none;
-  background: rgba(10,14,26,0.92);
-  border: 1px solid rgba(123,192,67,0.35);
+  background: rgba(255,255,255,0.97);
+  border: 1px solid rgba(98,179,229,0.45);
   border-radius: 8px;
   padding: 7px 12px;
   font-size: 0.82rem;
-  color: #e8eaf0;
+  color: #1a1a2e;
   white-space: nowrap;
   display: none;
   z-index: 999;
   backdrop-filter: blur(6px);
+  box-shadow: 0 4px 16px rgba(98,179,229,0.18);
 }
 #kg-tooltip strong { color: #7bc043; }
 
 /* Post panel */
 #kg-panel {
   display: none;
-  background: #141424;
-  border: 1px solid rgba(0,188,212,0.28);
+  background: #f0f7fe;
+  border: 1px solid rgba(98,179,229,0.35);
   border-radius: 14px;
   padding: 22px 26px;
   margin-bottom: 24px;
@@ -102,12 +108,13 @@ permalink: tags:output_ext
   font-weight: 900;
   color: #7bc043;
   letter-spacing: 0.04em;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #kg-panel-close {
   background: none;
   border: none;
-  color: rgba(255,255,255,0.38);
+  color: rgba(26,26,46,0.38);
   font-size: 1.1rem;
   cursor: pointer;
   line-height: 1;
@@ -115,24 +122,25 @@ permalink: tags:output_ext
   border-radius: 4px;
   transition: color 0.15s, background 0.15s;
 }
-#kg-panel-close:hover { color: #fff; background: rgba(255,255,255,0.07); }
+#kg-panel-close:hover { color: #1a1a2e; background: rgba(98,179,229,0.12); }
 
 #kg-panel-posts { display: flex; flex-direction: column; gap: 10px; }
 
 .kg-post-item {
-  background: #1a1a30;
-  border: 1px solid rgba(123,192,67,0.12);
+  background: #fdfdfd;
+  border: 1px solid rgba(98,179,229,0.3);
   border-radius: 8px;
   padding: 12px 16px;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.kg-post-item:hover { border-color: rgba(0,188,212,0.3); }
+.kg-post-item:hover { border-color: rgba(0,188,212,0.45); box-shadow: 0 2px 10px rgba(98,179,229,0.15); }
 
 .kg-post-item a {
-  color: rgba(255,255,255,0.88);
+  color: #1a1a2e;
   text-decoration: none;
   font-size: 0.93rem;
   font-weight: 700;
+  font-family: 'Lato', sans-serif;
   line-height: 1.5;
 }
 .kg-post-item a:hover { color: #7bc043; }
@@ -144,12 +152,15 @@ permalink: tags:output_ext
   gap: 20px;
   padding: 8px 16px 10px;
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.35);
+  color: rgba(26,26,46,0.45);
   letter-spacing: 0.04em;
+  font-family: 'Lato', sans-serif;
+  background: #f0f7fe;
+  border-top: 1px solid rgba(98,179,229,0.15);
 }
 #kg-legend span { display: flex; align-items: center; gap: 5px; }
 .lg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.lg-line { width: 22px; height: 2px; background: rgba(123,192,67,0.35); flex-shrink: 0; border-radius: 1px; }
+.lg-line { width: 22px; height: 2px; background: rgba(123,192,67,0.45); flex-shrink: 0; border-radius: 1px; }
 
 /* List view (toggle) */
 #kg-list-section {
@@ -158,10 +169,10 @@ permalink: tags:output_ext
 }
 
 .list-group {
-  background: #141424;
-  border: 1px solid rgba(123,192,67,0.12);
+  background: #fdfdfd;
+  border: 1px solid rgba(98,179,229,0.25);
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 16px rgba(98,179,229,0.09);
   padding: 18px 22px;
   margin-bottom: 16px;
 }
@@ -169,24 +180,26 @@ permalink: tags:output_ext
   color: #7bc043;
   font-weight: 700;
   font-size: 0.95rem;
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   text-decoration: none;
 }
-.list-group-title a:hover { color: #a0d860; }
+.list-group-title a:hover { color: #5a8f1f; }
 .list-item {
   padding: 8px 0;
-  border-bottom: 1px solid rgba(123,192,67,0.06);
+  border-bottom: 1px solid rgba(98,179,229,0.12);
 }
 .list-item:last-child { border-bottom: none; }
 .list-item a {
-  color: rgba(255,255,255,0.85);
+  color: #1a1a2e;
   text-decoration: none;
   font-size: 0.94rem;
+  font-family: 'Lato', sans-serif;
 }
 .list-item a:hover { color: #00bcd4; }
 .list-item .post-card-meta,
-.list-item .post-card-meta a { color: rgba(123,192,67,0.72); }
+.list-item .post-card-meta a { color: rgba(98,179,229,0.85); }
 
 /* Responsive */
 @media (max-width: 640px) {
@@ -196,20 +209,20 @@ permalink: tags:output_ext
 </style>
 
 <!-- ── Hero ─────────────────────────────────────────────────────────── -->
-<div style="position:relative;overflow:hidden;margin:40px 0 28px;padding:52px 40px;background:linear-gradient(135deg,#0a0e1a 0%,#0d1a14 45%,#0a0e1a 100%);border-radius:18px;border:1px solid rgba(123,192,67,0.18);">
-  <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(#7bc043 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
-  <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.10;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
+<div style="position:relative;overflow:hidden;margin:40px 0 28px;padding:52px 40px;background:linear-gradient(135deg,#C4E8F8 0%,#daf0fb 45%,#C4E8F8 100%);border-radius:18px;border:1px solid rgba(98,179,229,0.35);">
+  <div style="position:absolute;inset:0;opacity:0.10;background-image:radial-gradient(#62B3E5 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
+  <svg style="position:absolute;right:32px;top:50%;transform:translateY(-50%);opacity:0.18;pointer-events:none;" width="180" height="180" viewBox="0 0 24 24" fill="none">
     <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
     <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
   </svg>
   <div style="position:relative;z-index:1;">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-      <span style="font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;line-height:1;"><span style="color:#7bc043;">EG</span><span style="color:#fff;">LAB</span></span>
-      <span style="width:1px;height:16px;background:rgba(123,192,67,0.3);flex-shrink:0;"></span>
-      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,188,212,0.85);">Knowledge Graph</span>
+      <span style="font-size:1.15rem;font-weight:900;font-family:'Montserrat',sans-serif;letter-spacing:-0.01em;line-height:1;"><span style="color:#7bc043;">EG</span><span style="color:#1a1a2e;">LAB</span></span>
+      <span style="width:1px;height:16px;background:rgba(98,179,229,0.5);flex-shrink:0;"></span>
+      <span style="font-size:0.72rem;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,136,153,0.9);">Knowledge Graph</span>
     </div>
-    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.12;letter-spacing:-0.025em;">Research <span style="color:#7bc043;">Tags</span></h1>
-    <p style="margin:0;font-size:1rem;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7;">Explore topic connections across EGLab research. Node size reflects post volume; edges show co-occurrence between topics.</p>
+    <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;font-family:'Montserrat',sans-serif;color:#1a1a2e;line-height:1.12;letter-spacing:-0.025em;">Research <span style="color:#7bc043;">Tags</span></h1>
+    <p style="margin:0;font-size:1rem;font-family:'Lato',sans-serif;color:rgba(26,26,46,0.65);max-width:500px;line-height:1.7;">Explore topic connections across EGLab research. Node size reflects post volume; edges show co-occurrence between topics.</p>
   </div>
 </div>
 
@@ -351,9 +364,9 @@ permalink: tags:output_ext
     .attr('patternUnits', 'userSpaceOnUse')
     .append('circle')
     .attr('cx', 1).attr('cy', 1).attr('r', 0.9)
-    .attr('fill', 'rgba(123,192,67,0.06)');
+    .attr('fill', 'rgba(98,179,229,0.18)');
 
-  svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#080c18');
+  svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#fdfdfd');
   svg.append('rect').attr('width', W).attr('height', H).attr('fill', 'url(#kg-dots)');
 
   var g = svg.append('g').attr('class', 'kg-root');
@@ -363,7 +376,7 @@ permalink: tags:output_ext
   var rScale   = d3.scaleSqrt().domain([1, maxCount]).range([8, 30]);
   var nodeColor = d3.scaleSequential()
     .domain([1, maxCount])
-    .interpolator(d3.interpolate('#1e3812', '#7bc043'));
+    .interpolator(d3.interpolate('#b8e0b0', '#7bc043'));
 
   /* ── 4. Force simulation ───────────────────────────────────────────── */
   var sim = d3.forceSimulation(nodes)
@@ -380,7 +393,7 @@ permalink: tags:output_ext
     .selectAll('line')
     .data(links)
     .join('line')
-    .attr('stroke', 'rgba(123,192,67,0.2)')
+    .attr('stroke', 'rgba(98,179,229,0.35)')
     .attr('stroke-width', function (d) { return Math.min(d.weight * 0.9 + 0.5, 3.5); })
     .attr('stroke-linecap', 'round');
 
@@ -428,7 +441,7 @@ permalink: tags:output_ext
     .attr('font-family', 'Lato, sans-serif')
     .attr('font-weight', '900')
     .attr('font-size', function (d) { return Math.max(8, rScale(d.count) * 0.55) + 'px'; })
-    .attr('fill', 'rgba(255,255,255,0.92)')
+    .attr('fill', 'rgba(255,255,255,0.95)')
     .style('pointer-events', 'none');
 
   /* Label below node */
@@ -439,7 +452,7 @@ permalink: tags:output_ext
     .attr('font-family', 'Lato, sans-serif')
     .attr('font-weight', '700')
     .attr('font-size', function (d) { return Math.max(9, Math.min(12, rScale(d.count) * 0.55)) + 'px'; })
-    .attr('fill', 'rgba(255,255,255,0.78)')
+    .attr('fill', 'rgba(26,26,46,0.75)')
     .style('pointer-events', 'none');
 
   /* ── 7. Tick ───────────────────────────────────────────────────────── */
@@ -500,8 +513,8 @@ permalink: tags:output_ext
     /* Highlight connected links */
     linkSel.attr('stroke', function (l) {
       return (l.source.id === d.id || l.target.id === d.id)
-        ? 'rgba(0,188,212,0.65)'
-        : 'rgba(123,192,67,0.07)';
+        ? 'rgba(0,188,212,0.7)'
+        : 'rgba(98,179,229,0.12)';
     });
 
     /* Fill panel */
@@ -512,7 +525,7 @@ permalink: tags:output_ext
       ? d.posts.map(function (p) {
           return '<div class="kg-post-item"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a></div>';
         }).join('')
-      : '<p style="color:rgba(255,255,255,0.4);font-size:0.88rem;margin:0;">No posts found.</p>';
+      : '<p style="color:rgba(26,26,46,0.4);font-size:0.88rem;margin:0;">No posts found.</p>';
 
     var panel = document.getElementById('kg-panel');
     panel.style.display = 'block';
@@ -525,7 +538,7 @@ permalink: tags:output_ext
       .attr('stroke', '#7bc043')
       .attr('stroke-width', 1.8)
       .attr('stroke-opacity', 0.75);
-    linkSel.attr('stroke', 'rgba(123,192,67,0.2)');
+    linkSel.attr('stroke', 'rgba(98,179,229,0.35)');
     document.getElementById('kg-panel').style.display = 'none';
     selectedId = null;
   });
@@ -536,7 +549,7 @@ permalink: tags:output_ext
       .attr('stroke', '#7bc043')
       .attr('stroke-width', 1.8)
       .attr('stroke-opacity', 0.75);
-    linkSel.attr('stroke', 'rgba(123,192,67,0.2)');
+    linkSel.attr('stroke', 'rgba(98,179,229,0.35)');
     selectedId = null;
   });
 
