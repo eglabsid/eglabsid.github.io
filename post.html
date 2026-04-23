@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Posts
+title: 연구 글
 permalink: /post
 ---
 {% include calculate_relative_base.html %}
@@ -25,21 +25,21 @@ permalink: /post
             <span style="color:#7bc043;">EG</span><span style="color:#1a1a2e;">LAB</span>
           </span>
           <span style="width:1px;height:16px;background:rgba(26,26,46,0.20);flex-shrink:0;"></span>
-          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#00bcd4;">Research &amp; Insights</span>
+          <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#00bcd4;">Research Archive</span>
         </div>
         <h1 style="margin:0 0 14px;font-size:2.4rem;font-weight:900;color:#1a1a2e;line-height:1.12;letter-spacing:-0.025em;">
-          <span style="color:#7bc043;">Posts</span>
+          <span style="color:#7bc043;">연구 글</span>
         </h1>
         <p style="margin:0;font-size:1rem;color:#3a3a4e;max-width:500px;line-height:1.7;">
-          Research and insights from <span style="color:#00bcd4;font-weight:600;">EGLab</span>
+          EGLAB의 연구 기록과 실험 노트를 한국어 중심으로 탐색할 수 있는 페이지입니다.
         </p>
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
           <a href="{{ relativebase }}admin/" class="sb-btn-primary">
             <svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-            Write Post
+            글 작성
           </a>
           <a href="#postsGrid" class="sb-btn-outline" style="border-color:rgba(26,26,46,0.30);color:#1a1a2e;">
-            Browse Posts
+            글 둘러보기
             <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
           </a>
         </div>
@@ -48,10 +48,10 @@ permalink: /post
 
     <!-- ── Filter Bar ── -->
     <div class="sb-filter-bar" id="filterBar" style="margin-bottom:32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <span style="font-size:0.75rem;font-weight:700;color:#7bc043;text-transform:uppercase;letter-spacing:0.1em;">Filter:</span>
+      <span style="font-size:0.75rem;font-weight:700;color:#7bc043;text-transform:uppercase;letter-spacing:0.1em;">필터</span>
       <div id="tagFilters" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
       <div style="margin-left:auto;">
-        <input id="searchInput" type="text" placeholder="Search posts…" class="sb-search">
+        <input id="searchInput" type="text" placeholder="연구 글을 검색해보세요" class="sb-search">
       </div>
     </div>
 
@@ -82,9 +82,9 @@ permalink: /post
       <div style="width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:rgba(123,192,67,0.10);border:1px solid rgba(123,192,67,0.25);display:flex;align-items:center;justify-content:center;">
         <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="#7bc043" stroke-width="1.4"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" stroke-opacity="0.7"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" stroke-opacity="0.5"/></svg>
       </div>
-      <h3 style="color:#1a1a2e;font-weight:700;margin:0 0 8px;">No posts published yet.</h3>
-      <p id="emptyMsg" style="color:#3a3a4e;font-size:0.88rem;margin:0 0 24px;">Be the first to share your research!</p>
-      <a href="{{ relativebase }}admin/" class="sb-btn-primary">Write Post</a>
+      <h3 style="color:#1a1a2e;font-weight:700;margin:0 0 8px;">아직 공개된 글이 없습니다.</h3>
+      <p id="emptyMsg" style="color:#3a3a4e;font-size:0.88rem;margin:0 0 24px;">첫 번째 연구 글을 등록해보세요.</p>
+      <a href="{{ relativebase }}admin/" class="sb-btn-primary">글 작성</a>
     </div>
 
   </div><!-- End content wrapper -->
@@ -133,7 +133,7 @@ permalink: /post
   function formatDate(ts) {
     if (!ts) return '';
     const d = ts.toDate ? ts.toDate() : new Date(ts);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    return d.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
   }
 
   function readTime(html) {
@@ -152,8 +152,8 @@ permalink: /post
   function renderCard(post) {
     const accent = accentFor(post.title || post.id);
     const safeId = encodeURIComponent(post.id);
-    const safeTitle = escapeHTML(post.title || 'Untitled');
-    const safeAuthor = escapeHTML(post.author || 'Anonymous');
+    const safeTitle = escapeHTML(post.title || '제목 없음');
+    const safeAuthor = escapeHTML(post.author || '익명');
     const safeCategory = escapeHTML(post.category);
     const safeExcerpt = escapeHTML(
       post.excerpt || (post.content || '').replace(/<[^>]+>/g, ' ').slice(0, 150) + '…'
@@ -202,7 +202,7 @@ permalink: /post
             </a>` : ''}
           </div>
           <a href="student-post.html?id=${safeId}" style="display:inline-flex;align-items:center;gap:5px;font-size:0.79rem;font-weight:700;color:#7bc043;text-decoration:none;letter-spacing:0.02em;">
-            Read More
+            자세히 보기
             <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
           </a>
         </div>
@@ -214,8 +214,8 @@ permalink: /post
       grid.innerHTML = '';
       emptyEl.style.display = 'block';
       emptyMsg.textContent = activeTag || searchInput.value.trim()
-        ? 'Try a different tag or search term.'
-        : 'No posts published yet.';
+        ? '다른 태그나 검색어로 다시 시도해보세요.'
+        : '아직 공개된 글이 없습니다.';
       return;
     }
     emptyEl.style.display = 'none';
@@ -309,11 +309,11 @@ permalink: /post
       emptyEl.style.display = 'block';
       const isIndexErr = err.message && err.message.includes('index');
       document.querySelector('#emptyState h3').textContent =
-        isIndexErr ? 'Database index building…' : 'Could not load posts';
+        isIndexErr ? '데이터베이스 인덱스 생성 중…' : '글을 불러오지 못했습니다';
       emptyMsg.textContent = isIndexErr
-        ? 'Firestore is building a required index. This takes 1–2 minutes on first run. Refresh to retry.'
+        ? 'Firestore 인덱스를 준비 중입니다. 잠시 후 새로고침해 다시 시도해보세요.'
         : (err.code === 'permission-denied'
-            ? 'Posts are private or rules are not deployed.'
+            ? '글이 비공개이거나 규칙이 아직 배포되지 않았습니다.'
             : `Error: ${err.message}`);
     }
   }

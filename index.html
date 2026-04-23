@@ -432,7 +432,7 @@ layout: home-page
 
 .hp-labs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
 }
 
@@ -524,6 +524,78 @@ layout: home-page
   bottom: -12px;
   opacity: 0.06;
   pointer-events: none;
+}
+
+.hp-lab-card__flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.hp-lab-card__step {
+  font-family: var(--hp-font-ui);
+  font-size: 0.77rem;
+  font-weight: 700;
+  color: var(--hp-ink);
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(98, 179, 229, 0.18);
+}
+
+.hp-lab-card__step--accent {
+  color: var(--hp-green);
+  border-color: rgba(123, 192, 67, 0.25);
+}
+
+.hp-lab-card__step-arrow {
+  color: rgba(26, 26, 46, 0.45);
+  font-weight: 800;
+}
+
+.hp-lab-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.hp-lab-card__action {
+  font-family: var(--hp-font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 11px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.hp-lab-card__action:hover {
+  transform: translateY(-2px);
+  opacity: 0.94;
+}
+
+.hp-lab-card__action--primary {
+  background: var(--hp-green);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(123, 192, 67, 0.22);
+}
+
+.hp-lab-card__action--secondary {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--hp-ink);
+  border: 1.5px solid rgba(0, 188, 212, 0.26);
+}
+
+.hp-lab-card__action--github {
+  background: rgba(26, 26, 46, 0.92);
+  color: #fff;
+  border: 1px solid rgba(26, 26, 46, 0.92);
 }
 
 /* =====================================================
@@ -712,12 +784,12 @@ layout: home-page
     <!-- Tagline + CTAs -->
     <div class="hp-hero__footer">
       <p class="hp-hero__tagline">
-        Research in Game AI, Evolutionary Game Theory &amp; Indie Dev &nbsp;&middot;&nbsp; Hongik University
+        국내 게임개발자를 위한 Game AI, Evolutionary Game Theory, Indie Development 연구 허브
       </p>
       <div class="hp-hero__actions">
-        <a href="{{ relativebase }}student-blog.html" class="hp-hero__btn hp-hero__btn--primary">Student Blog</a>
-        <a href="{{ relativebase }}archive.html"      class="hp-hero__btn hp-hero__btn--secondary">All Posts</a>
-        <a href="{{ relativebase }}about.html"        class="hp-hero__btn hp-hero__btn--secondary">About EGLab</a>
+        <a href="{{ relativebase }}student-blog.html" class="hp-hero__btn hp-hero__btn--primary">EGLAB Blog 허브</a>
+        <a href="{{ relativebase }}archive.html"      class="hp-hero__btn hp-hero__btn--secondary">연구 아카이브</a>
+        <a href="{{ relativebase }}about.html"        class="hp-hero__btn hp-hero__btn--secondary">연구실 소개</a>
       </div>
     </div>
 
@@ -738,17 +810,16 @@ layout: home-page
     <div class="hp-about">
 
       <div class="hp-about__text">
-        <h2 class="hp-about__heading">What is <span>EGLab</span>?</h2>
+        <h2 class="hp-about__heading"><span>EGLAB</span>은 무엇을 연구하나요?</h2>
         <p class="hp-about__body">
-          EGLab (Evolutionary Game LAB) is a research group at Hongik University exploring the intersection of
-          evolutionary game theory, multi-agent AI, and interactive media. We publish experiments, papers, and
-          open-source tools — from game-playing agents to indie dev research.
+          EGLAB은 홍익대학교에서 Game AI, Evolutionary Game Theory, 멀티에이전트 시스템, 그리고 Indie Development를 함께 다루는 연구 그룹입니다.
+          실험 기록, 연구 노트, 논문형 글, 오픈소스 프로젝트를 연결해 국내 게임개발자가 바로 참고할 수 있는 연구형 아카이브를 지향합니다.
         </p>
         <div class="hp-about__tags">
           <span class="hp-about__tag hp-about__tag--green">Game AI</span>
           <span class="hp-about__tag hp-about__tag--cyan">Evolutionary Game Theory</span>
           <span class="hp-about__tag hp-about__tag--amber">Indie Development</span>
-          <span class="hp-about__tag hp-about__tag--red">Multi-Agent Systems</span>
+          <span class="hp-about__tag hp-about__tag--red">Multi-Agent AI</span>
           <span class="hp-about__tag hp-about__tag--purple">Open Research</span>
         </div>
       </div>
@@ -810,9 +881,9 @@ layout: home-page
   <div class="hp-container">
 
     <div class="hp-section-header">
-      <h2 class="hp-section-title">Recent <span>Posts</span></h2>
+      <h2 class="hp-section-title">최근 <span>아카이브</span></h2>
       <a href="{{ relativebase }}archive.html" class="hp-section-link">
-        All posts &rarr;
+        전체 글 보기 &rarr;
       </a>
     </div>
 
@@ -840,7 +911,7 @@ layout: home-page
             <div class="hp-post-card__meta">
               <span class="hp-post-card__date">
                 <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-                {{ post.date | date: "%b %-d, %Y" }}
+                {{ post.date | date: "%Y.%m.%d" }}
               </span>
               {% if post.read-time %}
               <span class="hp-post-card__time">
@@ -872,46 +943,40 @@ layout: home-page
   <div class="hp-container">
 
     <div class="hp-section-header">
-      <h2 class="hp-section-title">Lab <span>Portals</span></h2>
+      <h2 class="hp-section-title">Blog <span>Hub</span></h2>
     </div>
 
     <div class="hp-labs">
-
-      <!-- Student Blog card -->
-      <a href="{{ relativebase }}student-blog.html" class="hp-lab-card hp-lab-card--green">
+      <article class="hp-lab-card hp-lab-card--green">
         <div class="hp-lab-card__icon hp-lab-card__icon--green">
           <svg width="26" height="26" fill="#7bc043" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
         </div>
-        <p class="hp-lab-card__label">Student Work</p>
-        <h3 class="hp-lab-card__title">Student Blog</h3>
+        <p class="hp-lab-card__label">단일 진입 허브</p>
+        <h3 class="hp-lab-card__title">EGLAB Blog에서 읽고, GitHub에서 이어서 확인하세요</h3>
         <p class="hp-lab-card__desc">
-          Experiments, dev logs, and project writeups from EGLab students. Game jams, AI agents, and indie builds.
+          블로그를 두 갈래로 나누지 않고 하나의 허브로 정리했습니다. 연구 기록과 개발 로그는 EGLAB Blog에서 읽고,
+          프로젝트 코드와 저장소는 GitHub에서 이어서 확인할 수 있도록 흐름을 단순하게 맞췄습니다.
         </p>
-        <span class="hp-lab-card__arrow">Explore &rarr;</span>
-        <!-- Corner DNA motif -->
+        <div class="hp-lab-card__flow" aria-label="EGLAB navigation flow">
+          <span class="hp-lab-card__step hp-lab-card__step--accent">1. EGLAB</span>
+          <span class="hp-lab-card__step-arrow">→</span>
+          <span class="hp-lab-card__step">2. EGLAB Blog</span>
+          <span class="hp-lab-card__step-arrow">→</span>
+          <span class="hp-lab-card__step">3. GitHub</span>
+        </div>
+        <div class="hp-lab-card__actions">
+          <a href="{{ relativebase }}student-blog.html" class="hp-lab-card__action hp-lab-card__action--primary">허브 열기</a>
+          <a href="https://www.myeglab.com/" target="_blank" rel="noopener noreferrer" class="hp-lab-card__action hp-lab-card__action--secondary">EGLAB Blog 바로가기</a>
+          <a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener noreferrer" class="hp-lab-card__action hp-lab-card__action--github">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.72.08-.72 1.2.09 1.84 1.24 1.84 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.77-1.62-2.66-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.16 0 0 1.01-.32 3.3 1.23.96-.27 1.99-.4 3.01-.4 1.02 0 2.05.13 3.01.4 2.29-1.55 3.3-1.23 3.3-1.23.65 1.64.24 2.86.12 3.16.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.65-5.49 5.95.43.37.82 1.1.82 2.22 0 1.61-.01 2.91-.01 3.31 0 .31.21.69.83.57C20.57 21.79 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
         <svg class="hp-lab-card__corner" width="100" height="100" viewBox="0 0 100 100" aria-hidden="true">
           <path d="M50 5 C30 20, 70 35, 50 50 C30 65, 70 80, 50 95" stroke="#7bc043" stroke-width="2.5" fill="none"/>
           <path d="M50 5 C70 20, 30 35, 50 50 C70 65, 30 80, 50 95" stroke="#62ddbd" stroke-width="2.5" fill="none"/>
         </svg>
-      </a>
-
-      <!-- Research Posts card -->
-      <a href="{{ relativebase }}post.html" class="hp-lab-card">
-        <div class="hp-lab-card__icon hp-lab-card__icon--cyan">
-          <svg width="26" height="26" fill="#00bcd4" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        </div>
-        <p class="hp-lab-card__label">Research</p>
-        <h3 class="hp-lab-card__title">Research Posts</h3>
-        <p class="hp-lab-card__desc">
-          Papers, analysis, and deep-dives into Game AI, Evolutionary Game Theory, and computational methods.
-        </p>
-        <span class="hp-lab-card__arrow">Explore &rarr;</span>
-        <!-- Corner DNA motif -->
-        <svg class="hp-lab-card__corner" width="100" height="100" viewBox="0 0 100 100" aria-hidden="true">
-          <path d="M50 5 C30 20, 70 35, 50 50 C30 65, 70 80, 50 95" stroke="#62B3E5" stroke-width="2.5" fill="none"/>
-          <path d="M50 5 C70 20, 30 35, 50 50 C70 65, 30 80, 50 95" stroke="#00bcd4" stroke-width="2.5" fill="none"/>
-        </svg>
-      </a>
+      </article>
 
     </div>
   </div>

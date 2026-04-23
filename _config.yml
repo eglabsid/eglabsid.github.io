@@ -1,6 +1,6 @@
 # Site settings
-title: Evolutionary Game LAB
-description: 'Game Artificial Intelligence and Indie Game is ours topic' # this means to ignore newlines until "baseurl:"
+title: EGLAB | Evolutionary Game LAB
+description: '국내 게임개발자를 위한 Game AI, Evolutionary Game Theory, Indie Development 연구 허브' # this means to ignore newlines until "baseurl:"
 permalink: ':title:output_ext'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://eglabsid.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -26,7 +26,7 @@ highlight_theme: syntax-base16.monokai.dark # select a dark theme for the code h
 # Author settings
 author: Shin Jin Kang # add your name
 author-pic: Myself_Shinjin.jpg
-about-author: Professor, Department of Game Studies, Hongik University ( Google Scholar , Game AI ).
+about-author: 홍익대학교 게임학부 교수 · Game AI · Evolutionary Game Theory · Indie Development
 
 # Contact links
 email: directx@hongik.ac.kr # Add your Email address
@@ -89,4 +89,4 @@ plugins:
   - jekyll-sitemap
 
 include: [_pages]
-exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "package-lock.json", "assets/css/sass/"]
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "package-lock.json", "assets/css/sass/", "test-results", "tmp"]

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Student Post
-description: "Student research post — Evolutionary Game LAB"
+title: EGLAB 글
+description: "EGLAB 동적 글 보기"
 permalink: /student-post.html
 ---
 {% include calculate_relative_base.html %}
@@ -14,7 +14,7 @@ permalink: /student-post.html
     <div class="student-post-back">
       <a id="backLink" href="{{ relativebase }}student-blog.html" class="sp-back-link">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-        <span id="backLinkText">Back to Student Blog</span>
+        <span id="backLinkText">EGLAB Blog 허브로 돌아가기</span>
       </a>
     </div>
 
@@ -44,7 +44,7 @@ permalink: /student-post.html
           <div class="student-post-hero__wordmark">
             <span class="student-post-hero__logo-text"><span class="student-post-hero__logo-eg">EG</span><span class="student-post-hero__logo-lab">LAB</span></span>
             <span class="student-post-hero__pipe"></span>
-            <span id="heroLabel" class="student-post-hero__lab-label">Student Research</span>
+            <span id="heroLabel" class="student-post-hero__lab-label">EGLAB Blog</span>
           </div>
           <div id="postTags" class="student-post-tags"></div>
           <h1 id="postTitle"></h1>
@@ -55,7 +55,7 @@ permalink: /student-post.html
 
       <!-- Abstract / Excerpt box -->
       <div id="postAbstract" class="student-post-abstract" style="display:none;">
-        <div class="student-post-abstract__label">Abstract</div>
+        <div class="student-post-abstract__label">요약</div>
         <p id="postAbstractText"></p>
       </div>
 
@@ -71,7 +71,7 @@ permalink: /student-post.html
         </div>
         <div>
           <div id="authorName"></div>
-          <div id="authorRole" class="student-post-author__role">EGLab Student Researcher</div>
+          <div id="authorRole" class="student-post-author__role">EGLAB Research Contributor</div>
         </div>
       </div>
     </article>
@@ -79,9 +79,9 @@ permalink: /student-post.html
     <!-- Not found state -->
     <div id="notFoundState" style="display:none;text-align:center;padding:80px 20px;">
       <svg width="64" height="64" fill="var(--color-text-subtle)" viewBox="0 0 24 24" style="margin-bottom:16px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-      <h3 style="color:var(--color-text-muted);font-weight:600;margin:0 0 8px;">Post not found</h3>
-      <p style="color:var(--color-text-subtle);font-size:0.9rem;margin:0 0 24px;">This post may have been removed or the link is invalid.</p>
-      <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#7bc043;border-radius:999px;color:#1a1a2e;text-decoration:none;font-size:0.88rem;font-weight:600;">Back to Blog</a>
+      <h3 style="color:var(--color-text-muted);font-weight:600;margin:0 0 8px;">글을 찾을 수 없습니다</h3>
+      <p style="color:var(--color-text-subtle);font-size:0.9rem;margin:0 0 24px;">글이 삭제되었거나 링크가 잘못되었을 수 있습니다.</p>
+      <a href="{{ relativebase }}student-blog.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#7bc043;border-radius:999px;color:#1a1a2e;text-decoration:none;font-size:0.88rem;font-weight:600;">허브로 돌아가기</a>
     </div>
 
   </main>
@@ -112,7 +112,7 @@ permalink: /student-post.html
   const contentEl   = document.getElementById('postContent');
   const notFoundEl  = document.getElementById('notFoundState');
 
-  const POST_DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
+  const POST_DATE_FORMATTER = new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -152,11 +152,11 @@ permalink: /student-post.html
       const isGeneralPost = post.postType === 'post';
       const blogBase = isGeneralPost ? 'post.html' : 'student-blog.html';
 
-      document.title = post.title + (isGeneralPost ? ' — EGLab Posts' : ' — EGLab Student Blog');
+      document.title = post.title + (isGeneralPost ? ' — EGLAB 연구 글' : ' — EGLAB Blog');
       document.getElementById('backLink').href = blogBase;
-      document.getElementById('backLinkText').textContent = isGeneralPost ? 'Back to Posts' : 'Back to Student Blog';
-      document.getElementById('heroLabel').textContent = isGeneralPost ? 'EGLab Research' : 'Student Research';
-      document.getElementById('authorRole').textContent = isGeneralPost ? 'EGLab Researcher' : 'EGLab Student Researcher';
+      document.getElementById('backLinkText').textContent = isGeneralPost ? '연구 글 목록으로 돌아가기' : 'EGLAB Blog 허브로 돌아가기';
+      document.getElementById('heroLabel').textContent = isGeneralPost ? 'EGLAB Research' : 'EGLAB Blog';
+      document.getElementById('authorRole').textContent = isGeneralPost ? 'EGLAB Researcher' : 'EGLAB Research Contributor';
 
       // Tags
       if (post.tags && post.tags.length) {
@@ -172,13 +172,13 @@ permalink: /student-post.html
       document.getElementById('postMeta').innerHTML = `
         <span class="student-post-meta__item">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12z"/></svg>
-          ${escapeHTML(post.author || 'Anonymous')}
+          ${escapeHTML(post.author || '익명')}
         </span>
         <span class="student-post-meta__item">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
           ${formatDate(post.createdAt)}
         </span>
-        <span class="student-post-meta__item">${readTime(post.content || '')} min read</span>
+        <span class="student-post-meta__item">읽기 ${readTime(post.content || '')}분</span>
       `;
 
       // Abstract
@@ -197,9 +197,9 @@ permalink: /student-post.html
       });
 
       // Author
-      document.getElementById('authorName').textContent = post.author || 'Anonymous';
+      document.getElementById('authorName').textContent = post.author || '익명';
 
-      contentEl.style.display = 'block';
+      contentEl.style.display = 'flex';
     } catch (err) {
       console.error('Error loading post:', err);
       showNotFound();
@@ -262,7 +262,7 @@ body {
 .student-post-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 34px;
 }
 
 .student-post-hero {
@@ -406,8 +406,9 @@ body {
 .student-post-abstract {
   background: #f0f7fe;
   border: 1px solid rgba(0,188,212,0.28);
-  padding: 22px 24px;
+  padding: 24px 26px;
   border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(98,179,229,0.08);
 }
 
 .student-post-abstract__label {
@@ -427,6 +428,7 @@ body {
 }
 
 .student-post-body-card {
+  margin-top: 8px;
   padding: clamp(1.4rem, 3vw, 2rem);
 }
 
@@ -496,6 +498,24 @@ body {
   max-width: 100%;
   height: auto;
   border: 1px solid rgba(98,179,229,0.2);
+}
+
+.student-post-body .editor-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(98,179,229,0.08);
+  border: 1px solid rgba(98,179,229,0.2);
+  color: #1a6cbf;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.student-post-body .editor-attachment:hover {
+  border-color: rgba(123,192,67,0.55);
+  color: #376d12;
 }
 
 .student-post-body p,

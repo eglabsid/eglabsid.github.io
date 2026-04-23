@@ -12,23 +12,23 @@ async function navigateFromMenu(page, from, label, expectedUrl) {
 
 test.describe('Primary Navigation', () => {
   test('home menu navigates to all posts', async ({ page }) => {
-    await navigateFromMenu(page, '/', 'All Posts', /\/archive\.html$/);
+    await navigateFromMenu(page, '/', '연구 아카이브', /\/archive\.html$/);
   });
 
   test('archive menu navigates to tags', async ({ page }) => {
-    await navigateFromMenu(page, '/archive.html', 'Tags', /\/tags\.html$/);
+    await navigateFromMenu(page, '/archive.html', '태그', /\/tags\.html$/);
   });
 
   test('tags menu navigates to about', async ({ page }) => {
-    await navigateFromMenu(page, '/tags.html', 'About', /\/about\.html$/);
+    await navigateFromMenu(page, '/tags.html', '연구실 소개', /\/about\.html$/);
   });
 
   test('about menu navigates to student blog', async ({ page }) => {
-    await navigateFromMenu(page, '/about.html', 'Student Blog', /\/student-blog\.html$/);
+    await navigateFromMenu(page, '/about.html', 'EGLAB Blog', /\/student-blog\.html$/);
   });
 
   test('student blog menu navigates to home', async ({ page }) => {
-    await navigateFromMenu(page, '/student-blog.html', 'Home', /\/$/);
+    await navigateFromMenu(page, '/student-blog.html', '홈', /\/$/);
   });
 
   test('student post page menu still navigates while empty state is shown', async ({ page }) => {
@@ -38,7 +38,7 @@ test.describe('Primary Navigation', () => {
 
     await page.locator('.menu-icon').click();
     await page.waitForTimeout(250);
-    await page.locator('.main-nav a', { hasText: 'Home' }).click();
+    await page.locator('.main-nav a', { hasText: '홈' }).click();
 
     await expect(page).toHaveURL(/\/$/);
   });

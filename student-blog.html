@@ -1,862 +1,461 @@
 ---
 layout: default
-title: Student Blog
-description: "Research papers and academic blog posts by EGLab students"
+title: EGLAB Blog
+description: "국내 게임개발자를 위한 EGLAB Blog 허브"
 permalink: /student-blog.html
 ---
 {% include calculate_relative_base.html %}
 <div class="flex-container transparent">
   {% include header.html %}
 
-  <main class="content wrapper student-blog-shell" id="main-content">
-
-    <!-- ── Hero Section — EGLab Brand ── -->
-    <section class="sb-hero student-blog-hero">
-      <div class="sb-hero__backdrop" aria-hidden="true"></div>
-      <svg class="sb-hero__dna" width="180" height="180" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.6" stroke-linecap="round"/>
-        <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.4" stroke-dasharray="1 2"/>
+  <main class="content wrapper eglab-blog-hub" id="main-content">
+    <section class="ebh-hero">
+      <div class="ebh-hero__grid" aria-hidden="true"></div>
+      <svg class="ebh-hero__dna" width="220" height="220" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="#7bc043" stroke-width="0.7" stroke-linecap="round"/>
+        <path d="M7.5 5h9M7.5 8.5h9M7.5 15.5h9M7.5 19h9" stroke="#00bcd4" stroke-width="0.45" stroke-dasharray="1 2"/>
       </svg>
-      <div class="sb-hero__content">
-        <div class="sb-hero__eyebrow">
-          <span class="sb-hero__wordmark">
-            <span class="sb-hero__wordmark-eg">EG</span><span class="sb-hero__wordmark-lab">LAB</span>
-          </span>
-          <span class="sb-hero__divider" aria-hidden="true"></span>
-          <span class="sb-hero__label">Student Research</span>
+
+      <div class="ebh-hero__content">
+        <div class="ebh-hero__eyebrow">
+          <span class="ebh-hero__wordmark"><span>EG</span>LAB</span>
+          <span class="ebh-hero__pipe"></span>
+          <span class="ebh-hero__label">Korean Game Developer Hub</span>
         </div>
-        <h1 class="sb-hero__title">
-          Research <span style="color:#7bc043;">Blog</span>
-        </h1>
-        <p class="sb-hero__lede">
-          Academic papers, research notes, and insights from EGLab students exploring
-          <span style="color:#00bcd4;font-weight:600;">Game AI</span>,
-          evolutionary computation, and indie game development.
+        <h1>EGLAB <span>Blog</span> 허브</h1>
+        <p class="ebh-hero__lede">
+          국내 게임개발자가 바로 읽을 수 있도록 연구 노트, 개발 로그, 코드 저장소 흐름을 하나의 화면으로 정리했습니다.
+          읽기는 <strong>EGLAB Blog</strong>에서, 코드는 <strong>GitHub</strong>에서 이어집니다.
         </p>
-        <p class="sb-hero__support">
-          Browse by topic, scan abstracts quickly, and move into full posts without losing focus on the text.
-        </p>
-        <div class="sb-hero__actions">
-          <a href="{{ relativebase }}admin/" class="sb-btn-primary">
-            <svg width="14" height="14" fill="white" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-            Write a Post
-          </a>
-          <a href="#postsGrid" class="sb-btn-outline">
-            Browse Posts
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        <div class="ebh-hero__actions">
+          <a href="https://www.myeglab.com/" target="_blank" rel="noopener noreferrer" class="ebh-btn ebh-btn--primary">EGLAB Blog 열기</a>
+          <a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener noreferrer" class="ebh-btn ebh-btn--github">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.72.08-.72 1.2.09 1.84 1.24 1.84 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.77-1.62-2.66-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.16 0 0 1.01-.32 3.3 1.23.96-.27 1.99-.4 3.01-.4 1.02 0 2.05.13 3.01.4 2.29-1.55 3.3-1.23 3.3-1.23.65 1.64.24 2.86.12 3.16.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.65-5.49 5.95.43.37.82 1.1.82 2.22 0 1.61-.01 2.91-.01 3.31 0 .31.21.69.83.57C20.57 21.79 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ── Filter Bar ── -->
-    <section class="sb-filter-bar" id="filterBar" aria-label="Post filters">
-      <div class="sb-filter-bar__heading">
-        <span class="sb-filter-label">Filter</span>
-        <p class="sb-filter-copy">Search by topic, author, or excerpt.</p>
+    <section class="ebh-flow" aria-label="탐색 흐름">
+      <div class="ebh-section-head">
+        <h2>탐색 <span>흐름</span></h2>
+        <p>EGLAB 메인에서 블로그, 그리고 GitHub로 이어지는 가장 단순한 경로입니다.</p>
       </div>
-      <div id="tagFilters" class="sb-filter-tags"></div>
-      <div class="sb-search-wrap">
-        <label class="sb-visually-hidden" for="searchInput">Search posts</label>
-        <input
-          id="searchInput"
-          name="query"
-          type="search"
-          inputmode="search"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="Search posts…"
-          class="sb-search"
-        >
+
+      <div class="ebh-flow__steps">
+        <article class="ebh-step">
+          <span class="ebh-step__number">01</span>
+          <h3>EGLAB</h3>
+          <p>연구 방향, 번역된 아카이브, 최근 주제를 먼저 파악합니다.</p>
+        </article>
+        <article class="ebh-step ebh-step--active">
+          <span class="ebh-step__number">02</span>
+          <h3>EGLAB Blog</h3>
+          <p>현재 운영 중인 메인 블로그에서 실험 기록과 개발 로그를 읽습니다.</p>
+          <a href="https://www.myeglab.com/" target="_blank" rel="noopener noreferrer">https://www.myeglab.com/</a>
+        </article>
+        <article class="ebh-step">
+          <span class="ebh-step__number">03</span>
+          <h3>GitHub</h3>
+          <p>블로그에서 본 프로젝트의 코드, 저장소, 기술 스택을 바로 이어서 확인합니다.</p>
+        </article>
       </div>
     </section>
 
-    <!-- ── Post Grid ── -->
-    <section id="postsGrid" class="sb-grid" aria-live="polite"></section>
-
-    <!-- ── Loading Skeletons ── -->
-    <div id="loadingState" class="sb-grid sb-grid-loading" aria-hidden="true">
-      {% for i in (1..6) %}
-      <div class="sb-card-wrap sb-card-wrap--loading">
-        <div class="skeleton sb-skeleton-thumb"></div>
-        <div class="sb-skeleton-body">
-          <div class="skeleton sb-skeleton-meta"></div>
-          <div class="skeleton sb-skeleton-title"></div>
-          <div class="skeleton sb-skeleton-line"></div>
-          <div class="skeleton sb-skeleton-line sb-skeleton-line--short"></div>
-          <div class="sb-skeleton-tags">
-            <div class="skeleton sb-skeleton-tag"></div>
-            <div class="skeleton sb-skeleton-tag sb-skeleton-tag--small"></div>
-          </div>
+    <section class="ebh-links" aria-label="주요 링크">
+      <div class="ebh-link-card">
+        <div class="ebh-link-card__icon ebh-link-card__icon--blog">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 14H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z"/></svg>
         </div>
+        <p class="ebh-link-card__eyebrow">Primary Reading</p>
+        <h3>EGLAB Blog</h3>
+        <p>연구 메모, 개발 실험, 인디 프로젝트 로그를 한곳에서 읽을 수 있는 운영 블로그입니다.</p>
+        <a href="https://www.myeglab.com/" target="_blank" rel="noopener noreferrer" class="ebh-link-card__cta">블로그 열기</a>
       </div>
-      {% endfor %}
-    </div>
 
-    <!-- ── Empty State ── -->
-    <div id="emptyState" class="sb-empty-state" style="display:none;">
-      <div class="sb-empty-state__icon">
-        <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="#7bc043" stroke-width="1.4" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" stroke-opacity="0.7"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" stroke-opacity="0.5"/></svg>
+      <div class="ebh-link-card">
+        <div class="ebh-link-card__icon ebh-link-card__icon--github">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57 0-.28-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.72.08-.72 1.2.09 1.84 1.24 1.84 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.77-1.62-2.66-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.16 0 0 1.01-.32 3.3 1.23.96-.27 1.99-.4 3.01-.4 1.02 0 2.05.13 3.01.4 2.29-1.55 3.3-1.23 3.3-1.23.65 1.64.24 2.86.12 3.16.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.65-5.49 5.95.43.37.82 1.1.82 2.22 0 1.61-.01 2.91-.01 3.31 0 .31.21.69.83.57C20.57 21.79 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </div>
+        <p class="ebh-link-card__eyebrow">Code & Repos</p>
+        <h3>GitHub</h3>
+        <p>블로그에서 다룬 프로젝트의 코드, 프로토타입, 저장소 이력을 이어서 확인할 수 있습니다.</p>
+        <a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener noreferrer" class="ebh-link-card__cta ebh-link-card__cta--dark">GitHub 열기</a>
       </div>
-      <h2 class="sb-empty-state__title">No posts yet</h2>
-      <p id="emptyMsg" class="sb-empty-state__copy">Be the first to share your research!</p>
-      <a href="{{ relativebase }}admin/" class="sb-btn-primary">Write a Post</a>
-    </div>
+    </section>
 
-  </main><!-- End content wrapper -->
+    <section class="ebh-archive" aria-label="번역된 로컬 아카이브">
+      <div class="ebh-section-head">
+        <h2>번역된 <span>로컬 아카이브</span></h2>
+        <p>기존에 업로드한 4개의 핵심 글은 한국어로 번역해 현재 사이트 안에서 계속 읽을 수 있도록 정리했습니다.</p>
+      </div>
+
+      <div class="ebh-archive__grid">
+        {% for post in site.posts limit: 4 %}
+          {% include remove_double_slash.html %}
+          <article class="ebh-archive-card">
+            <a href="{{ post_url }}" class="ebh-archive-card__thumb" style="background-image:url('{{ relativebase }}assets/img/{{ post.img }}');" aria-label="{{ post.title | escape }}"></a>
+            <div class="ebh-archive-card__body">
+              <div class="ebh-archive-card__meta">{{ post.date | date: "%Y.%m.%d" }}</div>
+              <h3><a href="{{ post_url }}">{{ post.title }}</a></h3>
+              <p>{{ post.description | strip_html | truncatewords: 24 }}</p>
+              <a href="{{ post_url }}" class="ebh-archive-card__cta">읽어보기</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
 
   {% include footer.html %}
 </div>
 
-<!-- ── Firebase + Blog Scripts ── -->
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getFirestore, collection, query, where, orderBy, getDocs }
-         from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-
-  const firebaseConfig = {
-    apiKey:            "AIzaSyDR2XdnemhSHYznMFI20or-WKIPgn1V7vc",
-    authDomain:        "saas-of-funqa.firebaseapp.com",
-    projectId:         "saas-of-funqa",
-    storageBucket:     "saas-of-funqa.firebasestorage.app",
-    messagingSenderId: "74495319833",
-    appId:             "1:74495319833:web:d75e2d769b97c48bdeaf88"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db  = getFirestore(app);
-  const pageParams   = new URLSearchParams(window.location.search);
-
-  const grid         = document.getElementById('postsGrid');
-  const loadingEl    = document.getElementById('loadingState');
-  const emptyEl      = document.getElementById('emptyState');
-  const emptyMsg     = document.getElementById('emptyMsg');
-  const tagFiltersEl = document.getElementById('tagFilters');
-  const searchInput  = document.getElementById('searchInput');
-
-  let allPosts = [];
-  let activeTag = pageParams.get('tag');
-
-  // Alternate thumbnail accent colours (green / blue)
-  const ACCENTS = ['#7bc043', '#00bcd4'];
-
-  function accentFor(str) {
-    let h = 0;
-    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0;
-    return ACCENTS[Math.abs(h) % ACCENTS.length];
-  }
-
-  const CARD_DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  });
-
-  function escapeHTML(value = '') {
-    return String(value).replace(/[&<>"']/g, char => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    })[char]);
-  }
-
-  function formatDate(ts) {
-    if (!ts) return '';
-    const d = ts.toDate ? ts.toDate() : new Date(ts);
-    return CARD_DATE_FORMATTER.format(d);
-  }
-
-  function readTime(html) {
-    const words = html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
-    return Math.max(1, Math.round(words / 200));
-  }
-
-  function renderCard(post) {
-    const accent = accentFor(post.title || post.id);
-    const safeId = encodeURIComponent(post.id);
-    const safeTitle = escapeHTML(post.title || 'Untitled Post');
-    const safeAuthor = escapeHTML(post.author || 'Anonymous');
-    const safeExcerpt = escapeHTML(
-      post.excerpt || (post.content || '').replace(/<[^>]+>/g, ' ').slice(0, 150) + '…'
-    );
-    const tags = (post.tags || []).map(tag =>
-      `<button type="button" class="sb-tag-btn" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</button>`
-    ).join('');
-    const mins = readTime(post.content || '');
-
-    return `
-      <article class="sb-card-wrap">
-        <div class="sb-card-thumb" aria-hidden="true">
-          <div class="sb-card-thumb__grid"></div>
-          <div class="sb-card-thumb__accent" style="background:linear-gradient(90deg, ${accent}, transparent);"></div>
-          <svg class="sb-card-thumb__dna" width="64" height="64" viewBox="0 0 24 24" fill="none">
-            <path d="M6 2c0 3 3 4 6 6s6 3 6 6M18 2c0 3-3 4-6 6s-6 3-6 6M6 14c0 3 3 4 6 6M18 14c0 3-3 4-6 6" stroke="${accent}" stroke-width="1" stroke-linecap="round"/>
-            <path d="M8 4.5h8M8 8h8M8 16h8M8 19.5h8" stroke="#00bcd4" stroke-width="0.6" stroke-dasharray="2 2"/>
-          </svg>
-          <span class="sb-card-thumb__label" style="color:${accent};">EGLab</span>
-        </div>
-        <div class="sb-card-body">
-          <div class="sb-card-meta">
-            <span>${formatDate(post.createdAt)}</span>
-            <span>·</span>
-            <span>${mins} min read</span>
-            <span>·</span>
-            <span class="sb-card-author">${safeAuthor}</span>
-          </div>
-          <h2 class="sb-card-title">
-            <a href="student-post.html?id=${safeId}" class="sb-card-link">${safeTitle}</a>
-          </h2>
-          <p class="sb-card-excerpt">${safeExcerpt}</p>
-          <div class="sb-card-tags">${tags}</div>
-          <a href="student-post.html?id=${safeId}" class="sb-card-cta">
-            Read Post
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-          </a>
-        </div>
-      </article>`;
-  }
-
-  function renderPosts(posts) {
-    if (!posts.length) {
-      grid.innerHTML = '';
-      emptyEl.style.display = 'block';
-      emptyMsg.textContent = activeTag || searchInput.value.trim()
-        ? 'Try a different tag or search term.'
-        : 'Be the first to share your research!';
-      return;
-    }
-    emptyEl.style.display = 'none';
-    grid.innerHTML = posts.map(renderCard).join('');
-    grid.querySelectorAll('.sb-tag-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        activeTag = btn.dataset.tag === activeTag ? null : btn.dataset.tag;
-        syncFiltersToUrl();
-        applyFilters();
-        updateTagHighlight();
-      });
-    });
-  }
-
-  function syncFiltersToUrl() {
-    const params = new URLSearchParams(window.location.search);
-    const search = searchInput.value.trim();
-
-    if (activeTag) params.set('tag', activeTag);
-    else params.delete('tag');
-
-    if (search) params.set('q', search);
-    else params.delete('q');
-
-    const query = params.toString();
-    const nextUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
-    window.history.replaceState({}, '', nextUrl);
-  }
-
-  function applyFilters() {
-    const search = (searchInput.value || '').toLowerCase();
-    const filtered = allPosts.filter(p => {
-      const matchTag    = !activeTag || (p.tags || []).includes(activeTag);
-      const matchSearch = !search ||
-        (p.title || '').toLowerCase().includes(search) ||
-        (p.author || '').toLowerCase().includes(search) ||
-        (p.excerpt || '').toLowerCase().includes(search);
-      return matchTag && matchSearch;
-    });
-    renderPosts(filtered);
-  }
-
-  function updateTagHighlight() {
-    tagFiltersEl.querySelectorAll('.sb-filter-tag').forEach(btn => {
-      btn.classList.toggle('is-active', btn.dataset.tag === activeTag);
-    });
-  }
-
-  function buildTagCloud(posts) {
-    const counts = {};
-    posts.forEach(p => (p.tags || []).forEach(t => { counts[t] = (counts[t] || 0) + 1; }));
-    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
-    tagFiltersEl.innerHTML = sorted.map(([tag, cnt]) =>
-      `<button type="button" class="sb-filter-tag" data-tag="${escapeHTML(tag)}">
-        ${escapeHTML(tag)} <span class="sb-filter-tag__count">(${cnt})</span>
-      </button>`
-    ).join('');
-    tagFiltersEl.querySelectorAll('.sb-filter-tag').forEach(btn => {
-      btn.addEventListener('click', () => {
-        activeTag = btn.dataset.tag === activeTag ? null : btn.dataset.tag;
-        syncFiltersToUrl();
-        applyFilters();
-        updateTagHighlight();
-      });
-    });
-  }
-
-  async function loadPosts() {
-    try {
-      const q = query(
-        collection(db, 'blog_posts'),
-        where('status', '==', 'published'),
-        orderBy('createdAt', 'desc')
-      );
-      const snap = await getDocs(q);
-      // Filter out general posts (postType === 'post') — show only student posts or legacy posts
-      const filteredDocs = snap.docs.filter(d => {
-        const pt = d.data().postType;
-        return !pt || pt === 'student';
-      });
-      allPosts = filteredDocs.map(d => ({ id: d.id, ...d.data() }));
-      loadingEl.style.display = 'none';
-      buildTagCloud(allPosts);
-      updateTagHighlight();
-      applyFilters();
-    } catch (err) {
-      loadingEl.style.display = 'none';
-      console.error('Failed to load posts:', err);
-      emptyEl.style.display = 'block';
-      const isIndexErr = err.message && err.message.includes('index');
-      emptyEl.querySelector('.sb-empty-state__title').textContent =
-        isIndexErr ? 'Database index building…' : 'Could not load posts';
-      emptyMsg.textContent = isIndexErr
-        ? 'Firestore is building a required index. This takes 1–2 minutes on first run. Refresh to retry.'
-        : (err.code === 'permission-denied'
-            ? 'Posts are private or rules are not deployed.'
-            : `Error: ${err.message}`);
-    }
-  }
-
-  searchInput.value = pageParams.get('q') || '';
-  let _searchDebounce;
-  searchInput.addEventListener('input', () => {
-    clearTimeout(_searchDebounce);
-    _searchDebounce = setTimeout(() => {
-      syncFiltersToUrl();
-      applyFilters();
-    }, 200);
-  });
-  loadPosts();
-</script>
-
 <style>
-/* ── EGLab Student Blog — Ice Bear × EGLab Light Theme ── */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@700;900&display=swap');
-
-:root {
-  --eglab-green:   #7bc043;
-  --eglab-cyan:    #00bcd4;
-  --eglab-sky:     #62B3E5;
-  --eglab-ink:     #1a1a2e;
-  --eglab-soft:    #3a3a4e;
-  --eglab-bg:      #fdfdfd;
-  --eglab-bg-alt:  #f0f7fe;
-  --eglab-hero-bg: #C4E8F8;
+.eglab-blog-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding-top: 32px;
+  padding-bottom: 48px;
 }
 
-body {
-  overflow-x: hidden;
-  font-family: 'Lato', sans-serif;
-  background: var(--eglab-bg);
-  color: var(--eglab-ink);
-}
-
-.student-blog-shell {
-  padding-block: 1.5rem 4.5rem;
-  background: var(--eglab-bg);
-}
-
-.sb-visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ── Hero ── */
-.student-blog-hero {
+.ebh-hero,
+.ebh-flow,
+.ebh-archive {
   position: relative;
   overflow: hidden;
-  margin: 2.5rem 0 2rem;
-  padding: clamp(2rem, 5vw, 3.5rem);
-  background: var(--eglab-hero-bg);
-  border-radius: var(--radius-lg, 16px);
-  border: 1px solid rgba(98,179,229,0.25);
-  box-shadow: 0 4px 20px rgba(26,26,46,0.08);
+  border-radius: 28px;
+  border: 1px solid rgba(98, 179, 229, 0.22);
+  box-shadow: 0 18px 40px rgba(20, 32, 61, 0.08);
 }
 
-.sb-hero__backdrop {
+.ebh-hero {
+  background:
+    radial-gradient(circle at top left, rgba(123, 192, 67, 0.16), transparent 28%),
+    linear-gradient(145deg, #f3fbff 0%, #d9f0fb 46%, #c7e9fb 100%);
+  padding: 48px;
+}
+
+.ebh-hero__grid {
   position: absolute;
   inset: 0;
-  opacity: 0.06;
-  background-image: radial-gradient(#62B3E5 1px, transparent 1px);
-  background-size: 26px 26px;
-  pointer-events: none;
+  background-image: radial-gradient(rgba(98, 179, 229, 0.25) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.2;
 }
 
-.sb-hero__dna {
+.ebh-hero__dna {
   position: absolute;
-  right: 2rem;
+  right: 36px;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.18;
-  pointer-events: none;
+  opacity: 0.42;
 }
 
-.sb-hero__content {
+.ebh-hero__content,
+.ebh-flow,
+.ebh-archive {
   position: relative;
   z-index: 1;
-  max-width: 38rem;
 }
 
-.sb-hero__eyebrow {
-  display: flex;
+.ebh-hero__eyebrow {
+  display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
-.sb-hero__wordmark {
+.ebh-hero__wordmark {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 900;
-  letter-spacing: -0.01em;
-  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #1a1a2e;
 }
 
-.sb-hero__wordmark-eg {
+.ebh-hero__wordmark span {
   color: #7bc043;
 }
 
-.sb-hero__wordmark-lab {
-  color: var(--eglab-ink);
-}
-
-.sb-hero__divider {
+.ebh-hero__pipe {
   width: 1px;
-  height: 1rem;
-  background: rgba(98,179,229,0.45);
+  height: 18px;
+  background: rgba(26, 26, 46, 0.15);
 }
 
-.sb-hero__label {
+.ebh-hero__label {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--eglab-cyan);
+  color: #00bcd4;
 }
 
-.sb-hero__title {
-  margin: 0 0 0.9rem;
+.ebh-hero h1,
+.ebh-section-head h2 {
+  margin: 0 0 14px;
+  color: #1a1a2e;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2.25rem, 4vw, 3.4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 900;
-  color: var(--eglab-ink);
   line-height: 1.08;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
+  letter-spacing: -0.04em;
 }
 
-.sb-hero__lede {
+.ebh-hero h1 span,
+.ebh-section-head h2 span {
+  color: #7bc043;
+}
+
+.ebh-hero__lede,
+.ebh-section-head p {
+  max-width: 760px;
   margin: 0;
-  max-width: 33rem;
-  font-size: 1.02rem;
-  color: var(--eglab-soft);
+  color: #32405f;
+  font-size: 1rem;
   line-height: 1.8;
 }
 
-.sb-hero__support {
-  margin: 1rem 0 0;
-  max-width: 35rem;
-  color: rgba(58,58,78,0.65);
-  line-height: 1.75;
-}
-
-.sb-hero__actions {
-  margin-top: 1.75rem;
+.ebh-hero__actions,
+.ebh-links {
   display: flex;
-  gap: 0.75rem;
   flex-wrap: wrap;
+  gap: 16px;
 }
 
-/* ── Buttons ── */
-.sb-btn-primary {
+.ebh-hero__actions {
+  margin-top: 28px;
+}
+
+.ebh-btn,
+.ebh-link-card__cta,
+.ebh-archive-card__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 2.75rem;
-  padding: 10px 24px;
-  background: var(--eglab-green);
-  border: none;
   border-radius: 999px;
-  color: #fff;
   text-decoration: none;
-  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.025em;
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 14px rgba(123,192,67,0.30);
-  touch-action: manipulation;
-}
-.sb-btn-primary:hover {
-  background: #8cd64a;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(123,192,67,0.40);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
 }
 
-.sb-btn-outline {
+.ebh-btn:hover,
+.ebh-link-card__cta:hover,
+.ebh-archive-card__cta:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.ebh-btn {
+  padding: 12px 22px;
+  font-size: 0.9rem;
+}
+
+.ebh-btn--primary,
+.ebh-link-card__cta {
+  background: #7bc043;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(123, 192, 67, 0.26);
+}
+
+.ebh-btn--github,
+.ebh-link-card__cta--dark {
+  background: #1a1a2e;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(26, 26, 46, 0.22);
+}
+
+.ebh-flow,
+.ebh-archive {
+  background: #ffffff;
+  padding: 34px 32px;
+}
+
+.ebh-section-head {
+  margin-bottom: 24px;
+}
+
+.ebh-flow__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.ebh-step,
+.ebh-link-card,
+.ebh-archive-card {
+  background: #f5fbff;
+  border: 1px solid rgba(98, 179, 229, 0.16);
+  border-radius: 22px;
+  box-shadow: 0 10px 26px rgba(20, 32, 61, 0.06);
+}
+
+.ebh-step {
+  padding: 24px;
+}
+
+.ebh-step--active {
+  background: linear-gradient(180deg, rgba(123, 192, 67, 0.1), rgba(0, 188, 212, 0.08));
+  border-color: rgba(123, 192, 67, 0.22);
+}
+
+.ebh-step__number {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #00bcd4;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.ebh-step h3,
+.ebh-link-card h3,
+.ebh-archive-card h3 {
+  margin: 0 0 10px;
+  color: #1a1a2e;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  line-height: 1.24;
+}
+
+.ebh-step p,
+.ebh-link-card p,
+.ebh-archive-card p {
+  margin: 0;
+  color: #46536f;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.ebh-step a {
+  display: inline-block;
+  margin-top: 14px;
+  color: #00bcd4;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ebh-link-card {
+  flex: 1 1 280px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ebh-link-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-height: 2.75rem;
-  padding: 10px 22px;
-  background: #ffffff;
-  border: 1px solid rgba(0,188,212,0.38);
-  border-radius: 999px;
-  color: var(--eglab-cyan);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: border-color 0.2s, background 0.2s;
-  touch-action: manipulation;
-}
-.sb-btn-outline:hover {
-  border-color: rgba(0,188,212,0.65);
-  background: rgba(0,188,212,0.06);
 }
 
-/* ── Filter bar ── */
-.sb-filter-bar {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.9rem;
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: var(--eglab-bg-alt);
-  border: 1px solid rgba(98,179,229,0.18);
-  margin-bottom: 1.75rem;
+.ebh-link-card__icon--blog {
+  background: rgba(123, 192, 67, 0.14);
+  color: #7bc043;
 }
 
-.sb-filter-bar__heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+.ebh-link-card__icon--github {
+  background: rgba(26, 26, 46, 0.1);
+  color: #1a1a2e;
 }
 
-.sb-filter-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--eglab-green);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.sb-filter-copy {
-  margin: 0;
-  color: var(--eglab-soft);
-  font-size: 0.83rem;
-}
-
-.sb-filter-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.sb-filter-tag {
-  cursor: pointer;
-  font-size: 0.73rem;
-  font-weight: 600;
-  padding: 0.42rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid rgba(98,179,229,0.30);
-  background: #ffffff;
-  color: var(--eglab-sky);
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
-  touch-action: manipulation;
-}
-
-.sb-filter-tag:hover {
-  border-color: var(--eglab-sky);
-  background: rgba(98,179,229,0.10);
-}
-
-.sb-filter-tag.is-active {
-  background: var(--eglab-green);
-  color: #fff;
-  border-color: var(--eglab-green);
-}
-
-.sb-filter-tag__count {
-  opacity: 0.6;
-}
-
-.sb-search-wrap {
-  width: min(100%, 20rem);
-}
-
-/* ── Post grid ── */
-.sb-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-  gap: 1.5rem;
-  margin-bottom: 4rem;
-}
-
-.sb-card-wrap {
-  background: #ffffff;
-  border: 1px solid rgba(98,179,229,0.15);
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(26,26,46,0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.sb-card-wrap:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 32px rgba(26,26,46,0.13);
-  border-color: rgba(98,179,229,0.35) !important;
-}
-
-.sb-card-thumb {
-  position: relative;
-  height: 9.5rem;
-  background: linear-gradient(135deg, #e8f4fd 0%, #d4ecf7 100%);
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.sb-card-thumb__grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(98,179,229,0.12) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-
-.sb-card-thumb__accent {
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
-  height: 2px;
-}
-
-.sb-card-thumb__dna {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  opacity: 0.20;
-}
-
-.sb-card-thumb__label {
-  position: absolute;
-  bottom: 0.75rem;
-  left: 0.9rem;
-  font-size: 0.65rem;
+.ebh-link-card__eyebrow {
+  color: #00bcd4;
+  font-size: 0.74rem;
   font-weight: 800;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.85;
 }
 
-.sb-card-body {
-  padding: 1.2rem 1.25rem 1.3rem;
-  flex: 1;
+.ebh-link-card__cta {
+  margin-top: auto;
+  width: fit-content;
+  padding: 11px 18px;
+  font-size: 0.84rem;
+}
+
+.ebh-archive__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.ebh-archive-card {
+  overflow: hidden;
+}
+
+.ebh-archive-card__thumb {
+  display: block;
+  min-height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+.ebh-archive-card__body {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 10px;
+  padding: 22px;
 }
 
-.sb-card-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.73rem;
-  color: rgba(58,58,78,0.55);
-  flex-wrap: wrap;
-  font-variant-numeric: tabular-nums;
+.ebh-archive-card__meta {
+  color: #00bcd4;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
 }
 
-.sb-card-author {
-  font-weight: 600;
-  color: var(--eglab-cyan);
-}
-
-.sb-card-title {
-  margin: 0;
-  font-size: 1.08rem;
-  font-weight: 700;
-  color: var(--eglab-ink);
-  line-height: 1.45;
-  text-wrap: balance;
-}
-
-.sb-card-link {
+.ebh-archive-card h3 a {
   color: inherit;
   text-decoration: none;
 }
 
-.sb-card-excerpt {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--eglab-soft);
-  line-height: 1.82;
-  flex: 1;
-  overflow-wrap: break-word;
+.ebh-archive-card__cta {
+  margin-top: auto;
+  width: fit-content;
+  padding: 10px 16px;
+  background: rgba(123, 192, 67, 0.12);
+  color: #5e9a2b;
+  font-size: 0.82rem;
 }
 
-.sb-card-tags {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-
-/* ── Tag chips inside cards ── */
-.sb-tag-btn {
-  cursor: pointer;
-  border: 1px solid rgba(98,179,229,0.25);
-  background: rgba(98,179,229,0.08);
-  color: var(--eglab-sky);
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 999px;
-  transition: background 0.15s, border-color 0.15s;
-  touch-action: manipulation;
-}
-.sb-tag-btn:hover {
-  background: rgba(98,179,229,0.18);
-  border-color: var(--eglab-sky);
-}
-
-.sb-card-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.79rem;
-  font-weight: 700;
-  color: var(--eglab-green);
-  text-decoration: none;
-  letter-spacing: 0.02em;
-}
-
-/* ── Search input ── */
-.sb-search {
-  width: 100%;
-  min-height: 2.75rem;
-  padding: 0.7rem 0.95rem;
-  border: 1px solid rgba(98,179,229,0.30);
-  border-radius: 999px;
-  background: #ffffff;
-  color: var(--eglab-ink);
-  font-size: 0.84rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.sb-search:focus {
-  border-color: var(--eglab-sky);
-  box-shadow: 0 0 0 3px rgba(98,179,229,0.15);
-  outline: none;
-}
-.sb-search::placeholder {
-  color: rgba(58,58,78,0.40);
-}
-
-/* ── Empty state ── */
-.sb-empty-state {
-  text-align: center;
-  padding: 5rem 1.25rem;
-}
-
-.sb-empty-state__icon {
-  width: 5rem;
-  height: 5rem;
-  margin: 0 auto 1.25rem;
-  border-radius: 50%;
-  background: rgba(123,192,67,0.08);
-  border: 1px solid rgba(123,192,67,0.22);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sb-empty-state__title {
-  color: var(--eglab-ink);
-  font-weight: 700;
-  margin: 0 0 0.5rem;
-}
-
-.sb-empty-state__copy {
-  color: var(--eglab-soft);
-  font-size: 0.88rem;
-  margin: 0 0 1.5rem;
-}
-
-/* ── Skeleton loaders ── */
-.sb-skeleton-thumb { height: 9.5rem; border-radius: 0; }
-.sb-skeleton-body { padding: 1.25rem; }
-.sb-skeleton-meta { height: 0.8rem; width: 55%; margin-bottom: 0.85rem; }
-.sb-skeleton-title { height: 1.1rem; width: 88%; margin-bottom: 0.7rem; }
-.sb-skeleton-line { height: 0.72rem; width: 100%; margin-bottom: 0.45rem; }
-.sb-skeleton-line--short { width: 72%; margin-bottom: 1rem; }
-.sb-skeleton-tags { display: flex; gap: 0.5rem; }
-.sb-skeleton-tag { height: 1.25rem; width: 3.7rem; border-radius: 999px; }
-.sb-skeleton-tag--small { width: 3rem; }
-
-/* ── Focus rings ── */
-.sb-btn-primary:focus-visible,
-.sb-btn-outline:focus-visible,
-.sb-filter-tag:focus-visible,
-.sb-tag-btn:focus-visible,
-.sb-search:focus-visible,
-.sb-card-link:focus-visible,
-.sb-card-cta:focus-visible {
-  outline: 2px solid rgba(98,179,229,0.80);
-  outline-offset: 3px;
-}
-
-/* ── Responsive ── */
-@media (max-width: 720px) {
-  .student-blog-shell {
-    padding-block: 1rem 3.5rem;
+@media (max-width: 900px) {
+  .ebh-hero {
+    padding: 32px 24px;
   }
 
-  .student-blog-hero {
-    margin-block: 1.5rem;
+  .ebh-hero__dna {
+    right: -24px;
+    opacity: 0.22;
   }
 
-  .sb-hero__dna {
-    display: none;
+  .ebh-flow__steps,
+  .ebh-archive__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .eglab-blog-hub {
+    gap: 24px;
   }
 
-  .sb-hero__actions,
-  .sb-filter-bar__heading {
-    align-items: stretch;
+  .ebh-flow,
+  .ebh-archive {
+    padding: 24px 18px;
   }
 
-  .sb-search-wrap {
+  .ebh-btn,
+  .ebh-link-card__cta,
+  .ebh-archive-card__cta {
     width: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sb-card-wrap,
-  .sb-btn-primary,
-  .sb-btn-outline,
-  .sb-filter-tag,
-  .sb-tag-btn,
-  .sb-search,
-  .skeleton {
-    transition: none;
-    animation: none;
   }
 }
 </style>

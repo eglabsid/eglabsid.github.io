@@ -28,7 +28,7 @@ test.describe('Tags Knowledge Graph', () => {
     await page.goto('/tags.html');
     await page.waitForLoadState('domcontentloaded');
     const heading = page.locator('h1');
-    await expect(heading).toContainText('Tags');
+    await expect(heading).toContainText('태그');
   });
 
   test('graph SVG element is present', async ({ page }) => {

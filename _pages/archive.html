@@ -349,21 +349,21 @@ body {
         <span class="archive-hero__logo-eg">EG</span><span class="archive-hero__logo-lab">LAB</span>
       </span>
       <span class="archive-hero__pipe"></span>
-      <span class="archive-hero__lab-label">Research Posts</span>
+      <span class="archive-hero__lab-label">Korean Archive</span>
     </div>
-    <h1>Post <span style="color:#7bc043;">Archive</span></h1>
+    <h1>번역된 <span style="color:#7bc043;">연구 아카이브</span></h1>
     <p class="archive-hero__subtitle">
-      A readable index of <span style="color:#00bcd4;font-weight:600;">EGLab</span> writing —
-      papers, notes, and experiments across Game AI, evolutionary computation, and indie game development.
+      기존 EGLAB 글 4편을 한국어 중심으로 다시 정리한 로컬 아카이브입니다.
+      Game AI, neural network, optimization, AI 저작권 이슈를 한글로 읽을 수 있습니다.
     </p>
     <div class="archive-hero__actions">
-      <a href="{{ relativebase }}student-blog.html" class="archive-hero__btn archive-hero__btn--green">Student Blog</a>
-      <a href="{{ relativebase }}tags.html" class="archive-hero__btn archive-hero__btn--blue">Browse Tags</a>
+      <a href="{{ relativebase }}student-blog.html" class="archive-hero__btn archive-hero__btn--green">EGLAB Blog 허브</a>
+      <a href="{{ relativebase }}tags.html" class="archive-hero__btn archive-hero__btn--blue">태그 보기</a>
     </div>
     <div class="archive-hero__stats">
-      <span class="archive-hero__stat archive-hero__stat--green">Searchable index</span>
-      <span class="archive-hero__stat archive-hero__stat--blue">Newest first</span>
-      <span class="archive-hero__stat archive-hero__stat--muted">Clean text preview</span>
+      <span class="archive-hero__stat archive-hero__stat--green">한국어 번역</span>
+      <span class="archive-hero__stat archive-hero__stat--blue">최신순 정렬</span>
+      <span class="archive-hero__stat archive-hero__stat--muted">텍스트 중심 미리보기</span>
     </div>
   </div>
 </section>
@@ -371,7 +371,7 @@ body {
 <div class="archive tag-master">
 	<form class="search-form inline">
 		<div id="search-container">
-			<input type="text" id="search-input" class="search" placeholder="Search posts, topics, or authors">
+			<input type="text" id="search-input" class="search" placeholder="글 제목, 주제, 작성자를 검색해보세요">
 		</div>
 	</form>
 	<ul id="results-container" class="results-search"></ul>
@@ -386,7 +386,7 @@ body {
 				  {{ post.description | strip_html | strip_newlines | truncatewords: 34 }}
 				{% else %}
 				  {{ post.excerpt | strip_html | strip_newlines | truncatewords: 34 }}
-				{% endif %}<a class="read-more" href="{{ post_url }}"> read more</a>
+				{% endif %}<a class="read-more" href="{{ post_url }}"> 이어서 읽기</a>
 			</div>
 		</div>
 	{% endfor %}

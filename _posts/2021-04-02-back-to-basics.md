@@ -2,115 +2,203 @@
 layout: post
 read_time: true
 show_date: true
-title: "So, what is a neural network?"
+title: 신경망이란 무엇인가?
 date: 2021-04-02
 img: posts/20210402/post7-header.webp
-tags: [neural networks, machine learning, artificial intelligence]
+tags: [신경망, 머신러닝, 인공지능]
 category: theory
 author: Armando Maynez
-description: "ELI5: what is a neural network."
+description: "ELI5 스타일로 신경망의 기본 개념을 풀어쓴 글입니다."
 ---
-The omnipresence of technology nowadays has made it commonplace to read news about AI, just a quick glance at today's headlines, and I get:
-- [This Powerful AI Technique Led to Clashes at Google and Fierce Debate in Tech.](https://www.morningbrew.com/emerging-tech/stories/2021/03/29/one-biggest-advancements-ai-also-sparked-fierce-debate-heres?utm_source=morning_brew)
-- [How A.I.-powered companies dodged the worst damage from COVID](https://fortune.com/2021/04/02/ai-forecasting-supply-chain-factories-caterpillar-agco/)
-- [AI technology detects ‘ticking time bomb’ arteries](https://www.mobihealthnews.com/news/emea/ai-technology-detects-ticking-time-bomb-arteries)
-- [AI in Drug Discovery Starts to Live Up to the Hype](https://www.genengnews.com/insights/ai-in-drug-discovery-starts-to-live-up-to-the-hype/)
-- [Pentagon seeks commercial solutions to get its data ready for AI](https://www.c4isrnet.com/artificial-intelligence/2021/04/02/pentagon-seeks-commercial-solutions-to-get-its-data-ready-for-ai/)
-  
+요즘은 AI 관련 뉴스를 보기 어렵지 않습니다.
+조금만 둘러봐도 의료, 공급망, 제조, 국방, 콘텐츠 생성까지 거의 모든 분야에서 AI 이야기가 등장합니다.
 
-Topics from business, manufacturing, supply chain, medicine and biotech and even defense are covered in those news headlines, definitively the advancements on the fields of artificial intelligence, in particular machine learning and deep neural networks have permeated into our daily lives and are here to stay. But, do the general population know what are we talking about when we say "an AI"?  I assume most people correctly imagine a computer algorithm or perhaps the more adventurous minds think of a physical machine, an advanced computer entity or even a robot, getting smarter by itself with every use-case we throw at it. And most people will be right, when "an AI" is mentioned it is indeed an algorithm run by a computer, and there is where the boundary of their knowledge lies. 
+- [Google 내부 갈등과 함께 큰 논쟁을 불러온 강력한 AI 기법](https://www.morningbrew.com/emerging-tech/stories/2021/03/29/one-biggest-advancements-ai-also-sparked-fierce-debate-heres?utm_source=morning_brew)
+- [COVID 시기에도 피해를 줄인 AI 기반 기업들](https://fortune.com/2021/04/02/ai-forecasting-supply-chain-factories-caterpillar-agco/)
+- [혈관의 위험 신호를 감지하는 AI 기술](https://www.mobihealthnews.com/news/emea/ai-technology-detects-ticking-time-bomb-arteries)
+- [신약 개발에서 현실 성과를 내기 시작한 AI](https://www.genengnews.com/insights/ai-in-drug-discovery-starts-to-live-up-to-the-hype/)
+- [AI 활용을 위해 데이터를 정비하려는 미 국방부](https://www.c4isrnet.com/artificial-intelligence/2021/04/02/pentagon-seeks-commercial-solutions-to-get-its-data-ready-for-ai/)
 
-They say that the best way to learn something is to try to explain it, so in a personal exercise I will try to do an ELI5 (**E**xplain it **L**ike **I** am **5**) version of what is a neural network.
+그만큼 artificial intelligence, 특히 machine learning과 deep neural network는 이제 일상 속으로 깊이 들어왔습니다.
+그런데 막상 “AI가 뭐냐”라고 물으면, 많은 사람은 “똑똑해지는 알고리즘” 정도로만 이해하고 있는 경우가 많습니다.
 
-Let's start with a little history, humans have been tinkering with the idea of an intelligent machine for a while now, some even say that the idea of artificial intelligence was conceived by the ancient greeks ([source](https://www.thinkautomation.com/bots-and-ai/a-history-of-automation-the-rise-of-robots-and-ai/)), and several attempts at devising "intelligent" machines have been made through history, a notable one was 'The Analytical Engine' created by Charles Babbage in 1837:
+그래서 이번 글에서는 **ELI5(Explain Like I'm 5)** 스타일로, “신경망이란 무엇인가?”를 최대한 쉽게 설명해보려 합니다.
+
+## 아주 짧은 역사
+
+인간은 오래전부터 “지능을 가진 기계”를 상상해왔습니다.
+어떤 사람들은 artificial intelligence의 뿌리를 고대 그리스까지 거슬러 올라가기도 하고,
+실제로 역사적으로도 “생각하는 기계”를 만들려는 시도는 반복되어 왔습니다.
+
+대표적인 사례로 1837년 Charles Babbage의 **Analytical Engine**을 들 수 있습니다.
 
 ![The Analytical Engine](./assets/img/posts/20210402/post7-analytical-engine.jpg)
-<small>The Analytical Engine of Charles Babbage - 1837</small>
+<small>Charles Babbage의 Analytical Engine - 1837</small>
 
-Then, in the middle of last century by trying to create a model of how our brain works, Neural Networks were born. Around that time, Frank Rosenblatt at Cornell trying to understand the simple decision system present in the eye of a common housefly,  proposed the idea of a [perceptron](./single-neuron-perceptron.html), a very simple system that processes certain inputs with basic math operations and produces an output.
+그리고 20세기 중반, 인간의 뇌가 정보를 처리하는 방식을 모델링하려는 시도 속에서 **Neural Network**가 등장합니다.
+Cornell의 Frank Rosenblatt는 집파리의 시각 시스템을 연구하며 [퍼셉트론](./single-neuron-perceptron.html)이라는 개념을 제안했습니다.
+퍼셉트론은 입력을 받아 간단한 수학 연산을 수행하고 하나의 출력을 내놓는 아주 단순한 모델입니다.
 
 ![A perceptron](./assets/img/posts/20210125/Perceptron.png)
 
-To illustrate, let's say that the brain of the housefly is a perceptron, its inputs are whatever values are produced by the multiple cells in its eyes, when the eye cell detects "something" it's output will be a 1, and if there is nothing a 0. Then the combination of all those inputs can be processed by the perceptron (the fly brain), and the output is a simple 0 or 1 value. If it is a 1 then the brain is telling the fly to flee and if it is a 0 it means it is safe to stay where it is.
+## 퍼셉트론을 집파리로 비유해보기
+
+예를 들어 집파리의 눈과 뇌를 상상해봅시다.
+
+- 눈의 여러 셀이 어떤 자극을 감지하면 1
+- 아무것도 감지하지 못하면 0
+
+이 입력값들을 퍼셉트론이 받아 최종적으로 0 또는 1을 출력한다고 생각할 수 있습니다.
+
+- 1이면 “도망쳐라”
+- 0이면 “괜찮다”
 
 ![A housefly eye](./assets/img/posts/20210402/post7-housefly-eye.jpg)
 
-We can imagine then that if many of the eye cells of the fly produce 1s, it means that an object is quite near, and therefore the perceptron will calculate a 1, it is time to flee.
+여러 눈세포가 동시에 1을 낸다면, 무언가가 가까이 있다는 뜻이고,
+퍼셉트론은 위험 신호라고 판단해 1을 출력할 수 있습니다.
 
 ![The fly vision](./assets/img/posts/20210402/post7-fly-vision.jpg)
 
-The perceptron is just a math operation, one that multiplies certain input values with preset "parameters" (called weights) and adds up the resulting multiplications to generate a value.
+이 관점에서 보면 퍼셉트론은 결국 **입력값과 가중치(weight)를 곱하고 합산하는 수학 연산**입니다.
 
-Then the magic spark was ignited, the parameters (weights) of the perceptron could be "learnt" by a process of minimizing the difference between known results of particular observations, and what the perceptron is actually calculating. It is this process of learning what we call **training the neural network**.
+## 학습은 어디서 일어날까?
 
-<tweet>This idea is so powerful that even today it is one of the fundamental building blocks of what we call AI.</tweet>
+진짜 중요한 포인트는 여기서 시작됩니다.
+퍼셉트론의 가중치는 고정된 상수가 아니라,
+정답이 알려진 사례들에 대해 오차를 줄이도록 **학습(Training)** 될 수 있습니다.
 
-From this I will try to explain how this simple concept can have such diverse applications as natural language processing (think Alexa), image recognition like medical diagnosis from a CTR scan, autonomous vehicles, etc.
+즉, 관측값과 정답이 있을 때 그 차이를 줄여가며 파라미터를 조정하는 과정이
+우리가 흔히 말하는 **신경망 학습**입니다.
 
-A basic neural network is a combination of perceptrons in different arrangements, the perceptron therefore was downgraded from "fly brain" to "network neuron".
+<tweet>이 아이디어는 지금도 AI라고 부르는 시스템의 핵심 구성 요소 중 하나입니다.</tweet>
+
+## 신경망은 퍼셉트론의 조합이다
+
+이제 퍼셉트론 하나만으로는 복잡한 문제를 풀기 어렵다는 점이 자연스럽게 보입니다.
+그래서 여러 퍼셉트론을 층(layer) 형태로 연결한 것이 신경망입니다.
+
+즉, 퍼셉트론은 더 이상 “파리의 뇌 전체”가 아니라,
+신경망 안에서 동작하는 **하나의 뉴런**이 됩니다.
+
 ![A multilayer perceptron](./assets/img/posts/20210402/post7-multilayer-perceptron.png)
 
-A neural network has different components, in its basic form it has:
+기본적인 신경망은 크게 세 부분으로 구성됩니다.
+
 - Input
-- Hidden layers
+- Hidden Layers
 - Output
 
 ![Neural network components](./assets/img/posts/20210228/nnet_flow.gif)
 
-### Input
+## Input
 
-The inputs of a neural network are in their essence just numbers, therefore anything that can be converted to a number can become an input. Letters in a text, pixels in an image, frequencies in a sound wave, values from a sensor, etc. are all different things that when converted to a numerical value serve as inputs for the neural network. This is one of the reasons why applications of neural networks are so diverse.
+신경망의 입력은 본질적으로 숫자입니다.
+텍스트의 문자, 이미지의 픽셀, 음성의 주파수, 센서 값 등도 결국 숫자로 바꿀 수 있다면 입력이 될 수 있습니다.
 
-Inputs can be as many as one need for the task at hand, from maybe 9 inputs to teach a neural network how to play tic-tac-toe to thousands of pixels from a camera for an autonomous vehicle. Since the input of a perceptron needs to be a single value, if for example a color pixel is chosen as input, it most likely will be broken into three different values; its  red, green and blue components, hence each pixel will become 3 different inputs for the neural network.
+이 점 때문에 신경망의 응용 범위가 매우 넓습니다.
 
-### Hidden layers
+- 틱택토 판 상태라면 9개의 입력일 수도 있고
+- 자율주행 이미지라면 수천 개 픽셀일 수도 있습니다
 
-A "layer" within a neural network is just a group of perceptrons that all perform the same exact mathematical operation to the inputs and produce an output. The catch is that each of them have different weights (parameters), therefore their output for a given input will be different amongst them. There are many types of layers, the most typical of them being a "dense" layer, which is another word to say that all the inputs are connected to all the neurons (individual perceptrons), and as said before, each of these connections have a weight associated with it, so that the operation that each neuron performs is a simple weighted sum of all the inputs.
+예를 들어 컬러 픽셀을 입력으로 쓴다면, 하나의 픽셀은 보통 R, G, B 세 개의 값으로 나뉘어 입력됩니다.
+
+## Hidden Layers
+
+레이어는 같은 종류의 연산을 수행하는 퍼셉트론 묶음입니다.
+모든 뉴런이 같은 식을 사용하더라도, 각 뉴런은 서로 다른 가중치를 가지기 때문에 결과는 다를 수 있습니다.
+
+가장 전형적인 형태는 dense layer입니다.
+입력의 모든 값이 레이어 안의 모든 뉴런과 연결되고, 각 연결은 고유한 가중치를 가집니다.
 
 ![post7-dense-layers](./assets/img/posts/20210402/post7-dense-layers.png)
 
-The hidden layer is then typically connected to another dense layer, and their connection means that each output of a neuron from the first layer is treated effectively as an input for the subsequent one, and it is thus connected to every neuron.
+하나의 hidden layer 출력은 다음 hidden layer의 입력이 됩니다.
+이 과정을 반복하면서 더 복잡한 패턴을 표현할 수 있게 됩니다.
 
-A neural network can have from one to as many layers as one can think, and the number of layers depends solely on the experience we have gathered on the particular problem we would like to solve.
+신경망의 설계에서 중요한 것은 다음과 같습니다.
 
-Another critical parameter of a hidden layer is the number of neurons it has, and again, we need to rely on experience to determine how many neurons are needed for a given problem. I have seen networks that vary from a couple of neurons to the thousands. And of course each hidden layer can have as many neurons as we please, so the number of combinations is vast.
+- 레이어 개수
+- 각 레이어의 종류
+- 각 레이어의 뉴런 수
 
-To the number of layers, their type and how many neurons each have, is what we call the *network topology* (including the number of inputs and outputs).
+이 전체 구조를 보통 **network topology**라고 부릅니다.
 
-### Output
+## Output
 
-At the very end of the chain, another layer lies (which behaves just like a hidden layer), but has the peculiarity that it is the final layer, and therefore whatever it calculates will be the output values of the whole network. The number of outputs the network has is a function of the problem we would like to solve. It could be as simple as one output, with its value representing a probability of an action (like in the case of the flee reaction of the housefly), to many outputs, perhaps if our network is trying to distinguish images of animals, one would have an output for each animal species, and the output would represent how much confidence the network has that the particular image belongs to the corresponding species.
+마지막에는 output layer가 있습니다.
+여기서 계산된 값이 신경망 전체의 최종 출력입니다.
 
-As we said, the neural network is just a collection of individual neurons, doing basic math operations on certain inputs in series of layers that eventually generate an output. This mesh of neurons is then "trained" on certain output values from known cases of the inputs; once it has learned it can then process new inputs, values that it has never seen before with surprisingly accurate results.
+문제에 따라 출력 형태는 달라집니다.
 
-Many of the problems neural networks solve, could be certainly worked out by other algorithms, however, since neural networks are in their core very basic operations, once trained, they are extremely efficient, hence much quicker and economical to produce results.
+- 하나의 값만 내서 어떤 행동의 확률을 표현할 수도 있고
+- 동물 이미지를 분류한다면 동물 종마다 하나씩 출력을 둘 수도 있습니다
 
-There are a few more details on how a simple neural network operate that I purposedly left out to make this explanation as simple as possible. Thinks like biases, the activation functions and the math behind learning, the backpropagation algorithm, I will leave to a more in depth article. I will also write (perhaps in a series) about the more complex topologies combining different types of layers and other building blocks, a part from the perceptron.
+결국 신경망은 여러 뉴런이 층을 이루며 입력을 처리하고,
+학습 후에는 이전에 보지 못한 데이터에 대해서도 꽤 정확한 결과를 내놓는 구조입니다.
+
+## 왜 신경망이 강력할까?
+
+많은 문제는 다른 알고리즘으로도 풀 수 있습니다.
+하지만 신경망은 학습이 끝난 뒤에는 매우 단순한 수학 연산만으로 결과를 빠르게 낼 수 있다는 장점이 있습니다.
+
+물론 여기서는 일부러 많은 것을 생략했습니다.
+
+- bias
+- activation function
+- backpropagation의 수학
+- gradient descent의 세부 동작
+
+이런 내용은 더 깊은 글에서 다루는 편이 좋습니다.
+
+## Alexa는 어떻게 이해할까?
+
+실생활 예시로 Alexa를 생각해보면 이해가 조금 더 쉬워집니다.
 
 ![Alexa recognizing speach](./assets/img/posts/20210402/post7-alexa.png)
 
-Things like "Alexa", are a bit more complex, but work on exactly the same principles. Let's break down for example the case of asking "Alexa" to play a song in spotify. Alexa uses several different neural networks to acomplish this:
+예를 들어 “Alexa, play Van Halen”이라고 말한다고 합시다.
+이 과정에는 여러 신경망이 연쇄적으로 동작합니다.
 
-#### 1. Speech recognition
+### 1. Speech Recognition
 
-As a basic input we have our speech: the command **"Alexa, play Van Halen"**. This might seem quite simple for us humans to process, but for a machine is an incredible difficult feat to be able to understand speech, things like each individual voice timbre, entonation, intention and many more nuances of human spoken language make it so that traditional algorithms have struggled a lot with this. In our simplified example let's say that we use a neural network to transform our spoken speech into text characters a computer is much more familiarized to learn.
+입력은 우리의 음성입니다.
+사람에게는 쉬워 보이지만, 기계가 음성을 이해하는 일은 매우 어렵습니다.
+목소리 톤, 억양, 발음, 의도 같은 요소가 너무 많기 때문입니다.
 
-#### 2. Understanding what we mean (Natural Language Understanding)
+첫 번째 단계에서는 신경망이 음성을 텍스트로 바꾸는 역할을 수행할 수 있습니다.
 
-Once the previous network managed to succesfuly convert our spoken words into text, there comes the even more difficult task of making sense of what we said. Things that we humans take for granted such as context, intonation and non verbal communication, help give our words meaning in a very subtle, but powerful way, a machine will have to do with much less information to correctly understand what we mean. It has to correctly identify the intention of our sentence and the subject or entities of what we mean.
+### 2. Natural Language Understanding
+
+음성이 텍스트로 바뀌었다고 해서 끝이 아닙니다.
+이제 기계는 “우리가 무엇을 의미했는지”를 이해해야 합니다.
 
 ![post7-alexa-natural-lang](./assets/img/posts/20210402/post7-alexa-natural-lang.png)
 
-The neural network has to identify that it received a command (by identifying its name), the command ("play music"), and our choice ("Van Halen"). And it does so by means of simple math operations as described before. Of course the network involved is quite complex and has different types of neurons and connection types, but the underlying principles remain.
+여기서 신경망은 다음을 추정합니다.
 
-#### 3. Replying to us
+- 호출 대상: Alexa
+- 의도: 음악 재생
+- 대상: Van Halen
 
-Once Alexa understood what we meant, it then proceeds to execute the action of the command it interpreted and it replies to us in turn using natural language. This is accomplished using a technique called speech synthesis, things like pitch, duration and intensity of the words and phonems are selected based on the "meaning" of what Alexa will respond to us: "Playing songs by Van Halen on Spotify" sounding quite naturally. And all is accomplished with neural networks executing many simple math operations.
+즉, 단순한 수학 연산의 조합으로 명령어의 구조와 의미를 해석하는 것입니다.
+
+### 3. Response Generation
+
+의미를 이해한 뒤 Alexa는 행동을 수행하고, 다시 음성으로 응답합니다.
+예를 들어 “Playing songs by Van Halen on Spotify” 같은 식이죠.
+
+이 과정에서도 speech synthesis가 사용되며,
+피치, 길이, 강세 같은 요소가 함께 조절됩니다.
 
 ![post7-alexa-steps](./assets/img/posts/20210402/post7-alexa-steps.png)
-<small>Although it seems quite complex, the process for AI to understand us can be boiled down to simple math operations</small>
+<small>복잡해 보이지만, 결국 AI가 우리를 이해하는 과정도 수많은 단순 연산의 조합으로 볼 수 있습니다.</small>
 
-Of course Amazon's Alexa neural networks have undergone quite a lot of training to get to the level where they are, the beauty is that once trained, to perform their magic they just need a few mathematical operations.
+## 마무리
 
-As said before, I will continue to write about the basics of neural networks, the next article in the series will dive a bit deeper into the math behind a basic neural network. 
+Amazon Alexa 같은 시스템은 엄청난 양의 학습과 엔지니어링을 거쳤지만,
+그 기반에는 여전히 **입력, 가중치, 층, 출력, 그리고 오차를 줄이는 학습**이라는 단순한 구조가 있습니다.
 
+신경망을 처음 배울 때는 너무 거대한 기술처럼 느껴질 수 있습니다.
+하지만 퍼셉트론에서부터 차근차근 올라가 보면,
+결국 이 구조가 왜 오늘날 AI의 핵심 블록이 되었는지 자연스럽게 이해할 수 있습니다.

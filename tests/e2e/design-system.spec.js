@@ -64,7 +64,7 @@ test.describe('Design System', () => {
     expect(position).toBe('sticky');
   });
 
-  test('Student Blog nav link is present in navigation', async ({ page }) => {
+  test('EGLAB Blog nav link is present in navigation', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
@@ -72,7 +72,7 @@ test.describe('Design System', () => {
     await page.locator('.menu-icon').click();
     await page.waitForTimeout(400);
 
-    const studentBlogLink = page.locator('.main-nav a', { hasText: 'Student Blog' });
+    const studentBlogLink = page.locator('.main-nav a', { hasText: 'EGLAB Blog' });
     await expect(studentBlogLink).toBeVisible();
     await expect(studentBlogLink).toHaveAttribute('href', /student-blog/);
   });
