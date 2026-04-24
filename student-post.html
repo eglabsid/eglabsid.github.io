@@ -44,7 +44,7 @@ permalink: /student-post.html
           <div class="student-post-hero__wordmark">
             <span class="student-post-hero__logo-text"><span class="student-post-hero__logo-eg">EG</span><span class="student-post-hero__logo-lab">LAB</span></span>
             <span class="student-post-hero__pipe"></span>
-            <span id="heroLabel" class="student-post-hero__lab-label">EGLAB Blog</span>
+            <span id="heroLabel" class="student-post-hero__lab-label">블로그 글</span>
           </div>
           <div id="postTags" class="student-post-tags"></div>
           <h1 id="postTitle"></h1>
@@ -55,7 +55,7 @@ permalink: /student-post.html
 
       <!-- Abstract / Excerpt box -->
       <div id="postAbstract" class="student-post-abstract" style="display:none;">
-        <div class="student-post-abstract__label">요약</div>
+        <div class="student-post-abstract__label">한눈에 보기</div>
         <p id="postAbstractText"></p>
       </div>
 
@@ -71,7 +71,7 @@ permalink: /student-post.html
         </div>
         <div>
           <div id="authorName"></div>
-          <div id="authorRole" class="student-post-author__role">EGLAB Research Contributor</div>
+          <div id="authorRole" class="student-post-author__role">EGLAB 필진</div>
         </div>
       </div>
     </article>
@@ -152,11 +152,11 @@ permalink: /student-post.html
       const isGeneralPost = post.postType === 'post';
       const blogBase = isGeneralPost ? 'post.html' : 'student-blog.html';
 
-      document.title = post.title + (isGeneralPost ? ' — EGLAB 연구 글' : ' — EGLAB Blog');
+      document.title = post.title + (isGeneralPost ? ' — EGLAB 연구 글' : ' — EGLAB 블로그 글');
       document.getElementById('backLink').href = blogBase;
-      document.getElementById('backLinkText').textContent = isGeneralPost ? '연구 글 목록으로 돌아가기' : 'EGLAB Blog 허브로 돌아가기';
-      document.getElementById('heroLabel').textContent = isGeneralPost ? 'EGLAB Research' : 'EGLAB Blog';
-      document.getElementById('authorRole').textContent = isGeneralPost ? 'EGLAB Researcher' : 'EGLAB Research Contributor';
+      document.getElementById('backLinkText').textContent = isGeneralPost ? '연구 글 목록으로 돌아가기' : '블로그 글 목록으로 돌아가기';
+      document.getElementById('heroLabel').textContent = isGeneralPost ? '연구 글' : '블로그 글';
+      document.getElementById('authorRole').textContent = isGeneralPost ? 'EGLAB 연구자' : 'EGLAB 필진';
 
       // Tags
       if (post.tags && post.tags.length) {
@@ -178,7 +178,7 @@ permalink: /student-post.html
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
           ${formatDate(post.createdAt)}
         </span>
-        <span class="student-post-meta__item">읽기 ${readTime(post.content || '')}분</span>
+        <span class="student-post-meta__item">읽는 데 ${readTime(post.content || '')}분</span>
       `;
 
       // Abstract
@@ -222,9 +222,7 @@ body {
 }
 
 .student-post-layout {
-  width: min(100%, 54rem);
-  max-width: 54rem;
-  max-width: calc(100% - 1.5rem);
+  width: min(54rem, calc(100% - 1.5rem));
   margin-inline: auto;
   padding: 1.75rem 0 4.5rem;
 }
@@ -237,12 +235,16 @@ body {
   color: #62B3E5;
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 600;
+  line-height: 1.55;
   text-decoration: none;
   transition: color 0.15s;
   touch-action: manipulation;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 .sp-back-link:hover { color: #7bc043; }
 
@@ -331,11 +333,11 @@ body {
 
 .student-post-hero__lab-label {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: #00bcd4;
+  word-break: keep-all;
 }
 
 .student-post-tags {
@@ -389,18 +391,20 @@ body {
   margin-top: 18px;
   display: flex;
   align-items: center;
-  gap: 10px 18px;
+  gap: 12px 22px;
   flex-wrap: wrap;
   color: #3a3a4e;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.84rem;
+  line-height: 1.6;
   font-variant-numeric: tabular-nums;
 }
 
 .student-post-meta__item {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  word-break: keep-all;
 }
 
 .student-post-abstract {
@@ -414,8 +418,7 @@ body {
 .student-post-abstract__label {
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: #00bcd4;
   margin-bottom: 8px;
 }
@@ -423,8 +426,10 @@ body {
 #postAbstractText {
   margin: 0;
   color: #3a3a4e;
-  font-style: italic;
   line-height: 1.8;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
 }
 
 .student-post-body-card {
@@ -440,7 +445,10 @@ body {
   box-shadow: none !important;
   border-radius: 0 !important;
   padding: 0 !important;
-  overflow-wrap: anywhere;
+  max-width: 70ch;
+  margin: 0 auto;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .student-post-body > * + * {
@@ -522,13 +530,16 @@ body {
 .student-post-body li {
   color: #1a1a2e;
   line-height: 1.9;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
 }
 
 .student-post-body > p,
 .student-post-body > ul,
 .student-post-body > ol,
 .student-post-body > blockquote {
-  max-width: 70ch;
+  max-width: 100%;
 }
 
 .student-post-body > h1,
@@ -566,6 +577,8 @@ body {
 .student-post-author__role {
   font-size: 0.82rem;
   color: #3a3a4e;
+  line-height: 1.55;
+  word-break: keep-all;
 }
 
 #authorName { color: #1a1a2e; font-weight: 700; }
@@ -603,6 +616,10 @@ body {
   .student-post-author {
     padding: 18px;
     align-items: flex-start;
+  }
+
+  .student-post-meta {
+    gap: 10px 16px;
   }
 }
 
