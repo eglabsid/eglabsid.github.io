@@ -126,14 +126,51 @@ layout: home-page
   gap: 0;
 }
 
+.hp-hero__eyebrow {
+  font-family: var(--hp-font-ui);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-cyan);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(98, 179, 229, 0.24);
+  border-radius: 999px;
+  padding: 7px 14px;
+  margin: 0 0 18px;
+}
+
+.hp-hero__title {
+  font-family: var(--hp-font-head);
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+  font-weight: 900;
+  color: var(--hp-ink);
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin: 0 0 14px;
+  max-width: 760px;
+}
+
 .hp-hero__tagline {
   font-family: var(--hp-font-ui);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--hp-ink-soft);
   letter-spacing: 0.04em;
   text-align: center;
-  margin: 0 0 20px;
+  margin: 0 0 12px;
+  max-width: 760px;
+}
+
+.hp-hero__summary {
+  font-family: var(--hp-font-ui);
+  font-size: 0.94rem;
+  color: rgba(26, 26, 46, 0.78);
+  line-height: 1.75;
+  text-align: center;
+  margin: 0 0 24px;
+  max-width: 720px;
 }
 
 .hp-hero__actions {
@@ -171,6 +208,51 @@ layout: home-page
   transform: translateY(-2px);
   opacity: 0.92;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.hp-hero__quickstart {
+  width: min(960px, 90%);
+  margin: 0 auto 34px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hp-hero__quicklink {
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(98, 179, 229, 0.2);
+  border-radius: 18px;
+  padding: 16px 18px;
+  box-shadow: 0 8px 24px rgba(26, 26, 46, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.hp-hero__quicklink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(26, 26, 46, 0.1);
+  border-color: rgba(123, 192, 67, 0.32);
+}
+
+.hp-hero__quicklink strong,
+.hp-hero__quicklink span {
+  display: block;
+}
+
+.hp-hero__quicklink strong {
+  font-family: var(--hp-font-ui);
+  font-size: 0.93rem;
+  font-weight: 700;
+  color: var(--hp-ink);
+  margin-bottom: 6px;
+}
+
+.hp-hero__quicklink span {
+  font-family: var(--hp-font-ui);
+  font-size: 0.81rem;
+  line-height: 1.55;
+  color: rgba(26, 26, 46, 0.72);
 }
 
 /* Wave separator at bottom of hero */
@@ -215,6 +297,15 @@ layout: home-page
   color: var(--hp-ink-soft);
   line-height: 1.8;
   margin: 0 0 24px;
+}
+
+.hp-about__hint {
+  font-family: var(--hp-font-ui);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--hp-cyan);
+  letter-spacing: 0.04em;
+  margin: 0 0 12px;
 }
 
 .hp-about__tags {
@@ -276,6 +367,16 @@ layout: home-page
 
 .hp-section-title span {
   color: var(--hp-green);
+}
+
+.hp-section-intro {
+  width: 100%;
+  font-family: var(--hp-font-ui);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--hp-ink-soft);
+  margin: -12px 0 0;
+  max-width: 680px;
 }
 
 .hp-section-link {
@@ -424,6 +525,22 @@ layout: home-page
 
 .hp-post-card__tag:hover {
   background: rgba(123, 192, 67, 0.1);
+}
+
+.hp-post-card__read {
+  font-family: var(--hp-font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--hp-cyan);
+  text-decoration: none;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hp-post-card__read:hover {
+  color: var(--hp-green);
 }
 
 /* =====================================================
@@ -616,6 +733,9 @@ layout: home-page
   .hp-labs {
     grid-template-columns: 1fr;
   }
+  .hp-hero__quickstart {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -628,6 +748,13 @@ layout: home-page
   }
   .hp-hero__svg-stage {
     padding-top: 20px;
+  }
+  .hp-hero__actions {
+    width: min(420px, 100%);
+  }
+  .hp-hero__btn {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -783,13 +910,33 @@ layout: home-page
 
     <!-- Tagline + CTAs -->
     <div class="hp-hero__footer">
+      <p class="hp-hero__eyebrow">Start Here</p>
+      <h1 class="hp-hero__title">게임 AI 연구와 학생 개발 로그를 한 화면에서 빠르게 파악하세요</h1>
       <p class="hp-hero__tagline">
-        국내 게임개발자를 위한 Game AI, Evolutionary Game Theory, Indie Development 연구 허브
+        EGLAB은 국내 게임 개발자가 바로 읽고 참고할 수 있는 Game AI 연구와 학생 블로그 허브입니다.
+      </p>
+      <p class="hp-hero__summary">
+        처음 방문했다면 아래 최신 글부터 읽어보세요. 더 넓게 주제를 찾고 싶다면 연구 아카이브로,
+        학생들의 실제 개발 기록을 보고 싶다면 EGLAB Blog 허브로 이어서 이동할 수 있습니다.
       </p>
       <div class="hp-hero__actions">
-        <a href="{{ relativebase }}student-blog.html" class="hp-hero__btn hp-hero__btn--primary">EGLAB Blog 허브</a>
+        <a href="#recent-posts"                       class="hp-hero__btn hp-hero__btn--primary">최신 글부터 읽기</a>
         <a href="{{ relativebase }}archive.html"      class="hp-hero__btn hp-hero__btn--secondary">연구 아카이브</a>
-        <a href="{{ relativebase }}about.html"        class="hp-hero__btn hp-hero__btn--secondary">연구실 소개</a>
+        <a href="{{ relativebase }}student-blog.html" class="hp-hero__btn hp-hero__btn--secondary">EGLAB Blog 허브</a>
+      </div>
+      <div class="hp-hero__quickstart" aria-label="Homepage quick start paths">
+        <a href="#recent-posts" class="hp-hero__quicklink">
+          <strong>처음 방문했어요</strong>
+          <span>최근 글 4개를 훑으며 EGLAB이 다루는 주제를 빠르게 파악합니다.</span>
+        </a>
+        <a href="{{ relativebase }}archive.html" class="hp-hero__quicklink">
+          <strong>주제를 찾아보고 싶어요</strong>
+          <span>연구 아카이브와 태그를 따라 필요한 키워드 중심으로 탐색합니다.</span>
+        </a>
+        <a href="{{ relativebase }}student-blog.html" class="hp-hero__quicklink">
+          <strong>실전 기록이 궁금해요</strong>
+          <span>학생 프로젝트와 개발 로그를 모아둔 EGLAB Blog 허브로 이동합니다.</span>
+        </a>
       </div>
     </div>
 
@@ -811,6 +958,7 @@ layout: home-page
 
       <div class="hp-about__text">
         <h2 class="hp-about__heading"><span>EGLAB</span>은 무엇을 연구하나요?</h2>
+        <p class="hp-about__hint">이 섹션에서 연구 범위를 먼저 확인하세요</p>
         <p class="hp-about__body">
           EGLAB은 홍익대학교에서 Game AI, Evolutionary Game Theory, 멀티에이전트 시스템, 그리고 Indie Development를 함께 다루는 연구 그룹입니다.
           실험 기록, 연구 노트, 논문형 글, 오픈소스 프로젝트를 연결해 국내 게임개발자가 바로 참고할 수 있는 연구형 아카이브를 지향합니다.
@@ -877,14 +1025,18 @@ layout: home-page
 <!-- ======================================================
      RECENT POSTS SECTION
      ====================================================== -->
-<section class="hp-section hp-section--posts" aria-label="Recent research posts">
+<section id="recent-posts" class="hp-section hp-section--posts" aria-label="Recent research posts">
   <div class="hp-container">
 
     <div class="hp-section-header">
-      <h2 class="hp-section-title">최근 <span>아카이브</span></h2>
+      <h2 class="hp-section-title">먼저 읽어볼 <span>최신 글</span></h2>
       <a href="{{ relativebase }}archive.html" class="hp-section-link">
         전체 글 보기 &rarr;
       </a>
+      <p class="hp-section-intro">
+        첫 방문이라면 여기서 시작하면 됩니다. 최근 올라온 연구 노트와 개발 기록을 짧게 훑어보며
+        이 사이트가 어떤 내용을 다루는지 바로 감을 잡을 수 있습니다.
+      </p>
     </div>
 
     <ol class="hp-post-grid">
@@ -927,6 +1079,7 @@ layout: home-page
               {% endfor %}
             </div>
             {% endif %}
+            <a href="{{ post_url }}" class="hp-post-card__read">지금 읽기 &rarr;</a>
           </div>
         </article>
       </li>
@@ -939,11 +1092,15 @@ layout: home-page
 <!-- ======================================================
      LAB PORTALS SECTION
      ====================================================== -->
-<section class="hp-section hp-section--labs" aria-label="EGLab portals">
+<section id="blog-hub" class="hp-section hp-section--labs" aria-label="EGLab portals">
   <div class="hp-container">
 
     <div class="hp-section-header">
       <h2 class="hp-section-title">Blog <span>Hub</span></h2>
+      <p class="hp-section-intro">
+        최신 글을 본 뒤 더 깊게 들어갈 때 사용하는 보조 경로입니다. 학생 개발 로그는 허브에서,
+        코드와 저장소는 GitHub에서 이어서 확인할 수 있습니다.
+      </p>
     </div>
 
     <div class="hp-labs">
