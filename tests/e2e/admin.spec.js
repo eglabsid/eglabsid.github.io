@@ -175,6 +175,18 @@ test.describe('Admin Panel — Editor Structure', () => {
     expect(html).toContain('serverTimestamp()');
   });
 
+  test('admin app is exposed only after authorized role check', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const html = await page.content();
+    expect(html).toContain("AUTHORIZED_ADMIN_ROLES = new Set(['admin', 'writer'])");
+    expect(html).toContain('denyAccessAndReturnHome');
+    expect(html).toContain('권한이 없습니다. EGLAB 홈으로 돌아갑니다.');
+    expect(html).toContain('window.location.replace(HOME_URL)');
+    expect(html).toContain("document.getElementById('app').style.display = 'block'");
+  });
+
 });
 
 test.describe('Admin Panel — Responsive Design', () => {

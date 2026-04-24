@@ -151,11 +151,12 @@ permalink: /student-post.html
 
       const isGeneralPost = post.postType === 'post';
       const blogBase = isGeneralPost ? 'post.html' : 'student-blog.html';
+      const postTypeLabel = isGeneralPost ? '연구 글' : 'Student Post';
 
       document.title = post.title + (isGeneralPost ? ' — EGLAB 연구 글' : ' — EGLAB 블로그 글');
       document.getElementById('backLink').href = blogBase;
       document.getElementById('backLinkText').textContent = isGeneralPost ? '연구 글 목록으로 돌아가기' : '블로그 글 목록으로 돌아가기';
-      document.getElementById('heroLabel').textContent = isGeneralPost ? '연구 글' : '블로그 글';
+      document.getElementById('heroLabel').textContent = postTypeLabel;
       document.getElementById('authorRole').textContent = isGeneralPost ? 'EGLAB 연구자' : 'EGLAB 필진';
 
       // Tags

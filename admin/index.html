@@ -1292,6 +1292,8 @@
   let selectedMediaEl = null;
   let internalDragMediaId = null;
   let dropOverlayDepth = 0;
+  const HOME_URL = '../';
+  const AUTHORIZED_ADMIN_ROLES = new Set(['admin', 'writer']);
 
   // ── Quill Editor Setup (lazy, auth-gated) ──────────────────
   function initEditor() {
@@ -1787,6 +1789,17 @@
     setAuthStatus('', 'info');
   }
 
+  async function denyAccessAndReturnHome(role = 'unknown') {
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('pendingMsg').style.display = 'none';
+    resetGoogleButton();
+    setAuthStatus('권한이 없습니다. 홈으로 돌아갑니다.', 'error');
+    alert('권한이 없습니다. EGLAB 홈으로 돌아갑니다.');
+    try { await signOut(auth); } catch (_) {}
+    window.location.replace(HOME_URL);
+  }
+
   // ── Auth Flow ──────────────────────────────────────────────
   googleSignInBtn.addEventListener('click', async () => {
     setGoogleButtonPending();
@@ -1821,10 +1834,10 @@
   document.getElementById('signOutBtn').addEventListener('click', () => signOut(auth));
 
   onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      document.getElementById('loginScreen').style.display = 'flex';
-      document.getElementById('app').style.display = 'none';
-      document.getElementById('pendingMsg').style.display = 'none';
+      if (!user) {
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('app').style.display = 'none';
+        document.getElementById('pendingMsg').style.display = 'none';
       setAuthStatus('');
       resetGoogleButton();
       return;
@@ -1832,6 +1845,11 @@
 
     try {
       // Register / update user document
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('app').style.display = 'none';
+      document.getElementById('pendingMsg').style.display = 'none';
+      setAuthStatus('Checking your EGLab access…');
+
       const userRef = doc(db, 'users', user.uid);
       const userSnap = await getDoc(userRef);
 
@@ -1850,10 +1868,8 @@
         currentRole = userSnap.data().role;
       }
 
-      if (currentRole === 'pending') {
-        setAuthStatus('Your Google account is signed in, but writer access is still pending.', 'info');
-        document.getElementById('pendingMsg').style.display = 'block';
-        resetGoogleButton();
+      if (!AUTHORIZED_ADMIN_ROLES.has(currentRole)) {
+        await denyAccessAndReturnHome(currentRole);
         return;
       }
 
@@ -2021,7 +2037,7 @@
         return `
           <tr>
             <td style="font-weight:600;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(p.title)}</td>
-            <td><span style="font-size:0.7rem;padding:2px 8px;border-radius:999px;background:${p.postType==='post'?'rgba(0,188,212,0.15)':'rgba(123,192,67,0.12)'};color:${p.postType==='post'?'#00bcd4':'#7bc043'}">${p.postType==='post'?'Post':'Student'}</span></td>
+            <td><span style="font-size:0.7rem;padding:2px 8px;border-radius:999px;background:${p.postType==='post'?'rgba(0,188,212,0.15)':'rgba(123,192,67,0.12)'};color:${p.postType==='post'?'#00bcd4':'#7bc043'}">${p.postType==='post'?'Post':'Student Post'}</span></td>
             <td><span class="badge badge-${p.status}">${p.status}</span></td>
             <td style="color:var(--color-text-muted);">${formatDate(p.createdAt)}</td>
             <td style="text-align:right;">
