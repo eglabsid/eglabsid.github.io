@@ -360,6 +360,130 @@
       overflow:      hidden;
       margin-bottom: 16px;
       background:    #f8f9fa;
+      position:      relative;
+    }
+
+    .editor-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .media-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(98,179,229,0.22);
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(196,232,248,0.26), rgba(214,240,200,0.18));
+      flex-wrap: wrap;
+    }
+
+    .media-toolbar__group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .media-toolbar__label,
+    .media-sidebar__heading {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1a6cbf;
+    }
+
+    .media-toolbar__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(98,179,229,0.25);
+      background: #ffffff;
+      color: #1a1a2e;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+      touch-action: manipulation;
+    }
+
+    .media-toolbar__button:hover {
+      border-color: rgba(98,179,229,0.55);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+    }
+
+    .media-toolbar__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(98,179,229,0.2);
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .media-toolbar__status::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #7bc043;
+      box-shadow: 0 0 0 4px rgba(123,192,67,0.12);
+      flex-shrink: 0;
+    }
+
+    .editor-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .editor-hint {
+      margin-bottom: 10px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background: rgba(98,179,229,0.08);
+      border: 1px dashed rgba(98,179,229,0.28);
+      color: var(--color-text-muted);
+      font-size: 0.82rem;
+      line-height: 1.65;
+    }
+
+    .editor-dropzone {
+      position: absolute;
+      inset: 10px;
+      border-radius: calc(var(--radius-md) - 2px);
+      border: 2px dashed rgba(123,192,67,0.65);
+      background: rgba(214,240,200,0.32);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 18px;
+      z-index: 5;
+      color: #376d12;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      pointer-events: none;
+    }
+
+    .editor-dropzone.is-active {
+      display: flex;
     }
 
     .ql-toolbar.ql-snow {
@@ -374,7 +498,161 @@
       font-size: 0.95rem;
     }
 
-    .ql-editor { min-height: 320px; color: #1a1a2e; background: #f8f9fa; }
+    .ql-editor {
+      min-height: 320px;
+      color: #1a1a2e;
+      background: #f8f9fa;
+    }
+
+    .ql-editor img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(98,179,229,0.22);
+      cursor: pointer;
+      transition: box-shadow var(--transition-base), border-color var(--transition-base);
+    }
+
+    .ql-editor img.ql-media-selected {
+      border-color: rgba(123,192,67,0.95);
+      box-shadow: 0 0 0 4px rgba(123,192,67,0.16);
+    }
+
+    .ql-editor .editor-attachment {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(98,179,229,0.1);
+      border: 1px solid rgba(98,179,229,0.24);
+      color: #1a6cbf;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .ql-editor .editor-attachment.is-selected {
+      border-color: rgba(123,192,67,0.95);
+      box-shadow: 0 0 0 4px rgba(123,192,67,0.16);
+      color: #376d12;
+    }
+
+    .media-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(98,179,229,0.2);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(240,247,254,0.95));
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 88px;
+    }
+
+    .media-sidebar__section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-sidebar__copy {
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      line-height: 1.65;
+    }
+
+    .media-sidebar__current {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(98,179,229,0.18);
+      color: #1a1a2e;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      min-height: 66px;
+    }
+
+    .media-sidebar__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .media-sidebar__button {
+      min-height: 38px;
+      padding: 0 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(98,179,229,0.22);
+      background: #ffffff;
+      color: #1a1a2e;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .media-sidebar__button:hover {
+      border-color: rgba(98,179,229,0.55);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .media-sidebar__button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .media-sidebar__range {
+      width: 100%;
+      accent-color: var(--color-primary);
+    }
+
+    .media-sidebar__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--color-text-muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .media-sidebar__attachments {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .attachment-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(98,179,229,0.08);
+      border: 1px solid rgba(98,179,229,0.2);
+      color: #1a6cbf;
+      font-size: 0.76rem;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+
+    .attachment-chip.is-selected {
+      border-color: rgba(123,192,67,0.9);
+      background: rgba(123,192,67,0.12);
+      color: #376d12;
+    }
+
+    .attachment-chip__meta {
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
 
     .editor-actions {
       display: flex;
@@ -612,6 +890,14 @@
         width: 100%;
         justify-content: space-between;
       }
+
+      .editor-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .media-sidebar {
+        position: static;
+      }
     }
 
     @media (max-width: 640px) {
@@ -631,6 +917,18 @@
       .editor-actions .btn {
         width: 100%;
         justify-content: center;
+      }
+
+      .media-toolbar {
+        padding: 12px;
+      }
+
+      .media-toolbar__button {
+        flex: 1 1 calc(50% - 8px);
+      }
+
+      .media-sidebar__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .dialog-actions {
@@ -801,8 +1099,72 @@
 
       <div class="form-field" style="margin-bottom:12px;">
         <label class="form-label" for="quillEditor">Content</label>
-        <div class="editor-wrapper">
-          <div id="quillEditor"></div>
+        <div class="editor-shell">
+          <div class="media-toolbar" id="editorMediaToolbar">
+            <div class="media-toolbar__group">
+              <div class="media-toolbar__label">Media Workflow</div>
+              <button class="media-toolbar__button" id="insertImageBtn" type="button">Insert Image</button>
+              <button class="media-toolbar__button" id="attachFileBtn" type="button">Attach File</button>
+              <button class="media-toolbar__button" id="focusMediaToolsBtn" type="button">Selected Media</button>
+            </div>
+            <div class="media-toolbar__status" id="editorStatusBadge">Ready for rich drafting, media drop, and attachments.</div>
+          </div>
+
+          <div class="editor-layout">
+            <div>
+              <div class="editor-hint" id="editorHint">
+                Drop images or files straight into the editor, click any inserted media to resize or align it, then drag selected media blocks to reorder them without breaking writing flow.
+              </div>
+              <div class="editor-wrapper" id="editorDropTarget">
+                <div class="editor-dropzone" id="editorDropOverlay">Drop images to insert them, or drop files to attach downloadable references.</div>
+                <div id="quillEditor"></div>
+              </div>
+            </div>
+
+            <aside class="media-sidebar" id="mediaSidebar">
+              <div class="media-sidebar__section">
+                <div class="media-sidebar__heading">Selected Media</div>
+                <div class="media-sidebar__current" id="selectedMediaSummary">Click an image or attachment in the editor to resize it, align it, move it, or remove it.</div>
+              </div>
+
+              <div class="media-sidebar__section">
+                <div class="media-sidebar__meta">
+                  <span>Image Width</span>
+                  <span id="imageWidthValue">100%</span>
+                </div>
+                <input class="media-sidebar__range" id="imageWidthRange" type="range" min="25" max="100" step="5" value="100">
+                <div class="media-sidebar__grid">
+                  <button class="media-sidebar__button" data-image-width="40" type="button">40%</button>
+                  <button class="media-sidebar__button" data-image-width="65" type="button">65%</button>
+                  <button class="media-sidebar__button" data-image-width="100" type="button">100%</button>
+                </div>
+              </div>
+
+              <div class="media-sidebar__section">
+                <div class="media-sidebar__heading">Alignment</div>
+                <div class="media-sidebar__grid">
+                  <button class="media-sidebar__button" data-image-align="left" type="button">Left</button>
+                  <button class="media-sidebar__button" data-image-align="center" type="button">Center</button>
+                  <button class="media-sidebar__button" data-image-align="right" type="button">Right</button>
+                </div>
+              </div>
+
+              <div class="media-sidebar__section">
+                <div class="media-sidebar__heading">Reorder</div>
+                <div class="media-sidebar__grid">
+                  <button class="media-sidebar__button" id="moveMediaUpBtn" type="button">Move Up</button>
+                  <button class="media-sidebar__button" id="moveMediaDownBtn" type="button">Move Down</button>
+                  <button class="media-sidebar__button" id="removeMediaBtn" type="button">Remove</button>
+                </div>
+              </div>
+
+              <div class="media-sidebar__section">
+                <div class="media-sidebar__heading">Attachments</div>
+                <div class="media-sidebar__copy">Files are embedded as downloadable links so PDFs, datasets, and references can travel with the draft.</div>
+                <div class="media-sidebar__attachments" id="attachmentList"></div>
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
 
@@ -927,6 +1289,9 @@
   let currentRole = null;
   let isAdmin     = false;
   let quill       = null;   // initialized lazily after auth
+  let selectedMediaEl = null;
+  let internalDragMediaId = null;
+  let dropOverlayDepth = 0;
 
   // ── Quill Editor Setup (lazy, auth-gated) ──────────────────
   function initEditor() {
@@ -948,6 +1313,167 @@
     });
     quill.root.setAttribute('aria-label', 'Post content editor');
 
+    const editorEl = document.getElementById('quillEditor');
+    const dropOverlay = document.getElementById('editorDropOverlay');
+    const imageWidthRange = document.getElementById('imageWidthRange');
+    const imageWidthValue = document.getElementById('imageWidthValue');
+    const selectedMediaSummary = document.getElementById('selectedMediaSummary');
+    const attachmentList = document.getElementById('attachmentList');
+
+    function escapeAttribute(value = '') {
+      return String(value).replace(/"/g, '&quot;');
+    }
+
+    function sanitizeFilename(value = 'attachment') {
+      return String(value).replace(/[^\w.\-() ]+/g, '_').trim() || 'attachment';
+    }
+
+    function formatFileSize(bytes = 0) {
+      if (!bytes) return '0 KB';
+      const units = ['B', 'KB', 'MB', 'GB'];
+      let size = bytes;
+      let unitIndex = 0;
+      while (size >= 1024 && unitIndex < units.length - 1) {
+        size /= 1024;
+        unitIndex += 1;
+      }
+      return `${size >= 10 || unitIndex === 0 ? Math.round(size) : size.toFixed(1)} ${units[unitIndex]}`;
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result || ''));
+        reader.onerror = () => reject(reader.error || new Error('file_read_failed'));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function ensureMediaId(el) {
+      if (!el.dataset.mediaId) {
+        el.dataset.mediaId = `media-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+      }
+      return el.dataset.mediaId;
+    }
+
+    function getSelectedBlock(el = selectedMediaEl) {
+      if (!el) return null;
+      return el.closest('p, div, blockquote, li, pre, h1, h2, h3, h4, h5, h6') || el;
+    }
+
+    function setEditorStatus(message) {
+      document.getElementById('editorStatusBadge').textContent = message;
+    }
+
+    function setDropOverlayActive(active) {
+      dropOverlay.classList.toggle('is-active', active);
+    }
+
+    function renderAttachmentList() {
+      const attachments = Array.from(quill.root.querySelectorAll('.editor-attachment'));
+      attachmentList.innerHTML = attachments.length
+        ? attachments.map(anchor => {
+            ensureMediaId(anchor);
+            const isSelected = selectedMediaEl === anchor ? ' is-selected' : '';
+            return `
+              <button class="attachment-chip${isSelected}" type="button" data-attachment-chip="${escapeAttribute(anchor.dataset.mediaId)}">
+                <span>${escapeHTML(anchor.dataset.attachmentName || anchor.getAttribute('download') || 'Attachment')}</span>
+                <span class="attachment-chip__meta">${escapeHTML(anchor.dataset.attachmentSize || '')}</span>
+              </button>
+            `;
+          }).join('')
+        : '<div class="media-sidebar__copy">No files attached yet.</div>';
+    }
+
+    function clearSelectedMedia() {
+      if (selectedMediaEl?.tagName === 'IMG') {
+        selectedMediaEl.classList.remove('ql-media-selected');
+      }
+      if (selectedMediaEl?.classList?.contains('editor-attachment')) {
+        selectedMediaEl.classList.remove('is-selected');
+      }
+      selectedMediaEl = null;
+      imageWidthRange.disabled = true;
+      imageWidthValue.textContent = '100%';
+      selectedMediaSummary.textContent = 'Click an image or attachment in the editor to resize it, align it, move it, or remove it.';
+      document.querySelectorAll('[data-image-width], [data-image-align], #moveMediaUpBtn, #moveMediaDownBtn, #removeMediaBtn').forEach(btn => {
+        btn.disabled = true;
+      });
+      renderAttachmentList();
+    }
+
+    function selectMediaElement(el) {
+      if (!el) {
+        clearSelectedMedia();
+        return;
+      }
+      if (selectedMediaEl && selectedMediaEl !== el) {
+        if (selectedMediaEl.tagName === 'IMG') selectedMediaEl.classList.remove('ql-media-selected');
+        if (selectedMediaEl.classList?.contains('editor-attachment')) selectedMediaEl.classList.remove('is-selected');
+      }
+
+      selectedMediaEl = el;
+      ensureMediaId(el);
+
+      document.querySelectorAll('[data-image-width], [data-image-align], #moveMediaUpBtn, #moveMediaDownBtn, #removeMediaBtn').forEach(btn => {
+        btn.disabled = false;
+      });
+
+      if (el.tagName === 'IMG') {
+        el.classList.add('ql-media-selected');
+        imageWidthRange.disabled = false;
+        const currentWidth = Number(el.dataset.imageWidth || String(Math.round(parseFloat(el.style.width || '100') || 100)));
+        imageWidthRange.value = String(Math.min(100, Math.max(25, currentWidth)));
+        imageWidthValue.textContent = `${imageWidthRange.value}%`;
+        selectedMediaSummary.innerHTML = '<strong>Image selected.</strong><br>Drag it to reorder, use the slider for width, or align it for cleaner layout rhythm.';
+      } else {
+        imageWidthRange.disabled = true;
+        imageWidthValue.textContent = 'N/A';
+        el.classList.add('is-selected');
+        const attachmentName = el.dataset.attachmentName || el.getAttribute('download') || 'Attachment';
+        const attachmentSize = el.dataset.attachmentSize || '';
+        selectedMediaSummary.innerHTML = `<strong>Attachment selected.</strong><br>${escapeHTML(attachmentName)}${attachmentSize ? ` · ${escapeHTML(attachmentSize)}` : ''}`;
+      }
+
+      renderAttachmentList();
+    }
+
+    function applyImageWidth(value) {
+      if (!selectedMediaEl || selectedMediaEl.tagName !== 'IMG') return;
+      selectedMediaEl.style.width = `${value}%`;
+      selectedMediaEl.style.maxWidth = '100%';
+      selectedMediaEl.dataset.imageWidth = String(value);
+      imageWidthValue.textContent = `${value}%`;
+      setEditorStatus(`Image width set to ${value}%.`);
+    }
+
+    function applyImageAlignment(alignment) {
+      if (!selectedMediaEl) return;
+      const block = getSelectedBlock(selectedMediaEl);
+      if (!block) return;
+      block.style.textAlign = alignment === 'center' ? 'center' : alignment;
+      if (selectedMediaEl.tagName === 'IMG') {
+        selectedMediaEl.style.display = 'inline-block';
+      }
+      selectedMediaEl.dataset.imageAlign = alignment;
+      setEditorStatus(`Media aligned ${alignment}.`);
+    }
+
+    function refreshEmbeddedMedia() {
+      quill.root.querySelectorAll('img').forEach(img => {
+        ensureMediaId(img);
+        img.draggable = true;
+        if (!img.dataset.imageWidth && img.style.width) {
+          img.dataset.imageWidth = String(Math.round(parseFloat(img.style.width) || 100));
+        }
+      });
+      quill.root.querySelectorAll('.editor-attachment').forEach(anchor => {
+        ensureMediaId(anchor);
+        anchor.draggable = true;
+      });
+      renderAttachmentList();
+    }
+
     function insertImageFromFile(file) {
       if (!file || !file.type.startsWith('image/')) return;
       if (file.size > 5 * 1024 * 1024) { showToast('Image too large (max 5 MB).', 'error'); return; }
@@ -956,9 +1482,93 @@
         const range = quill.getSelection(true) || { index: quill.getLength() - 1 };
         quill.insertEmbed(range.index, 'image', e.target.result);
         quill.setSelection(range.index + 1);
+        requestAnimationFrame(() => {
+          const images = Array.from(quill.root.querySelectorAll('img'));
+          const inserted = images[images.length - 1];
+          if (inserted) {
+            ensureMediaId(inserted);
+            inserted.draggable = true;
+            inserted.dataset.imageWidth = inserted.dataset.imageWidth || '100';
+            selectMediaElement(inserted);
+          }
+          renderAttachmentList();
+        });
+        setEditorStatus(`Inserted image: ${file.name}`);
         showToast('Image inserted.');
       };
       reader.readAsDataURL(file);
+    }
+
+    async function insertAttachmentFromFile(file) {
+      if (!file) return;
+      if (file.size > 10 * 1024 * 1024) {
+        showToast('File too large (max 10 MB).', 'error');
+        return;
+      }
+      const dataUrl = await readFileAsDataURL(file);
+      const range = quill.getSelection(true) || { index: quill.getLength() - 1 };
+      const safeName = sanitizeFilename(file.name);
+      const sizeLabel = formatFileSize(file.size);
+      quill.clipboard.dangerouslyPasteHTML(range.index, `
+        <p>
+          <a class="editor-attachment" href="${dataUrl}" download="${escapeAttribute(safeName)}" data-attachment-name="${escapeAttribute(safeName)}" data-attachment-size="${escapeAttribute(sizeLabel)}" draggable="true">
+            <span aria-hidden="true">📎</span>
+            <span>${escapeHTML(safeName)}</span>
+          </a>
+        </p>
+      `);
+      requestAnimationFrame(() => {
+        const attachments = Array.from(quill.root.querySelectorAll('.editor-attachment'));
+        const latest = attachments[attachments.length - 1];
+        if (latest) {
+          ensureMediaId(latest);
+          latest.draggable = true;
+          selectMediaElement(latest);
+        }
+        renderAttachmentList();
+      });
+      setEditorStatus(`Attached file: ${safeName}`);
+      showToast('Attachment inserted.');
+    }
+
+    function moveSelectedMedia(direction) {
+      const block = getSelectedBlock();
+      if (!block || !block.parentElement) return;
+      const sibling = direction < 0 ? block.previousElementSibling : block.nextElementSibling;
+      if (!sibling) return;
+      if (direction < 0) {
+        block.parentElement.insertBefore(block, sibling);
+      } else {
+        block.parentElement.insertBefore(sibling, block);
+      }
+      setEditorStatus(`Moved media ${direction < 0 ? 'up' : 'down'}.`);
+    }
+
+    function removeSelectedMedia() {
+      if (!selectedMediaEl) return;
+      const block = getSelectedBlock();
+      if (block) {
+        block.remove();
+      } else {
+        selectedMediaEl.remove();
+      }
+      clearSelectedMedia();
+      refreshEmbeddedMedia();
+      setEditorStatus('Removed selected media.');
+    }
+
+    function maybeSelectFromTarget(target) {
+      const image = target.closest('img');
+      if (image) {
+        selectMediaElement(image);
+        return true;
+      }
+      const attachment = target.closest('.editor-attachment');
+      if (attachment) {
+        selectMediaElement(attachment);
+        return true;
+      }
+      return false;
     }
 
     quill.getModule('toolbar').addHandler('image', () => {
@@ -978,17 +1588,159 @@
       }
     });
 
-    const _editorEl = document.getElementById('quillEditor');
-    _editorEl.addEventListener('dragover', (e) => {
-      const hasImage = Array.from(e.dataTransfer.types).includes('Files');
-      if (hasImage) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; }
+    editorEl.addEventListener('click', (e) => {
+      if (!maybeSelectFromTarget(e.target)) {
+        clearSelectedMedia();
+      }
     });
-    _editorEl.addEventListener('drop', (e) => {
-      const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
-      if (!files.length) return;
+
+    quill.root.addEventListener('dragstart', (e) => {
+      const mediaTarget = e.target.closest('img, .editor-attachment');
+      if (!mediaTarget) return;
+      ensureMediaId(mediaTarget);
+      internalDragMediaId = mediaTarget.dataset.mediaId;
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/eglab-media-id', internalDragMediaId);
+      selectMediaElement(mediaTarget);
+      setEditorStatus('Dragging selected media block.');
+    });
+
+    quill.root.addEventListener('dragend', () => {
+      internalDragMediaId = null;
+      setDropOverlayActive(false);
+    });
+
+    editorEl.addEventListener('dragenter', (e) => {
+      if (e.dataTransfer?.types?.includes('Files')) {
+        dropOverlayDepth += 1;
+        setDropOverlayActive(true);
+      }
+    });
+
+    editorEl.addEventListener('dragleave', () => {
+      dropOverlayDepth = Math.max(0, dropOverlayDepth - 1);
+      if (dropOverlayDepth === 0) {
+        setDropOverlayActive(false);
+      }
+    });
+
+    editorEl.addEventListener('dragover', (e) => {
+      const hasFiles = Array.from(e.dataTransfer?.types || []).includes('Files');
+      const hasInternalMedia = Boolean(e.dataTransfer?.getData('text/eglab-media-id'));
+      if (hasFiles || hasInternalMedia) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = hasInternalMedia ? 'move' : 'copy';
+      }
+    });
+
+    editorEl.addEventListener('drop', async (e) => {
       e.preventDefault();
-      files.forEach(insertImageFromFile);
+      dropOverlayDepth = 0;
+      setDropOverlayActive(false);
+
+      const internalMediaId = e.dataTransfer?.getData('text/eglab-media-id') || internalDragMediaId;
+      if (internalMediaId) {
+        const selector = `[data-media-id="${window.CSS?.escape ? window.CSS.escape(internalMediaId) : internalMediaId}"]`;
+        const dragged = quill.root.querySelector(selector);
+        const target = e.target.closest('img, .editor-attachment, p, div, blockquote, li, pre, h1, h2, h3, h4, h5, h6');
+        const draggedBlock = getSelectedBlock(dragged);
+        const targetBlock = getSelectedBlock(target);
+        if (draggedBlock && targetBlock && draggedBlock !== targetBlock && targetBlock.parentElement) {
+          const targetRect = targetBlock.getBoundingClientRect();
+          if (e.clientY > targetRect.top + targetRect.height / 2) {
+            targetBlock.insertAdjacentElement('afterend', draggedBlock);
+          } else {
+            targetBlock.insertAdjacentElement('beforebegin', draggedBlock);
+          }
+          setEditorStatus('Reordered media block by drag and drop.');
+        }
+        internalDragMediaId = null;
+        return;
+      }
+
+      const files = Array.from(e.dataTransfer.files || []);
+      if (!files.length) return;
+
+      const imageFiles = files.filter(file => file.type.startsWith('image/'));
+      const otherFiles = files.filter(file => !file.type.startsWith('image/'));
+
+      imageFiles.forEach(insertImageFromFile);
+      for (const file of otherFiles) {
+        await insertAttachmentFromFile(file);
+      }
     });
+
+    document.getElementById('insertImageBtn').addEventListener('click', () => {
+      quill.getModule('toolbar').handlers.image();
+    });
+
+    document.getElementById('attachFileBtn').addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.multiple = true;
+      input.onchange = async () => {
+        const files = Array.from(input.files || []);
+        for (const file of files) {
+          if (file.type.startsWith('image/')) {
+            insertImageFromFile(file);
+          } else {
+            await insertAttachmentFromFile(file);
+          }
+        }
+      };
+      input.click();
+    });
+
+    document.getElementById('focusMediaToolsBtn').addEventListener('click', () => {
+      document.getElementById('mediaSidebar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    imageWidthRange.disabled = true;
+    imageWidthRange.addEventListener('input', () => applyImageWidth(imageWidthRange.value));
+
+    document.querySelectorAll('[data-image-width]').forEach(btn => {
+      btn.disabled = true;
+      btn.addEventListener('click', () => {
+        imageWidthRange.value = btn.dataset.imageWidth;
+        applyImageWidth(btn.dataset.imageWidth);
+      });
+    });
+
+    document.querySelectorAll('[data-image-align]').forEach(btn => {
+      btn.disabled = true;
+      btn.addEventListener('click', () => applyImageAlignment(btn.dataset.imageAlign));
+    });
+
+    document.getElementById('moveMediaUpBtn').disabled = true;
+    document.getElementById('moveMediaDownBtn').disabled = true;
+    document.getElementById('removeMediaBtn').disabled = true;
+    document.getElementById('moveMediaUpBtn').addEventListener('click', () => moveSelectedMedia(-1));
+    document.getElementById('moveMediaDownBtn').addEventListener('click', () => moveSelectedMedia(1));
+    document.getElementById('removeMediaBtn').addEventListener('click', removeSelectedMedia);
+
+    attachmentList.addEventListener('click', (e) => {
+      const button = e.target.closest('[data-attachment-chip]');
+      if (!button) return;
+      const selector = `[data-media-id="${window.CSS?.escape ? window.CSS.escape(button.dataset.attachmentChip) : button.dataset.attachmentChip}"]`;
+      const target = quill.root.querySelector(selector);
+      if (target) {
+        selectMediaElement(target);
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    quill.on('text-change', () => {
+      refreshEmbeddedMedia();
+      if (selectedMediaEl && !document.body.contains(selectedMediaEl)) {
+        clearSelectedMedia();
+      }
+    });
+
+    refreshEmbeddedMedia();
+    window.__refreshAdminEditorMedia = () => {
+      refreshEmbeddedMedia();
+      clearSelectedMedia();
+    };
   }
 
   // ── UI Helpers ─────────────────────────────────────────────
@@ -1222,6 +1974,13 @@
     document.getElementById('postToc').checked      = false;
     document.getElementById('postExtraFields').style.display = 'none';
     quill.setContents([]);
+    selectedMediaEl = null;
+    document.getElementById('attachmentList').innerHTML = '';
+    document.getElementById('editorStatusBadge').textContent = 'Ready for rich drafting, media drop, and attachments.';
+    document.getElementById('selectedMediaSummary').textContent = 'Click an image or attachment in the editor to resize it, align it, move it, or remove it.';
+    document.getElementById('imageWidthRange').value = '100';
+    document.getElementById('imageWidthValue').textContent = '100%';
+    window.__refreshAdminEditorMedia?.();
   }
 
   // ── Toggle extra fields for General Post type ──────────────
@@ -1311,6 +2070,12 @@
         extraFields.style.display = 'none';
       }
       quill.root.innerHTML = p.content || '';
+      quill.root.querySelectorAll('img').forEach(img => {
+        img.style.maxWidth = img.style.maxWidth || '100%';
+      });
+      selectedMediaEl = null;
+      document.getElementById('editorStatusBadge').textContent = 'Existing draft loaded. Click media to continue editing.';
+      window.__refreshAdminEditorMedia?.();
       showPanel('editorPanel');
     } catch (e) {
       showToast('Error loading post: ' + e.message, 'error');

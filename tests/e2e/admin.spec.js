@@ -120,6 +120,18 @@ test.describe('Admin Panel — Editor Structure', () => {
     await expect(page.locator('#saveDraftBtn')).toBeAttached();
   });
 
+  test('media workflow controls exist in DOM', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    await expect(page.locator('#editorMediaToolbar')).toBeAttached();
+    await expect(page.locator('#insertImageBtn')).toBeAttached();
+    await expect(page.locator('#attachFileBtn')).toBeAttached();
+    await expect(page.locator('#mediaSidebar')).toBeAttached();
+    await expect(page.locator('#imageWidthRange')).toBeAttached();
+    await expect(page.locator('#attachmentList')).toBeAttached();
+  });
+
   test('navigation tabs exist', async ({ page }) => {
     await page.goto('/admin/');
     await page.waitForLoadState('domcontentloaded');
@@ -135,6 +147,32 @@ test.describe('Admin Panel — Editor Structure', () => {
     const dialog = page.locator('#confirmDialog');
     await expect(dialog).toBeAttached();
     await expect(dialog).not.toHaveClass(/open/);
+  });
+
+  test('editor source includes attachment and media selection helpers', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const html = await page.content();
+    expect(html).toContain('insertAttachmentFromFile');
+    expect(html).toContain('applyImageWidth');
+    expect(html).toContain('applyImageAlignment');
+    expect(html).toContain('moveSelectedMedia');
+    expect(html).toContain('text/eglab-media-id');
+    expect(html).toContain('Move Up');
+    expect(html).toContain('data-attachment-chip');
+    expect(html).toContain('Drop images to insert them');
+  });
+
+  test('save workflow source still keeps draft and publish wiring intact', async ({ page }) => {
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    const html = await page.content();
+    expect(html).toContain("savePost('published')");
+    expect(html).toContain("savePost('draft')");
+    expect(html).toContain("const content  = quill.root.innerHTML");
+    expect(html).toContain('serverTimestamp()');
   });
 
 });
@@ -160,6 +198,17 @@ test.describe('Admin Panel — Responsive Design', () => {
 
     const btn = page.locator('.btn-google');
     await expect(btn).toBeVisible();
+  });
+
+  test('media workflow UI remains present on mobile viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto('/admin/');
+    await page.waitForLoadState('domcontentloaded');
+
+    await expect(page.locator('#insertImageBtn')).toBeAttached();
+    await expect(page.locator('#attachFileBtn')).toBeAttached();
+    await expect(page.locator('#imageWidthRange')).toBeAttached();
+    await expect(page.locator('#moveMediaUpBtn')).toBeAttached();
   });
 
 });
