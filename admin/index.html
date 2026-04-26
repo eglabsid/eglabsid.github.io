@@ -1039,7 +1039,7 @@
         <div class="form-field">
           <label class="form-label" for="postType">Post Type</label>
           <select class="form-input" id="postType" name="postType" style="background:#f0f7fe;cursor:pointer;">
-            <option value="student" selected>Student Post (/student_post)</option>
+            <option value="student_post" selected>Student Post (/student_post)</option>
             <option value="post">General Post (/post)</option>
           </select>
         </div>
@@ -1899,14 +1899,13 @@
       loadPosts();
     } catch (err) {
       console.error('Admin panel auth error:', err);
-      // Show error on login screen — don't leave user hanging
       if (loginSubtitle) {
-        loginSubtitle.innerHTML = `<span style="color:#c0392b;">⚠ Access check failed: ${err.code || err.message}.<br>
-          If you signed in with the correct account, please retry or contact the lab admin.</span>`;
+        loginSubtitle.innerHTML = `<span style="color:#c0392b;">⚠ 접근 확인 실패: ${err.code || err.message}.<br>
+          올바른 계정으로 로그인했다면 다시 시도하거나 관리자에게 문의하세요.</span>`;
       }
-      setAuthStatus('Access validation failed. Try signing in again or contact the lab admin.', 'error');
-      // Sign out so the user can try again cleanly
+      setAuthStatus('권한 확인에 실패했습니다. 홈으로 돌아갑니다.', 'error');
       try { await signOut(auth); } catch (_) {}
+      setTimeout(() => window.location.replace(HOME_URL), 2500);
     }
   });
 
@@ -1979,7 +1978,7 @@
     document.getElementById('postTags').value     = '';
     document.getElementById('postExcerpt').value  = '';
     document.getElementById('editPostId').value   = '';
-    document.getElementById('postType').value     = 'student';
+    document.getElementById('postType').value     = 'student_post';
     document.getElementById('editorTitle').textContent = 'New Post';
     document.getElementById('postImg').value        = '';
     document.getElementById('postCategory').value   = '';
@@ -2070,7 +2069,7 @@
       document.getElementById('postAuthor').value        = p.author;
       document.getElementById('postTags').value          = (p.tags || []).join(', ');
       document.getElementById('postExcerpt').value       = p.excerpt || '';
-      document.getElementById('postType').value          = p.postType || 'student';
+      document.getElementById('postType').value          = p.postType === 'student' ? 'student_post' : (p.postType || 'student_post');
       document.getElementById('editorTitle').textContent = 'Edit Post';
       const extraFields = document.getElementById('postExtraFields');
       if (p.postType === 'post') {

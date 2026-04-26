@@ -83,25 +83,25 @@ test.describe('Admin Panel — Editor Structure', () => {
     await expect(page.locator('#quillEditor')).toBeAttached();
   });
 
-  test('postType select field exists with student and post options', async ({ page }) => {
+  test('postType select field exists with student_post and post options', async ({ page }) => {
     await page.goto('/admin/');
     await page.waitForLoadState('domcontentloaded');
 
     const select = page.locator('#postType');
     await expect(select).toBeAttached();
 
-    const studentOpt = select.locator('option[value="student"]');
+    const studentOpt = select.locator('option[value="student_post"]');
     const postOpt    = select.locator('option[value="post"]');
     await expect(studentOpt).toBeAttached();
     await expect(postOpt).toBeAttached();
   });
 
-  test('postType defaults to student', async ({ page }) => {
+  test('postType defaults to student_post', async ({ page }) => {
     await page.goto('/admin/');
     await page.waitForLoadState('domcontentloaded');
 
     const value = await page.locator('#postType').evaluate(el => el.value);
-    expect(value).toBe('student');
+    expect(value).toBe('student_post');
   });
 
   test('posts table has Type column header', async ({ page }) => {
@@ -307,13 +307,13 @@ test.describe('Admin Panel — Post Type Extra Fields', () => {
     await expect(page.locator('#postExtraFields')).toBeAttached();
   });
 
-  test('postExtraFields is hidden when postType is student', async ({ page }) => {
+  test('postExtraFields is hidden when postType is student_post', async ({ page }) => {
     await page.goto('/admin/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Default is student — extra fields should be hidden
+    // Default is student_post — extra fields should be hidden
     const value = await page.locator('#postType').evaluate(el => el.value);
-    expect(value).toBe('student');
+    expect(value).toBe('student_post');
 
     const extra = page.locator('#postExtraFields');
     await expect(extra).toBeHidden();
