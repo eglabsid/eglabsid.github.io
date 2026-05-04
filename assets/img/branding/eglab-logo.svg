@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64">
+  <defs>
+    <linearGradient id="lg-dna1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7bc043" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#62ddbd" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="lg-dna2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00bcd4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#62B3E5" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="lg-shadow" x="-5%" y="-10%" width="115%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(26,26,46,0.12)"/>
+    </filter>
+  </defs>
+
+  <!-- E — coral -->
+  <text x="4" y="46"
+        font-family="'Arial Black', 'Lato', sans-serif"
+        font-weight="900"
+        font-size="46"
+        fill="#ed5565"
+        filter="url(#lg-shadow)">E</text>
+
+  <!-- G — sky blue -->
+  <text x="34" y="50"
+        font-family="'Arial Black', 'Lato', sans-serif"
+        font-weight="900"
+        font-size="46"
+        fill="#62B3E5"
+        filter="url(#lg-shadow)">G</text>
+
+  <!-- · separator — amber -->
+  <circle cx="84" cy="30" r="5" fill="#f4b350" filter="url(#lg-shadow)"/>
+
+  <!-- L — teal/mint -->
+  <text x="94" y="46"
+        font-family="'Arial Black', 'Lato', sans-serif"
+        font-weight="900"
+        font-size="46"
+        fill="#62ddbd"
+        filter="url(#lg-shadow)">L</text>
+
+  <!-- A — green -->
+  <text x="122" y="50"
+        font-family="'Arial Black', 'Lato', sans-serif"
+        font-weight="900"
+        font-size="46"
+        fill="#7bc043"
+        filter="url(#lg-shadow)">A</text>
+
+  <!-- B — purple -->
+  <text x="152" y="46"
+        font-family="'Arial Black', 'Lato', sans-serif"
+        font-weight="900"
+        font-size="46"
+        fill="#a78bfa"
+        filter="url(#lg-shadow)">B</text>
+
+  <!-- Divider line -->
+  <line x1="202" y1="10" x2="202" y2="54" stroke="rgba(98,179,229,0.35)" stroke-width="1.5"/>
+
+  <!-- DNA helix — right side -->
+  <path d="M218 8 C212 18, 224 28, 218 38 C212 48, 224 56, 218 62"
+        stroke="url(#lg-dna1)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M218 8 C224 18, 212 28, 218 38 C224 48, 212 56, 218 62"
+        stroke="url(#lg-dna2)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- DNA crosslinks -->
+  <line x1="213" y1="18" x2="223" y2="18" stroke="#7bc043" stroke-width="1.2" opacity="0.7"/>
+  <line x1="213" y1="28" x2="223" y2="28" stroke="#00bcd4" stroke-width="1.2" opacity="0.6"/>
+  <line x1="213" y1="38" x2="223" y2="38" stroke="#7bc043" stroke-width="1.2" opacity="0.7"/>
+  <line x1="213" y1="48" x2="223" y2="48" stroke="#00bcd4" stroke-width="1.2" opacity="0.6"/>
+  <!-- DNA dots -->
+  <circle cx="213" cy="18" r="2" fill="#7bc043" opacity="0.8"/>
+  <circle cx="223" cy="18" r="2" fill="#62ddbd" opacity="0.8"/>
+  <circle cx="213" cy="38" r="2" fill="#00bcd4" opacity="0.8"/>
+  <circle cx="223" cy="38" r="2" fill="#62B3E5" opacity="0.8"/>
+
+  <!-- "EVOLUTIONARY GAME LAB" subtitle -->
+  <text x="210" y="13"
+        font-family="'Montserrat', 'Arial', sans-serif"
+        font-weight="700"
+        font-size="6.5"
+        fill="rgba(26,26,46,0.5)"
+        letter-spacing="1.8">EVOLUTIONARY</text>
+  <text x="210" y="24"
+        font-family="'Montserrat', 'Arial', sans-serif"
+        font-weight="700"
+        font-size="6.5"
+        fill="rgba(26,26,46,0.5)"
+        letter-spacing="1.8">GAME LAB</text>
+
+  <!-- Hongik label -->
+  <text x="210" y="58"
+        font-family="'Montserrat', 'Arial', sans-serif"
+        font-weight="600"
+        font-size="5.5"
+        fill="rgba(98,179,229,0.7)"
+        letter-spacing="1.5">HONGIK UNIV.</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="fg-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C4E8F8"/>
+      <stop offset="100%" stop-color="#a8d8f0"/>
+    </linearGradient>
+    <linearGradient id="fg-dna1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7bc043"/>
+      <stop offset="100%" stop-color="#62ddbd"/>
+    </linearGradient>
+    <linearGradient id="fg-dna2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00bcd4"/>
+      <stop offset="100%" stop-color="#62B3E5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded background -->
+  <rect width="32" height="32" rx="7" ry="7" fill="url(#fg-bg)"/>
+
+  <!-- E letter - coral/red -->
+  <text x="3" y="22"
+        font-family="'Arial Black', 'Lato', sans-serif"
+        font-weight="900"
+        font-size="18"
+        fill="#ed5565">E</text>
+
+  <!-- G letter - sky blue -->
+  <text x="14" y="22"
+        font-family="'Arial Black', 'Lato', sans-serif"
+        font-weight="900"
+        font-size="18"
+        fill="#62B3E5">G</text>
+
+  <!-- DNA helix accent - bottom strip -->
+  <path d="M3 26 C7 24, 11 28, 15 26 C19 24, 23 28, 27 26"
+        stroke="url(#fg-dna1)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M3 29 C7 27, 11 31, 15 29 C19 27, 23 31, 27 29"
+        stroke="url(#fg-dna2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Amber dot separator -->
+  <circle cx="27" cy="7" r="2.5" fill="#f4b350"/>
+</svg>
