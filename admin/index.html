@@ -968,10 +968,10 @@
       </svg>
       Continue with Google
     </button>
-    <p class="login-note">Only approved writers and admins can publish or manage posts.</p>
+    <p class="login-note">Google 계정으로 로그인하면 바로 Student Post를 작성할 수 있습니다.</p>
     <div id="pendingMsg" aria-live="polite">
-      ⏳ Your account is pending approval.<br>
-      Please contact the lab admin to get writer access.
+      ⏳ 계정 승인 대기 중입니다.<br>
+      관리자에게 문의해 작성 권한을 요청하세요.
     </div>
   </div>
 </div>
@@ -1039,7 +1039,7 @@
         <div class="form-field">
           <label class="form-label" for="postType">Post Type</label>
           <select class="form-input" id="postType" name="postType" style="background:#f0f7fe;cursor:pointer;">
-            <option value="student_post" selected>Student Post (/student_post)</option>
+            <option value="student" selected>Student Post</option>
             <option value="post">General Post (/post)</option>
           </select>
         </div>
@@ -1854,15 +1854,15 @@
       const userSnap = await getDoc(userRef);
 
       if (!userSnap.exists()) {
-        // First login — create pending user
+        // First login — auto-grant writer access to all Google users
         await setDoc(userRef, {
           displayName: user.displayName,
           email:       user.email,
           photoURL:    user.photoURL,
-          role:        'pending',
+          role:        'writer',
           lastLogin:   serverTimestamp()
         });
-        currentRole = 'pending';
+        currentRole = 'writer';
       } else {
         await updateDoc(userRef, { lastLogin: serverTimestamp() });
         currentRole = userSnap.data().role;
@@ -1978,7 +1978,7 @@
     document.getElementById('postTags').value     = '';
     document.getElementById('postExcerpt').value  = '';
     document.getElementById('editPostId').value   = '';
-    document.getElementById('postType').value     = 'student_post';
+    document.getElementById('postType').value     = 'student';
     document.getElementById('editorTitle').textContent = 'New Post';
     document.getElementById('postImg').value        = '';
     document.getElementById('postCategory').value   = '';
@@ -2069,7 +2069,7 @@
       document.getElementById('postAuthor').value        = p.author;
       document.getElementById('postTags').value          = (p.tags || []).join(', ');
       document.getElementById('postExcerpt').value       = p.excerpt || '';
-      document.getElementById('postType').value          = p.postType === 'student' ? 'student_post' : (p.postType || 'student_post');
+      document.getElementById('postType').value          = (p.postType === 'student_post' || p.postType === 'student') ? 'student' : (p.postType || 'student');
       document.getElementById('editorTitle').textContent = 'Edit Post';
       const extraFields = document.getElementById('postExtraFields');
       if (p.postType === 'post') {
