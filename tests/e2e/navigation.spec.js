@@ -23,8 +23,8 @@ test.describe('Primary Navigation', () => {
     await navigateFromMenu(page, '/tags.html', '연구실 소개', /\/about\.html$/);
   });
 
-  test('about menu navigates to student blog', async ({ page }) => {
-    await navigateFromMenu(page, '/about.html', 'EGLAB Blog', /\/student-blog\.html$/);
+  test('about menu navigates to home', async ({ page }) => {
+    await navigateFromMenu(page, '/about.html', '홈', /\/$/);
   });
 
   test('student blog menu navigates to home', async ({ page }) => {

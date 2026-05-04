@@ -64,7 +64,7 @@ test.describe('Design System', () => {
     expect(position).toBe('sticky');
   });
 
-  test('EGLAB Blog nav link is present in navigation', async ({ page }) => {
+  test('EGLAB Blog nav link is removed from navigation', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
@@ -73,8 +73,7 @@ test.describe('Design System', () => {
     await page.waitForTimeout(400);
 
     const studentBlogLink = page.locator('.main-nav a', { hasText: 'EGLAB Blog' });
-    await expect(studentBlogLink).toBeVisible();
-    await expect(studentBlogLink).toHaveAttribute('href', /student-blog/);
+    await expect(studentBlogLink).toHaveCount(0);
   });
 
   test('dark/light mode CSS variables switch correctly', async ({ page }) => {

@@ -247,6 +247,88 @@
     });
 </script>
 
+<script type="module">
+  import { initializeApp, getApps, getApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, collection, query, where, getDocs }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey:            'AIzaSyDR2XdnemhSHYznMFI20or-WKIPgn1V7vc',
+    authDomain:        'saas-of-funqa.firebaseapp.com',
+    projectId:         'saas-of-funqa',
+    storageBucket:     'saas-of-funqa.firebasestorage.app',
+    messagingSenderId: '74495319833',
+    appId:             '1:74495319833:web:d75e2d769b97c48bdeaf88'
+  };
+
+  const SEARCH_APP = 'search-overlay';
+  let studentPosts = [];
+
+  function escapeHTML(v = '') {
+    return String(v).replace(/[&<>"']/g, c =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function loadPostsForSearch() {
+    try {
+      const existing = getApps().find(a => a.name === SEARCH_APP);
+      const app = existing || initializeApp(firebaseConfig, SEARCH_APP);
+      const db  = getFirestore(app);
+      const q   = query(collection(db, 'blog_posts'),
+                        where('status',   '==', 'published'),
+                        where('postType', 'in', ['student', 'student_post']));
+      const snap = await getDocs(q);
+      studentPosts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch (err) {
+      console.warn('Search: could not load student posts', err);
+    }
+  }
+
+  function matchPosts(term) {
+    const t = term.toLowerCase();
+    return studentPosts.filter(p =>
+      (p.title   || '').toLowerCase().includes(t) ||
+      (p.content || '').replace(/<[^>]+>/g,' ').toLowerCase().includes(t) ||
+      (p.excerpt || '').toLowerCase().includes(t) ||
+      (p.author  || '').toLowerCase().includes(t)
+    );
+  }
+
+  function appendStudentResults(matches, container) {
+    matches.forEach(post => {
+      const safeId   = encodeURIComponent(post.id);
+      const title    = escapeHTML(post.title || '제목 없음');
+      const desc     = escapeHTML(
+        post.excerpt || (post.content || '').replace(/<[^>]+>/g,' ').slice(0, 90) + '…'
+      );
+      const li = document.createElement('li');
+      li.innerHTML =
+        `<a href="student-post.html?id=${safeId}" title="${desc}">` +
+        `<span style="font-size:0.65rem;font-weight:800;color:#7bc043;text-transform:uppercase;` +
+        `letter-spacing:0.1em;border:1px solid rgba(123,192,67,0.3);border-radius:999px;` +
+        `padding:1px 7px;margin-right:6px;">Student</span>${title}</a><p>${desc}</p>`;
+      container.appendChild(li);
+    });
+  }
+
+  function setupSearchAugmentation() {
+    const input     = document.getElementById('search-input');
+    const container = document.getElementById('results-container');
+    if (!input || !container) return;
+
+    input.addEventListener('input', function () {
+      const term = this.value.trim();
+      if (term.length < 2) return;
+      setTimeout(() => {
+        const matches = matchPosts(term);
+        if (matches.length) appendStudentResults(matches, container);
+      }, 30);
+    });
+  }
+
+  loadPostsForSearch().then(setupSearchAugmentation);
+</script>
+
 {% if page.infinite %}
   <script src="{{ relativebase }}assets/js/infinite-jekyll.js"></script>
 {% endif %}
