@@ -302,6 +302,7 @@
         post.excerpt || (post.content || '').replace(/<[^>]+>/g,' ').slice(0, 90) + '…'
       );
       const li = document.createElement('li');
+      li.setAttribute('data-fb', '1');
       li.innerHTML =
         `<a href="student-post.html?id=${safeId}" title="${desc}">` +
         `<span style="font-size:0.65rem;font-weight:800;color:#7bc043;text-transform:uppercase;` +
@@ -316,13 +317,21 @@
     const container = document.getElementById('results-container');
     if (!input || !container) return;
 
-    input.addEventListener('input', function () {
-      const term = this.value.trim();
-      if (term.length < 2) return;
-      setTimeout(() => {
-        const matches = matchPosts(term);
-        if (matches.length) appendStudentResults(matches, container);
-      }, 30);
+    let searchTimer = null;
+    ['input', 'keyup'].forEach(evtName => {
+      input.addEventListener(evtName, function () {
+        clearTimeout(searchTimer);
+        const term = this.value.trim();
+        if (term.length < 2) {
+          Array.from(container.querySelectorAll('li[data-fb]')).forEach(el => el.remove());
+          return;
+        }
+        searchTimer = setTimeout(() => {
+          Array.from(container.querySelectorAll('li[data-fb]')).forEach(el => el.remove());
+          const matches = matchPosts(term);
+          if (matches.length) appendStudentResults(matches, container);
+        }, 80);
+      });
     });
   }
 
